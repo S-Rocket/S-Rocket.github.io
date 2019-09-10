@@ -90,7 +90,7 @@
 <meta property="og:description" content="参考原作: 推荐系统三十六式-刑无刀 1.【开篇】用知识去对抗技术不平等推荐系统从搜索引擎借鉴了不少技术和思想，比如内容有就来自由Amazon发扬光大的，基于用户（User-based)和基于物品（Item-based）的协同过滤将推荐系统技术从内容延伸到协同关系，超越了内容本身。 后来 Netflix 搞了一个瓜分百万美元的土豪比赛，以矩阵分解为代表的评分预测算法如雨后春笋般出现。至此，机器学习">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.postimg.cc/g0n9L5dj/image.jpg">
-<meta property="og:updated_time" content="2019-09-10T16:52:32.328Z">
+<meta property="og:updated_time" content="2019-09-10T17:03:12.661Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统三十六式--读书笔记（1-4概念篇）">
 <meta name="twitter:description" content="参考原作: 推荐系统三十六式-刑无刀 1.【开篇】用知识去对抗技术不平等推荐系统从搜索引擎借鉴了不少技术和思想，比如内容有就来自由Amazon发扬光大的，基于用户（User-based)和基于物品（Item-based）的协同过滤将推荐系统技术从内容延伸到协同关系，超越了内容本身。 后来 Netflix 搞了一个瓜分百万美元的土豪比赛，以矩阵分解为代表的评分预测算法如雨后春笋般出现。至此，机器学习">
@@ -418,6 +418,7 @@
 <p>后来 Netflix 搞了一个瓜分百万美元的土豪比赛，以矩阵分解为代表的评分预测算法如雨后春笋般出现。至此，机器学习和推荐系统走得越来越近，最近十年，深度学习和强化学习又将推荐系统带向了新的高度。</p>
 <p>推荐系统也是现在热门的 AI 分支之一，但凡AI类的落地，都需要具备这几个基本元素才行：数据、算法、场景、计算力。推荐系统也不例外。有一个趋势我是确信无疑的：世界在向网状发展，万事万物倾向于相互连接构成复杂网络。复杂网络具有无尺度特点，表现是：少数节点集聚了大量连接。这个现象不陌生，叫做马太效应，社交网络粉丝数、网页链接引用量、电商网站商品销量等等，无不如此。推荐系统的使命，就是要用技术来对抗这种不平等。</p>
 <p><strong>一个推荐系统如何才能从 0 到 1 诞生，这需要去了解哪些知识</strong></p>
+<a id="more"></a>
 <ul>
 <li>能解决系统起步阶段 80% 的问题</li>
 <li>已被无数产品验证过有用的东西</li>
@@ -432,7 +433,8 @@
 <li>产品篇：推荐系统要成功，还要考虑产品理念及其商业价值，因此这部分介绍一些产品知识和一点浅显的商业思考</li>
 <li>团队篇：从个人来说，就是该怎么学习和成长；从团队来说，就是该招多少人，该有哪些人，以及产品经理和工程师该如何合作等问题</li>
 </ul>
-<h2 id="lt-—more—-gt"><a href="#lt-—more—-gt" class="headerlink" title="&lt; !—more—&gt;"></a>&lt; !—more—&gt;</h2><h2 id="2-【概念篇】你真的需要个性化推荐系统吗"><a href="#2-【概念篇】你真的需要个性化推荐系统吗" class="headerlink" title="2.【概念篇】你真的需要个性化推荐系统吗?"></a>2.【概念篇】你真的需要个性化推荐系统吗?</h2><h4 id="什么是推荐系统？"><a href="#什么是推荐系统？" class="headerlink" title="什么是推荐系统？"></a><strong>什么是推荐系统？</strong></h4><p>按照维基百科的定义：它是一种信息过滤系统，手段是预测用户（User）对物品（Item）的评分和偏好。这个定义不是很好理解，也不恰当。它用“怎么做”来定义了“是什么”，这相当于变相规定了推荐系统的实现路径。</p>
+<hr>
+<h2 id="2-【概念篇】你真的需要个性化推荐系统吗"><a href="#2-【概念篇】你真的需要个性化推荐系统吗" class="headerlink" title="2.【概念篇】你真的需要个性化推荐系统吗?"></a>2.【概念篇】你真的需要个性化推荐系统吗?</h2><h4 id="什么是推荐系统？"><a href="#什么是推荐系统？" class="headerlink" title="什么是推荐系统？"></a><strong>什么是推荐系统？</strong></h4><p>按照维基百科的定义：它是一种信息过滤系统，手段是预测用户（User）对物品（Item）的评分和偏好。这个定义不是很好理解，也不恰当。它用“怎么做”来定义了“是什么”，这相当于变相规定了推荐系统的实现路径。</p>
 <h4 id="换一个角度回答三个问题来重新定义"><a href="#换一个角度回答三个问题来重新定义" class="headerlink" title="换一个角度回答三个问题来重新定义"></a><strong>换一个角度回答三个问题来重新定义</strong></h4><ul>
 <li>它能做什么 </li>
 <li>它需要什么</li>
@@ -593,7 +595,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/01/hello-world/" rel="next" title="Hello World">
+              <a href="/2019/02/01/hello-world/" rel="next" title="Hello World">
                 <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
@@ -746,7 +748,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-【开篇】用知识去对抗技术不平等"><span class="nav-number">1.</span> <span class="nav-text">1.【开篇】用知识去对抗技术不平等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lt-—more—-gt"><span class="nav-number">2.</span> <span class="nav-text">&lt; !—more—&gt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-【概念篇】你真的需要个性化推荐系统吗"><span class="nav-number">3.</span> <span class="nav-text">2.【概念篇】你真的需要个性化推荐系统吗?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是推荐系统？"><span class="nav-number">3.0.1.</span> <span class="nav-text">什么是推荐系统？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#换一个角度回答三个问题来重新定义"><span class="nav-number">3.0.2.</span> <span class="nav-text">换一个角度回答三个问题来重新定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结一下推荐系统就是：用已有的连接去预测未来用户和物品之间会出现的连接。那么，你需要推荐系统吗？"><span class="nav-number">3.0.3.</span> <span class="nav-text">总结一下推荐系统就是：用已有的连接去预测未来用户和物品之间会出现的连接。那么，你需要推荐系统吗？</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#3-【概念篇】个性化推荐系统那些绕不开的经典问题"><span class="nav-number">4.</span> <span class="nav-text">3.【概念篇】个性化推荐系统那些绕不开的经典问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#评分预测"><span class="nav-number">4.0.1.</span> <span class="nav-text">评分预测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行为预测"><span class="nav-number">4.0.2.</span> <span class="nav-text">行为预测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-【概念篇】这些你必须应该具备的思维模式"><span class="nav-number">5.</span> <span class="nav-text">4.【概念篇】这些你必须应该具备的思维模式</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-【开篇】用知识去对抗技术不平等"><span class="nav-number">1.</span> <span class="nav-text">1.【开篇】用知识去对抗技术不平等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-【概念篇】你真的需要个性化推荐系统吗"><span class="nav-number">2.</span> <span class="nav-text">2.【概念篇】你真的需要个性化推荐系统吗?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是推荐系统？"><span class="nav-number">2.0.1.</span> <span class="nav-text">什么是推荐系统？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#换一个角度回答三个问题来重新定义"><span class="nav-number">2.0.2.</span> <span class="nav-text">换一个角度回答三个问题来重新定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结一下推荐系统就是：用已有的连接去预测未来用户和物品之间会出现的连接。那么，你需要推荐系统吗？"><span class="nav-number">2.0.3.</span> <span class="nav-text">总结一下推荐系统就是：用已有的连接去预测未来用户和物品之间会出现的连接。那么，你需要推荐系统吗？</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#3-【概念篇】个性化推荐系统那些绕不开的经典问题"><span class="nav-number">3.</span> <span class="nav-text">3.【概念篇】个性化推荐系统那些绕不开的经典问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#评分预测"><span class="nav-number">3.0.1.</span> <span class="nav-text">评分预测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行为预测"><span class="nav-number">3.0.2.</span> <span class="nav-text">行为预测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-【概念篇】这些你必须应该具备的思维模式"><span class="nav-number">4.</span> <span class="nav-text">4.【概念篇】这些你必须应该具备的思维模式</span></a></li></div>
             
 
           </div>
