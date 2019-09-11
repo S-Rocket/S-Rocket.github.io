@@ -90,6 +90,58 @@
   </entry>
   
   <entry>
+    <title>LTR信息检索评价指标</title>
+    <link href="http://yoursite.com/2019/06/27/%5BLTR%5D%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87--%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/06/27/[LTR]信息检索评价指标--学习笔记/</id>
+    <published>2019-06-26T16:00:00.000Z</published>
+    <updated>2019-09-11T16:41:58.226Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-RP"><a href="#1-RP" class="headerlink" title="1 RP"></a>1 RP</h2><p>R（recall）表示召回率、查全率，指查询返回结果中相关文档占所有相关文档的比例；P（precision）表示准确率、精度，指查询返回结果中相关文档占所有查询结果文档的比例。假设有如下的混淆矩阵：</p><div class="table-container"><table><thead><tr><th style="text-align:center">—-</th><th style="text-align:center">Predict P</th><th style="text-align:center">Predict N</th></tr></thead><tbody><tr><td style="text-align:center">Target P</td><td style="text-align:center">TP</td><td style="text-align:center">FN</td></tr><tr><td style="text-align:center">Target N</td><td style="text-align:center">FP</td><td style="text-align:center">TN</td></tr></tbody></table></div><a id="more"></a><p>正确率、召回率（查全率）、精准度、$F_{\beta}$ score、假阳率以及真阳率：</p><script type="math/tex; mode=display">Accuracy = \frac{TP+FN}{TP+TN+FP+FN}</script><script type="math/tex; mode=display">Recall=\frac{TP}{TP+FN}</script><script type="math/tex; mode=display">Precision=\frac{TP}{TP+FP}</script><script type="math/tex; mode=display">F_{\beta}=(1+\beta^2) \cdot \frac{Precision \cdot Recall}{\beta^2 \cdot Precision + Recall}</script><p>其中，F-Score/F-measure 作为综合指标，平衡 recall 和 precision 的影响，较为全面的评价一个模型。F1-Score 表示准确率和召回率一样重要；F2-Score 表示召回率比准确率重要一倍；F0.5-Score 表示准确率比召回率重要一倍。</p><script type="math/tex; mode=display">FPR=\frac{FP}{FP+TN}</script><script type="math/tex; mode=display">TPR=\frac{TP}{TP+FN}</script><p><img src="https://i.postimg.cc/XX64QYxH/AUC.png" alt="AUC.png"></p><p>其中：<br>假阳率FPR=ROC曲线的X轴指标<br>真阳率TPR=ROC曲线的Y轴指标=召回率<br>AUC值就是曲线右下部分面积。</p><h2 id="2-MAP"><a href="#2-MAP" class="headerlink" title="2 MAP"></a>2 MAP</h2><p><img src="https://i.postimg.cc/28dVMsvb/PR.jpg" alt="PR.jpg"><br>如上图的PR曲线，对其进行积分求曲线下方的面积，就是AP(Average Precision)，即</p><script type="math/tex; mode=display">AP=\int_0^1 p(r) dr</script><p>其中，p 表示 precision，r 表示 recall，p 是一个以 r 为参数的函数，AP 的计算是对排序位置敏感的，相关文档排序的位置越靠前，检索出相关的文档越多，AP 值越大。</p><p>近似计算约等于 AAP（Aproximate Average Precision）：</p><script type="math/tex; mode=display">AAP=\sum_{k=1}^Np(k)\Delta r(k)=\frac{\sum_{k=1}^Np(k) \cdot rel(k)}{number Of Relevant Documents}</script><p>其中，N 代表所有相关文档的总数，p(k) 表示能检索出 k 个相关文档时的 precision 值，而 △r(k) 则表示检索相关文档个数从 k-1 变化到 k 时（通过调整阈值）recall 值的变化情况。<br>rel(k) 表示第 k 个文档是否相关，若相关则为1，否则为0，则可以简化公式为：</p><script type="math/tex; mode=display">AP=\frac{1}{N} \cdot \sum_{i=1}^N\frac{i}{position(i)}</script><p>其中，N 表示相关文档总数，position(i) 表示第 i 个相关文档在检索结果列表中的位置。</p><p>MAP（Mean Average Precision）即多个查询的平均正确率（AP）的均值，从整体上反映模型的检索性能。</p><p>下面举一个例子来说明上述公式的计算：<br>查询 query1 对应总共有4个相关文档，查询 query2 对应总共有5个相关文档。当通过模型执行查询1、2时，分别检索出4个相关文档（Rank=1、2、4、7）和3个相关文档（Rank=1、3、5）。<br>则 query1AP=(1/1+2/2+3/4+4/7)/4=0.83，query2AP=(1/1+2/3+3/5+0+0)/5=0.45，最后 MAP=(0.83+0.45)/2=0.64。</p><h2 id="3-NDCG"><a href="#3-NDCG" class="headerlink" title="3 NDCG"></a>3 NDCG</h2><h3 id="3-1-CG-Cumulative-Gain-累计效益"><a href="#3-1-CG-Cumulative-Gain-累计效益" class="headerlink" title="3.1 CG(Cumulative Gain)累计效益"></a>3.1 CG(Cumulative Gain)累计效益</h3><script type="math/tex; mode=display">CG@k=\sum_{i=1}^k rel_i</script><p>其中 k 表示 k 个文档组成的集合，rel 表示第 i 个文档的相关度，例如相关度分为以下几个等级：</p><div class="table-container"><table><thead><tr><th style="text-align:center">Relevance Rating</th><th style="text-align:center">Value</th></tr></thead><tbody><tr><td style="text-align:center">Perfect</td><td style="text-align:center">5</td></tr><tr><td style="text-align:center">Excellent</td><td style="text-align:center">4</td></tr><tr><td style="text-align:center">Good</td><td style="text-align:center">3</td></tr><tr><td style="text-align:center">Fair</td><td style="text-align:center">2</td></tr><tr><td style="text-align:center">Simple</td><td style="text-align:center">1</td></tr><tr><td style="text-align:center">Bad</td><td style="text-align:center">0</td></tr></tbody></table></div><h3 id="3-2-DCG-Discounted-Cumulative-Gain"><a href="#3-2-DCG-Discounted-Cumulative-Gain" class="headerlink" title="3.2 DCG(Discounted Cumulative Gain)"></a>3.2 DCG(Discounted Cumulative Gain)</h3><p>在 CG 的计算中没有考虑到位置信息，例如检索到三个文档的相关度依次为（3，-1，1）和（-1，1，3），根据 CG 的计算公式得出的排名是相同的，但是显然前者的排序好一些。</p><p>所以需要在 CG 计算的基础上加入位置信息的计算，现假设根据位置的递增，对应的价值递减，为 1/log2(i+1)，其中 log2(i+1) 为折扣因子；</p><script type="math/tex; mode=display">DCG@k=\sum_{i=1}^k \frac{rel_i}{log_2 (i+1)}</script><p>另一种增加相关度影响比重的 DCG 计算公式：</p><script type="math/tex; mode=display">DCG@k=\sum_{i=1}^k \frac{2^{rel_i}-1}{log_2 (i+1)}</script><h3 id="3-3-IDCG-idea-DCG"><a href="#3-3-IDCG-idea-DCG" class="headerlink" title="3.3 IDCG(idea DCG)"></a>3.3 IDCG(idea DCG)</h3><p>理想情况下，按照相关度从大到小排序，然后计算 DCG 可以取得最大值情况。</p><script type="math/tex; mode=display">IDCG@k=\sum_{i=1}^{|REL|} \frac{2^{rel_i}-1}{log_2 (i+1)}</script><p>其中 |REL| 表示文档按照相关度从大到小排序，取前 k 个文档组成的集合。就是按理想排序情景的前k个。</p><h3 id="3-4-NDCG-Normalized-DCG"><a href="#3-4-NDCG-Normalized-DCG" class="headerlink" title="3.4 NDCG(Normalized DCG)"></a>3.4 NDCG(Normalized DCG)</h3><p>由于每个查询所能检索到的结果文档集合长度不一致，k 值的不同会影响 DCG 的计算结果。所以不能简单的对不同查询的 DCG 结果进行平均，需要先归一化处理。</p><p>NDCG 就是利用 IDCG 进行归一化处理，表示当前的 DCG 与理想情况下的 IDCG 相差多大：</p><script type="math/tex; mode=display">NDCG@k=\frac{DCG@k}{IDCG@K}</script><p>这样每个查询的 NDCG 均在 0-1 范围内，不同查询之间就可以进行比较，求取多个查询的平均 NDCG。</p><h2 id="4-ERR"><a href="#4-ERR" class="headerlink" title="4 ERR"></a>4 ERR</h2><h3 id="4-1-PR-reciprocal-rank"><a href="#4-1-PR-reciprocal-rank" class="headerlink" title="4.1 PR(reciprocal rank)"></a>4.1 PR(reciprocal rank)</h3><p>倒数排名，指检索结果中第一个相关文档的排名的倒数。</p><script type="math/tex; mode=display">RR=\frac{1}{rank_i}</script><h3 id="4-2-MRR-mean-reciprocal-rank"><a href="#4-2-MRR-mean-reciprocal-rank" class="headerlink" title="4.2 MRR(mean reciprocal rank)"></a>4.2 MRR(mean reciprocal rank)</h3><p>多个查询的倒数排名的均值，公式如下：</p><script type="math/tex; mode=display">MRR=\frac{1}{|N|} \sum_{i=1}^{|N|} \frac{1}{rank_i}</script><p>ranki 表示第 i 个查询的第一个相关文档的排名。</p><h3 id="4-3-Cascade-Model-瀑布模型"><a href="#4-3-Cascade-Model-瀑布模型" class="headerlink" title="4.3 Cascade Model(瀑布模型)"></a>4.3 Cascade Model(瀑布模型)</h3><p>点击模型中的瀑布模型，考虑到在同一个检索结果列表中各文档之间的位置依赖关系，假设用户从上至下查看，如果遇到某一检索结果项满意并进行点击，则操作结束；否则跳过该项继续往后查看。第 i 个位置的文档项被点击的概率为：</p><script type="math/tex; mode=display">P(C_i)=r_i \prod_{j=1}^{i-1} (1-r_j)</script><p>其中 ri 表示第 i 个文档被点击的概率，前 i-1 个文档则没有被点击，概率均为 1-rj；</p><h3 id="4-4-ERR-Expected-reciprocal-rank"><a href="#4-4-ERR-Expected-reciprocal-rank" class="headerlink" title="4.4 ERR(Expected reciprocal rank)"></a>4.4 ERR(Expected reciprocal rank)</h3><p>预期的倒数排名，表示用户的需求被满足时停止的位置的倒数的期望，与 RR 计算第一个相关文档的位置倒数不同。<br>首先用户在位置 r 处停止的概率 PPr 计算公式如下：</p><script type="math/tex; mode=display">PP_r=\prod_{i=1}^{r-1}(1-R_i) R_r</script><p>其中 Ri 是关于文档相关度等级的函数，现假设该函数为：</p><script type="math/tex; mode=display">R_i=R(g_i)=\frac{2^g-1}{2^{g_max}}</script><p>当文档是不相关的（g=0），则用户检索到相关文档的概率为0；而当文档极其相关（g=4，如果相关度划分5个等级）时，用户检索到相关文档的概率接近于1。上面公式中的 g 表示文档的相关度，参考 NDCG 中的 rel。</p><p>更通用一点来讲，ERR 不一定是计算用户需求满足时停止的位置的倒数的期望，它可以是基于位置的函数</p><script type="math/tex; mode=display">ERR=\sum_{r=1}^n \varphi(r)P Pr=\sum_{r=1}^n \frac{1}{r} P Pr=\sum_{r=1}^n \frac{1}{r} \prod_{i=1}^{r-1}(1-R_i)R_r</script><p>可以看出，当 φ(r)=1/r 时就是 ERR，当 φ(r)=1/log2(r+1) 就是DCG。</p><p><a href="https://www.cnblogs.com/memento/p/8673309.html" target="_blank" rel="noopener">参考文章1:https://www.cnblogs.com/memento/p/8673309.html</a></p><hr>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-RP&quot;&gt;&lt;a href=&quot;#1-RP&quot; class=&quot;headerlink&quot; title=&quot;1 RP&quot;&gt;&lt;/a&gt;1 RP&lt;/h2&gt;&lt;p&gt;R（recall）表示召回率、查全率，指查询返回结果中相关文档占所有相关文档的比例；P（precision）表示准确率、精度，指查询返回结果中相关文档占所有查询结果文档的比例。假设有如下的混淆矩阵：&lt;/p&gt;
+&lt;div class=&quot;table-container&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;—-&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;Predict P&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;Predict N&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Target P&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;TP&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;FN&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Target N&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;FP&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;TN&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+    
+    </summary>
+    
+    
+      <category term="学习笔记" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="算法总结" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="排序" scheme="http://yoursite.com/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="LTR" scheme="http://yoursite.com/tags/LTR/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Wide &amp; Deep Learning for Recommender Systems</title>
     <link href="http://yoursite.com/2019/06/12/Wide%20&amp;%20Deep%20Learning%20for%20Recommender%20Systems--%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2019/06/12/Wide &amp; Deep Learning for Recommender Systems--学习笔记/</id>
@@ -371,27 +423,6 @@
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2019/02/01/hello-world/"/>
-    <id>http://yoursite.com/2019/02/01/hello-world/</id>
-    <published>2019-01-31T16:00:00.000Z</published>
-    <updated>2019-09-10T17:04:03.937Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><a id="more"></a><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>推荐系统三十六式--读书笔记（35-38 产品&amp;团队&amp;参考阅读）</title>
     <link href="http://yoursite.com/2018/11/12/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%89%E5%8D%81%E5%85%AD%E5%BC%8F--%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%8835-38%20%E4%BA%A7%E5%93%81&amp;%E5%9B%A2%E9%98%9F&amp;%E5%8F%82%E8%80%83%E9%98%85%E8%AF%BB%EF%BC%89/"/>
     <id>http://yoursite.com/2018/11/12/推荐系统三十六式--读书笔记（35-38 产品&amp;团队&amp;参考阅读）/</id>
@@ -418,9 +449,9 @@
     
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="推荐" scheme="http://yoursite.com/tags/%E6%8E%A8%E8%8D%90/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -450,9 +481,9 @@
     
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="推荐" scheme="http://yoursite.com/tags/%E6%8E%A8%E8%8D%90/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -486,9 +517,9 @@
     
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="推荐" scheme="http://yoursite.com/tags/%E6%8E%A8%E8%8D%90/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -525,9 +556,9 @@
     
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="推荐" scheme="http://yoursite.com/tags/%E6%8E%A8%E8%8D%90/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -562,9 +593,9 @@
     
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="推荐" scheme="http://yoursite.com/tags/%E6%8E%A8%E8%8D%90/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -593,9 +624,9 @@
     
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="推荐" scheme="http://yoursite.com/tags/%E6%8E%A8%E8%8D%90/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -624,9 +655,9 @@
     
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="推荐" scheme="http://yoursite.com/tags/%E6%8E%A8%E8%8D%90/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -659,9 +690,9 @@
     
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="推荐" scheme="http://yoursite.com/tags/%E6%8E%A8%E8%8D%90/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
