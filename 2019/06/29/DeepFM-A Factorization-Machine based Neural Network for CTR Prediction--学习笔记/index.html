@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="机器学习,推荐,排序,CTR预估,神经网络,DeepFM,">
 
 
 
@@ -82,6 +82,7 @@
 
 
 <meta name="description" content="原文地址：DeepFM:A Factorization-Machine based Neural Network for CTR Prediction DeepFM:基于神经网络的因式分解机做点击率预估摘要对于推荐系统中的最大化CTR来说，学习那些用户行为背后的复杂而精确的特征交叉项是至关重要的。尽管有很大的提升，但是方法似乎在低阶或者高阶的交差项上带有很强的偏置项，又或者会要求专业性的特征工程。">
+<meta name="keywords" content="机器学习,推荐,排序,CTR预估,神经网络,DeepFM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DeepFM:A Factorization-Machine based Neural Network for CTR Prediction">
 <meta property="og:url" content="http://yoursite.com/2019/06/29/DeepFM-A Factorization-Machine based Neural Network for CTR Prediction--学习笔记/index.html">
@@ -101,7 +102,7 @@
 <meta property="og:image" content="https://i.postimg.cc/7hjnYT9W/DeepFM-9.jpg">
 <meta property="og:image" content="https://i.postimg.cc/HxxwwtPN/Deep-FM-10.jpg">
 <meta property="og:image" content="https://i.postimg.cc/g04yL74R/Deep-FM-11.jpg">
-<meta property="og:updated_time" content="2019-09-11T15:01:12.697Z">
+<meta property="og:updated_time" content="2019-09-11T15:09:46.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DeepFM:A Factorization-Machine based Neural Network for CTR Prediction">
 <meta name="twitter:description" content="原文地址：DeepFM:A Factorization-Machine based Neural Network for CTR Prediction DeepFM:基于神经网络的因式分解机做点击率预估摘要对于推荐系统中的最大化CTR来说，学习那些用户行为背后的复杂而精确的特征交叉项是至关重要的。尽管有很大的提升，但是方法似乎在低阶或者高阶的交差项上带有很强的偏置项，又或者会要求专业性的特征工程。">
@@ -521,6 +522,22 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+            <a href="/tags/推荐/" rel="tag"><i class="fa fa-tag"></i> 推荐</a>
+          
+            <a href="/tags/排序/" rel="tag"><i class="fa fa-tag"></i> 排序</a>
+          
+            <a href="/tags/CTR预估/" rel="tag"><i class="fa fa-tag"></i> CTR预估</a>
+          
+            <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
+          
+            <a href="/tags/DeepFM/" rel="tag"><i class="fa fa-tag"></i> DeepFM</a>
+          
+        </div>
+      
 
       
       
@@ -638,6 +655,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -835,7 +861,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -888,6 +914,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
