@@ -110,7 +110,7 @@
 <meta property="og:image" content="https://i.postimg.cc/zDW3144Y/RNN.jpg">
 <meta property="og:image" content="https://i.postimg.cc/8PfCb9B0/image.jpg">
 <meta property="og:image" content="https://i.postimg.cc/7hFmjhsc/image.jpg">
-<meta property="og:updated_time" content="2019-09-11T15:10:22.671Z">
+<meta property="og:updated_time" content="2019-09-16T15:00:41.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统三十六式--学习笔记（20-21 深度学习）">
 <meta name="twitter:description" content="参考原作：推荐系统三十六式-刑无刀 20.【深度学习】深度学习在推荐系统中的应用有哪些深度学习与推荐系统在矩阵分解中，原始的矩阵表示每个用户的向量是物品，表示每个物品的向量是用户，两者向量的维度都特别高不说，还特别稀疏，分解后用户向量和物品向量不但维度变得特别小，而且变稠密了。业界还把这个稠密的向量叫做隐因子，意图直观说明它的物理意义：用户背后的偏好因子，物品背后的主题因子。 实际上，你完全可以把">
@@ -124,7 +124,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":330,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -510,7 +510,8 @@
 <p>各种 2vec 的做法其实还不算深度学习，毕竟隐藏层才一层而已。如果要用更深的模型学习嵌入向量，就是深度学习中的 AutoEncoder，自动编码器。</p>
 <p>从输入数据逐层降维，相当于是一个对原始数据的编码过程，到最低维度那一层后开始逐层增加神经元，相当于是一个解码过程，解码输出要和原始数据越接近越好，相当于在大幅度压缩原始特征空间的前提下，压缩损失越小越好。<br><a href="https://postimg.cc/sGpqWrMV" target="_blank" rel="noopener"><img src="https://i.postimg.cc/Fzq42FmJ/Autoencode.jpg" alt="Autoencode.jpg"></a></p>
 <h3 id="YouTube-视频推荐"><a href="#YouTube-视频推荐" class="headerlink" title="YouTube 视频推荐"></a><strong>YouTube 视频推荐</strong></h3><p>首先，Youtube 把推荐的预测任务看成是一个多分类，这个和之前常规的推荐系统要么预测行为要么预测评分的做法不太一样，而是把候选物品当成多个类别，预测用户下一个会观看哪个视频。</p>
-<script type="math/tex; mode=display">P(w_t = i|U,C) = \frac{e^{v_iu}}{\sum_{j \in V}e^{v_iu}}</script><p>这个公式中 U 是用户 C 是场景，输入时视频的嵌入向量和用户的嵌入向量。这里就涉及了先要<br>使用深度神经网络，从用户历史反馈行为和场景信息中学习物品和用户的嵌入向量。整个推荐排<br>序模型示意图如下:<br>原文可以参考:<a href="https://www.researchgate.net/publication/307573656_Deep_Neural_Networks_for_YouTube_Recommendations" target="_blank" rel="noopener">Deep Neural Networks for YouTube Recommendations</a><br><a href="https://postimg.cc/FfdPc462" target="_blank" rel="noopener"><img src="https://i.postimg.cc/FKGwMFVs/You-Tube.png" alt="YouTube.png"></a></p>
+<script type="math/tex; mode=display">P(w_t = i|U,C) = \frac{e^{v_iu}}{\sum_{j \in V}e^{v_iu}}</script><p>这个公式中 U 是用户 C 是场景，输入时视频的嵌入向量和用户的嵌入向量。这里就涉及了先要使用深度神经网络，从用户历史反馈行为和场景信息中学习物品和用户的嵌入向量。整个推荐排序模型示意图如下:</p>
+<p>原文可以参考:<a href="https://www.researchgate.net/publication/307573656_Deep_Neural_Networks_for_YouTube_Recommendations" target="_blank" rel="noopener">Deep Neural Networks for YouTube Recommendations</a><br><a href="https://postimg.cc/FfdPc462" target="_blank" rel="noopener"><img src="https://i.postimg.cc/FKGwMFVs/You-Tube.png" alt="YouTube.png"></a></p>
 <blockquote>
 <ol>
 <li>根据观看历史把视频变成了嵌入向量，然后平均后作为输入特征之一，这个和前面的<br>Product2vec 的思路一致，把观看历史看成文档，观看的视频看成词。</li>
@@ -524,7 +525,8 @@
 <hr>
 <h2 id="【深度学习】用RNN构建个性化音乐播单"><a href="#【深度学习】用RNN构建个性化音乐播单" class="headerlink" title="【深度学习】用RNN构建个性化音乐播单"></a><strong>【深度学习】用RNN构建个性化音乐播单</strong></h2><p>前面讲到的绝大多数推荐算法，也都没有考虑“用户在产品上作出任何行为”都是有时间先后的。有一些矩阵分解算法考虑了时间属性，比如 Time-SVD；但是，这种做法只是把时间作为一个独立特征加入到模型中，仍然没有给时间一个正确的处理方式。</p>
 <h3 id="时间的重要性"><a href="#时间的重要性" class="headerlink" title="时间的重要性"></a><strong>时间的重要性</strong></h3><p>绝大数推荐算法都忽略操作的先后顺序，为什么要采取这样简化的做法呢？因为一方面的确也能取得不错的效果，另一方面是深度学习和推荐系统还迟迟没有相见。在深度学习大火之后，对时间序列建模被提上议事日程，业界有很多尝试，今天以 Spotify 的音乐推荐为例，介绍循环神经网络在推荐系统中的应用。</p>
-<h3 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a><strong>循环神经网络</strong></h3><p>循环神经网络，也常被简称为 RNN，是一种特殊的神经网络。再回顾一下神经网络的结构，示意图如下：<br><a href="https://postimg.cc/m1gRTkdv" target="_blank" rel="noopener"><img src="https://i.postimg.cc/zvnfSRTG/NN.jpg" alt="NN.jpg"></a><br>普通神经网络有三个部分，输入层 x，隐藏层 h，输出层 o，深度神经网络的区别就是隐藏层数量有很多，具体多少算深，这个可没有定论，有几层的，也有上百层的。<br>把输入层和隐藏层之间的关系表示成公式后就是：</p>
+<h3 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a><strong>循环神经网络</strong></h3><p>循环神经网络，也常被简称为 RNN，是一种特殊的神经网络。再回顾一下神经网络的结构，示意图如下：<br><a href="https://postimg.cc/m1gRTkdv" target="_blank" rel="noopener"><img src="https://i.postimg.cc/zvnfSRTG/NN.jpg" alt="NN.jpg"></a><br>普通神经网络有三个部分，输入层 x，隐藏层 h，输出层 o，深度神经网络的区别就是隐藏层数量有很多，具体多少算深，这个可没有定论，有几层的，也有上百层的。</p>
+<p>把输入层和隐藏层之间的关系表示成公式后就是：</p>
 <script type="math/tex; mode=display">h = F(Wx)</script><p>就是输入层 x 经过连接参数线性加权后，再有激活函数 F 变换成非线性输出给输出层。<br>在输出层就是：</p>
 <script type="math/tex; mode=display">O = \phi (Vh)</script><p>隐藏层输出经过输出层的网络连接参数线性加权后，再由输出函数变换成最终输出，比如分类任务就是 Softmax 函数。</p>
 <p><strong>循环神经网络和普通神经网络的区别就在于：普通神经网络的隐藏层参数只有输入 x 决定，因为当神经网络在面对一条样本时，这条样本是孤立的，不考虑前一个样本是什么，循环神经网络的隐藏层不只是受输入 x 影响，还受上一个时刻的隐藏层参数影响。</strong></p>
@@ -540,10 +542,10 @@
 </ol>
 </blockquote>
 <p>Spotify 采用了第三种办法，下面我就详细讲解这个推荐算法。</p>
-<h4 id="1-数据"><a href="#1-数据" class="headerlink" title="1. 数据"></a><strong>1. 数据</strong></h4><p>个性化的播单生成，不再是推荐一个一个独立的音乐，而是推荐一个序列给用户。所用的数据就是已有播单，或者用户的会话信息。其中用户会话信息的意思就是，当一个用户在 App 上所做的一系列操作。<br>把这些数据，看成一个一个的文档，每一个音乐文件就是一个一个的词。听完什么再听什么，就像是语言中的词和词的关系。</p>
-<h4 id="2-建模"><a href="#2-建模" class="headerlink" title="2.建模"></a><strong>2.建模</strong></h4><p>你可以把播单生成看成由若干步骤组成，每一步吐出一个音乐来。这个吐出音乐的动作实际上是一个多分类问题，类别数目就是总共可以选择的音乐数目，如果有 100 万首歌可以选择，那么就是一个 100 万分类任务。<br>这个分类任务计算输入是当前神经网络的隐藏状态，然后每一首歌都得到一个线性加权值，再由 Softmax 函数为每一首歌计算得到一个概率。表示如下：</p>
+<h4 id="1-数据"><a href="#1-数据" class="headerlink" title="1. 数据"></a><strong>1. 数据</strong></h4><p>个性化的播单生成，不再是推荐一个一个独立的音乐，而是推荐一个序列给用户。所用的数据就是已有播单，或者用户的会话信息。其中用户会话信息的意思就是，当一个用户在 App 上所做的一系列操作。把这些数据，看成一个一个的文档，每一个音乐文件就是一个一个的词。听完什么再听什么，就像是语言中的词和词的关系。</p>
+<h4 id="2-建模"><a href="#2-建模" class="headerlink" title="2.建模"></a><strong>2.建模</strong></h4><p>你可以把播单生成看成由若干步骤组成，每一步吐出一个音乐来。这个吐出音乐的动作实际上是一个多分类问题，类别数目就是总共可以选择的音乐数目，如果有 100 万首歌可以选择，那么就是一个 100 万分类任务。这个分类任务计算输入是当前神经网络的隐藏状态，然后每一首歌都得到一个线性加权值，再由 Softmax 函数为每一首歌计算得到一个概率。表示如下：</p>
 <script type="math/tex; mode=display">p(o_{yi}|h_t) = \frac {e^{v_ih}}{\sum_{j \in M}e^{v_jh}}</script><p>假如隐藏层有 k 个神经元，也就是说 h 是一个 k 维向量，输出层有 m 首歌可选，所以是一个 One-hot 编码的向量，也就是说一个 m 维向量，只有真正输出那首歌 i 是 1，其他都是 0，那么输出层就有 k 乘以 m 个未知参数。</p>
-<p>再往前，计算隐藏层神经元输出时，不但用到输入层的信息，在这里，输入层也是一首歌，也有 m 首歌可以选择，所以输入向量仍然是一个 One-hot 编码的向量。<br>除此之外，每一个隐藏层神经元还依赖上一个时刻自己的输出值，隐藏层神经元是 k 个，一个 k 维向量。按照隐藏层计算公式就是下面的样子:</p>
+<p>再往前，计算隐藏层神经元输出时，不但用到输入层的信息，在这里，输入层也是一首歌，也有 m 首歌可以选择，所以输入向量仍然是一个 One-hot 编码的向量。除此之外，每一个隐藏层神经元还依赖上一个时刻自己的输出值，隐藏层神经元是 k 个，一个 k 维向量。按照隐藏层计算公式就是下面的样子:</p>
 <script type="math/tex; mode=display">h_t = F(Wx_t + Uh_{t-1})</script><p>W 就是一个 m 乘以 k 的参数矩阵，U 就是一个 k 乘以 k 的参数矩阵。</p>
 <blockquote>
 <p>如此一来，循环神经网络在预测时的计算过程就是：</p>
@@ -593,6 +595,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/07/推荐系统三十六式--读书笔记（20-21 深度学习）/">推荐系统三十六式--学习笔记（20-21 深度学习）</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小火箭 的个人博客">小火箭</a></p>
+  #<p><span>发布时间:</span>2018年11月07日 - 00:11</p>
+  #<p><span>最后更新:</span>2019年09月16日 - 23:09</p>
+  <p><span>原始链接:</span><a href="/2018/11/07/推荐系统三十六式--读书笔记（20-21 深度学习）/" title="推荐系统三十六式--学习笔记（20-21 深度学习）">http://yoursite.com/2018/11/07/推荐系统三十六式--读书笔记（20-21 深度学习）/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/11/07/推荐系统三十六式--读书笔记（20-21 深度学习）/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
     </div>
 
@@ -777,7 +808,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -880,7 +911,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共138k字</span>
+  <span class="post-count">博客全站共138.7k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://i.postimg.cc/Zq2B4nYw/image.jpg">
 <meta property="og:image" content="https://i.postimg.cc/28k6phFz/tensorflow.jpg">
 <meta property="og:image" content="https://i.postimg.cc/KzhG0M8h/image.jpg">
-<meta property="og:updated_time" content="2019-09-11T15:10:28.048Z">
+<meta property="og:updated_time" content="2019-09-16T15:00:41.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统三十六式--学习笔记（14-16 模型融合）">
 <meta name="twitter:description" content="参考原作：推荐系统三十六式-刑无刀 14.【模型融合】经典模型融合办法：线性模型和树模型的组合拳推荐系统在技术实现上一般划分为三个阶段：挖掘、召回、排序。  挖掘就是对用户和物品做非常深入的结构化分析，各个角度各个层面的特征都被呈现出来，并且建好索引，供召回阶段使用，大部分挖掘工作都是离线进行的。 召回，因为物品太多了，每次给一个用户计算推荐结果时，如果对全部物品挨个计算，那将是一场灾难，取而代之">
@@ -123,7 +123,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":330,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -532,9 +532,10 @@
 <li>除了要学习出偏差和方差都较小的模型，还需要能够给工程上留出很多余地，具体来说就是两点，一个是希望越多权重为 0 越好，权重为 0 称之为稀疏，可以减小很多计算复杂度，并且模型更简单，方差那部分会可控。</li>
 <li>另一个是希望能够在线学习这些权重，用户源源不断贡献他们的行为，后台就会源源不断地更新权重，这样才能实现生命的大和谐。</li>
 </ul>
-<p><strong>随机梯度下降常被人诟病的是，它什么也表现不好，很难得到稀疏的模型，效果收敛得也很慢。</strong><br><strong>Google 在 2013 年 KDD 上发表了新的学习算法：FTRL，一种结合了 L1 正则和 L2 正则的在线优化算法，现在各家公司都采用了这个算法。</strong></p>
+<p><strong>随机梯度下降常被人诟病的是，它什么也表现不好，很难得到稀疏的模型，效果收敛得也很慢。</strong></p>
+<p><strong>Google 在 2013 年 KDD 上发表了新的学习算法：FTRL，一种结合了 L1 正则和 L2 正则的在线优化算法，现在各家公司都采用了这个算法。</strong></p>
 <p>&nbsp;</p>
-<h4 id="梯度提升决策树-GBDT"><a href="#梯度提升决策树-GBDT" class="headerlink" title="梯度提升决策树 GBDT"></a><strong>梯度提升决策树 GBDT</strong></h4><p>树模型天然就可以肩负起特征组合的任务，从第一个问题开始，也就是树的根节点，到最后得到答案，也就是叶子节点，这一条路径下来就是若干个特征的组合。<br>树模型最原始的是决策树，简称 DT，先驱们常常发现，把“多个表现”略好于“随机乱猜”的模型以某种方式集成在一起往往出奇效，所以就有树模型的集成模型。最常见的就是随机森林，简称 RF，和梯度提升决策树，简称 GBDT。把它分成两部分：一个是 GB，一个是 DT。GB 是得到集成模型的方案，沿着残差梯度下降的方向构建新的子模型，而 DT 就是指构建的子模型要用的决策树。</p>
+<h4 id="梯度提升决策树-GBDT"><a href="#梯度提升决策树-GBDT" class="headerlink" title="梯度提升决策树 GBDT"></a><strong>梯度提升决策树 GBDT</strong></h4><p>树模型天然就可以肩负起特征组合的任务，从第一个问题开始，也就是树的根节点，到最后得到答案，也就是叶子节点，这一条路径下来就是若干个特征的组合。树模型最原始的是决策树，简称 DT，先驱们常常发现，把“多个表现”略好于“随机乱猜”的模型以某种方式集成在一起往往出奇效，所以就有树模型的集成模型。最常见的就是随机森林，简称 RF，和梯度提升决策树，简称 GBDT。把它分成两部分：一个是 GB，一个是 DT。GB 是得到集成模型的方案，沿着残差梯度下降的方向构建新的子模型，而 DT 就是指构建的子模型要用的决策树。</p>
 <p><strong>GBDT 和其他提升算法的不同之处，比如和 Ada boost 算法不同之处，GBDT 用上一棵树去预测所有样本，得到每一个样本的残差，下一棵树不是去拟合样本的目标值，而是去拟合上一棵树的残差。在得到所有这些树后，真正使用时，是将它们的预测结果相加作为最终输出结果。</strong></p>
 <p>此处有几个问题：</p>
 <ol>
@@ -543,7 +544,7 @@
 <li>构建每一棵树时如果遇到实数值的特征，还需要将其分裂成若干区间，分裂指标有很多，可以参考 xgboost 中的计算分裂点收益，也可以参考决策树所用的信息增益。</li>
 </ol>
 <h4 id="二者结合"><a href="#二者结合" class="headerlink" title="二者结合"></a><strong>二者结合</strong></h4><p>将两者(LR+GBDT)结合在一起，用于做模型融合阶段的 CTR 预估。这是 Facebook 在其广告系统中使用的方法，其中 GBDT 的任务就是产生高阶特征组合。</p>
-<p>具体的做法是：GBDT 产生了 N 棵树，一条样本来了后，在每一棵树上都会从根节点走到叶子<br>节点，到了叶子节点后，就是 1 或者 0，或者不变。把每一棵树的输出看成是一个组合特征，<br>取值为 0 或者 1，一共 N 棵树就会产生 N 个新的特征，这 N 个新的特征作为输入进入 LR 模型，输出最终的结果。如下图所示：<br><a href="https://postimg.cc/qgNwHyqj" target="_blank" rel="noopener"><img src="https://i.postimg.cc/pVZ68BHb/gbdt_lr.jpg" alt="gbdt+lr.jpg"></a><br><strong>虽然简单，但在实际应用中非常的有效。</strong></p>
+<p>具体的做法是：GBDT 产生了 N 棵树，一条样本来了后，在每一棵树上都会从根节点走到叶子节点，到了叶子节点后，就是 1 或者 0，或者不变。把每一棵树的输出看成是一个组合特征，取值为 0 或者 1，一共 N 棵树就会产生 N 个新的特征，这 N 个新的特征作为输入进入 LR 模型，输出最终的结果。如下图所示：<br><a href="https://postimg.cc/qgNwHyqj" target="_blank" rel="noopener"><img src="https://i.postimg.cc/pVZ68BHb/gbdt_lr.jpg" alt="gbdt+lr.jpg"></a><br><strong>虽然简单，但在实际应用中非常的有效。</strong></p>
 <hr>
 <h2 id="15-【模型融合】一网打尽协同过滤、矩阵分解和线性模型"><a href="#15-【模型融合】一网打尽协同过滤、矩阵分解和线性模型" class="headerlink" title="15.【模型融合】一网打尽协同过滤、矩阵分解和线性模型"></a>15.【模型融合】一网打尽协同过滤、矩阵分解和线性模型</h2><h3 id="从特征组合说起"><a href="#从特征组合说起" class="headerlink" title="从特征组合说起"></a><strong>从特征组合说起</strong></h3><p>对逻辑回归    朴素的特征组合就是二阶笛卡尔乘积，但是你有没有想过这样暴力组合的问题所在。</p>
 <ol>
@@ -568,7 +569,7 @@
 =&\frac{1}{2}\sum_{f=1}^k((\sum_{i=1}^nv_{i,f}x_i)(\sum_{j=1}^nv_{j,f}x_j)-\sum_{i=1}^nv_{i,f}^2x_i^2)\\
 =&\frac{1}{2}\sum_{f=1}^k((\sum_{i=1}^nv_{i,f}x_i)^2-\sum_{i=1}^nv_{i,f}^2x_i^2)
 \end{align}</script><blockquote>
-<p>伪代码：<br>loop1 begin:循环k次，k就是隐因子向量的维度，其中，循环到第f次时做一下事情；<br>loop2 begin:循环n个特征，第i次循环时做这样的事情：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 1. 从第i个特征的隐因子向量中拿出第f维的值；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 2. 计算两个值：A是特征值和f维的值相乘，B是A的平方；<br>loop1 end<br>把n个A累加起来，并平方得到C，把n个B也累加起来，得到D，用C减D得到E；<br>loop1 end<br>把k次循环得到的k个E累加起来，除以2。</p>
+<p>伪代码：<br>loop1 begin:循环k次，k就是隐因子向量的维度，其中，循环到第f次时做一下事情；<br>loop2 begin:循环n个特征，第i次循环时做这样的事情：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 1. 从第i个特征的隐因子向量中拿出第f维的值；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 2. 计算两个值：A是特征值和f维的值相乘，B是A的平方；<br>loop2 end<br>把n个A累加起来，并平方得到C，把n个B也累加起来，得到D，用C减D得到E；<br>loop1 end<br>把k次循环得到的k个E累加起来，除以2。</p>
 </blockquote>
 <p><strong>二阶组合部分的实际计算方法，现在这样做的复杂度只是 O(kn)</strong></p>
 <h4 id="4-一网打尽其他模型"><a href="#4-一网打尽其他模型" class="headerlink" title="4. 一网打尽其他模型"></a><strong>4. 一网打尽其他模型</strong></h4><p>如下图示例的样本：<br><a href="https://postimg.cc/K3bHJ5hG" target="_blank" rel="noopener"><img src="https://i.postimg.cc/fySQWHH9/image.jpg" alt="FM示例样本.jpg"></a><br>这张图中每一条样本都记录了用户对电影的评分，最右边的 y 是评分，也就是预测目标；左边的特征有五种，用户 ID、当前评分的电影 ID、曾经评过的其他分、评分时间、上一次评分的电影。</p>
@@ -591,16 +592,16 @@
 <li>线性模型的可解释性相对非线性模型要好。</li>
 </ol>
 </blockquote>
-<p>深度学习在推荐领域的应用，其最大好处就是“洞悉本质般的精深”，优秀的泛化性能，可以给推荐很多惊喜。Google 在 2016 年就发表了他们在 Google Play 应用商店上实践检验过的 CTR 预估方法：Wide &amp; Deep 模型，让两者一起为用户们服务，这样就取得了良好效果。<br>具体的可以参考这篇论文:<a href="https://arxiv.org/pdf/1606.07792.pdf" target="_blank" rel="noopener">Cheng H T, Koc L, Harmsen J, et al. Wide &amp; Deep Learning for Recommender Systems[J]. 2016:7-10.</a></p>
+<p>深度学习在推荐领域的应用，其最大好处就是“洞悉本质般的精深”，优秀的泛化性能，可以给推荐很多惊喜。Google 在 2016 年就发表了他们在 Google Play 应用商店上实践检验过的 CTR 预估方法：Wide &amp; Deep 模型，让两者一起为用户们服务，这样就取得了良好效果。具体的可以参考这篇论文:<a href="https://arxiv.org/pdf/1606.07792.pdf" target="_blank" rel="noopener">Cheng H T, Koc L, Harmsen J, et al. Wide &amp; Deep Learning for Recommender Systems[J]. 2016:7-10.</a></p>
 <h3 id="Wide-amp-Deep-模型"><a href="#Wide-amp-Deep-模型" class="headerlink" title="Wide &amp; Deep 模型"></a><strong>Wide &amp; Deep 模型</strong></h3><p>推荐系统有召回和排序两部构成，不过，推荐系统的检索过程并不一定有显式的检索语句，通常是拿着用户特征和场景特征去检索召回，其中用户特征也就是在前面的专栏中提到的用户画像。<br><a href="https://postimg.cc/bdWLQ8HL" target="_blank" rel="noopener"><img src="https://i.postimg.cc/tCCfG410/image.jpg" alt="推荐系统的召回和排序.jpg"></a><br>深宽模型就是专门用于融合排序的，分成两部分来看。一部分是线性模型，一部分是深度非线性模型。整个示意图如下：<br><a href="https://postimg.cc/0zxYfN6G" target="_blank" rel="noopener"><img src="https://i.postimg.cc/CxncwBS2/image.jpg" alt="深宽模型.jpg"></a><br>首先，线性模型部分，也就是“宽模型”，形式如下：</p>
-<script type="math/tex; mode=display">y=W^TX+b</script><p>这是线性模型的标准形式，逻辑回归只是在这基础上用 sigmoid 函数变换了一下。<br>深度模型其实就是一个前馈神经网络。深度模型对原始的高维稀疏类别型特征，先进行嵌入学习，转换为稠密、低维的实值型向量，转换后的向量维度通常在 10-100 这个范围。这里的嵌入学习，就是先随机初始化嵌入向量，再直接扔到整个前馈网络中，用目标函数来优化学习。</p>
+<script type="math/tex; mode=display">y=W^TX+b</script><p>这是线性模型的标准形式，逻辑回归只是在这基础上用 sigmoid 函数变换了一下。深度模型其实就是一个前馈神经网络。深度模型对原始的高维稀疏类别型特征，先进行嵌入学习，转换为稠密、低维的实值型向量，转换后的向量维度通常在 10-100 这个范围。这里的嵌入学习，就是先随机初始化嵌入向量，再直接扔到整个前馈网络中，用目标函数来优化学习。</p>
 <p>深度模型中增加隐藏层的含义就是提供了非线性转换。所谓深度学习，就是深度神经网络，就是有不止一层的隐藏层存在。层数越多，非线性越强，模型越复杂。还有两点需要说明：</p>
 <ul>
 <li>隐藏层的激活函数不一定是 sigmoid 函数，甚至往往不用 sigmoid 函数；</li>
 <li>输出层的函数也不一定是 sigmoid 函数，这个根据预测目标而定，回归任务就是 i 直接输出求和部分，二分类是 sigmoid 函数，多分类则是 softmax。</li>
 </ul>
 <p>深模型中，每一个隐藏层激活方式表示如下:</p>
-<script type="math/tex; mode=display">a^{l+1}=f(W^la^l+b^l)</script><p>其中 l 表示第 l 个隐藏层，f 是激活函数，通常选用 ReLU，也叫整流线性单元，为什么选用<br>ReLU 而不是 sigmoid 函数，原因主要是 sigmoid 函数在误差反向传播时梯度容易饱和。<br><a href="https://postimg.cc/QBgxqXT7" target="_blank" rel="noopener"><img src="https://i.postimg.cc/Zq2B4nYw/image.jpg" alt="四种激活函数.jpg"></a></p>
+<script type="math/tex; mode=display">a^{l+1}=f(W^la^l+b^l)</script><p>其中 l 表示第 l 个隐藏层，f 是激活函数，通常选用 ReLU，也叫整流线性单元，为什么选用ReLU 而不是 sigmoid 函数，原因主要是 sigmoid 函数在误差反向传播时梯度容易饱和。<br><a href="https://postimg.cc/QBgxqXT7" target="_blank" rel="noopener"><img src="https://i.postimg.cc/Zq2B4nYw/image.jpg" alt="四种激活函数.jpg"></a></p>
 <blockquote>
 <ol>
 <li>紫色是 sigmoid 函数，就是逻辑回归用的那个，输入值是任意范围，输出是 0 到 1 之间；</li>
@@ -610,7 +611,7 @@
 </ol>
 </blockquote>
 <p>最后，看看两者的融合，即深宽模型。深模型和宽模型，由逻辑回归作为最终输出单元，深模型最后一个隐藏层作为特征接入逻辑回归，宽模型的原始特征与之一起接入逻辑回归，然后训练参数。参数学习就是通常说的端到端，把深模型和宽模型以及最终融合的权重放在一个训练流程中，直接对目标函数负责，不存在分阶段训练。它与机器学习中的集成学习方法有所区别，集成学习的子模型是独立训练的，只在融合阶段才会学习权重，这里是整体。</p>
-<script type="math/tex; mode=display">P(Y=1|X)=\sigma(W_{wide}^T[X,\Phi(X)]+W_{deep}^Ta^{(lf)}+b)</script><p>上述输出公式中，Y 是我们要预估的行为，二值变量，如购买，或点击，Google 的应用场景为“是否安装<br>APP”。$\sigma$是 sigmoid 函数，$W_{wide}^T$ 宽模型的权重，$\Phi(X)$ 是宽模型的组合特征，$W_{deep}^T$ 应用在深模型输出上的权重，$a^{(lf)}$ 是深模型的最后一层输出，b 是线性模型的偏置。</p>
+<script type="math/tex; mode=display">P(Y=1|X)=\sigma(W_{wide}^T[X,\Phi(X)]+W_{deep}^Ta^{(lf)}+b)</script><p>上述输出公式中，Y 是我们要预估的行为，二值变量，如购买，或点击，Google 的应用场景为“是否安装APP”。$\sigma$是 sigmoid 函数，$W_{wide}^T$ 宽模型的权重，$\Phi(X)$ 是宽模型的组合特征，$W_{deep}^T$ 应用在深模型输出上的权重，$a^{(lf)}$ 是深模型的最后一层输出，b 是线性模型的偏置。</p>
 <h3 id="几点技巧"><a href="#几点技巧" class="headerlink" title="几点技巧"></a><strong>几点技巧</strong></h3><p>这个深宽模型已经在 TensorFlow 中有开源实现，具体落地时整个数据流如下图所示:<br><a href="https://postimg.cc/yWGBcJb5" target="_blank" rel="noopener"><img src="https://i.postimg.cc/28k6phFz/tensorflow.jpg" alt="深宽模型在tensorflow中的展示.jpg"></a><br><strong>整个流程分为三大块：数据生成，模型训练，模型应用。</strong></p>
 <h4 id="1-数据生成"><a href="#1-数据生成" class="headerlink" title="1 数据生成"></a><strong>1 数据生成</strong></h4><p>几个要点：</p>
 <ul>
@@ -629,7 +630,7 @@
 </ol>
 </blockquote>
 <p>宽模型侧就是传统的做法：特征交叉组合。</p>
-<h4 id="3-模型应用"><a href="#3-模型应用" class="headerlink" title="3 模型应用"></a><strong>3 模型应用</strong></h4><p>模型验证后，就发布到模型服务器。模型服务，每次网络请求输入的是来自召回模块的 App 候选列表以及用户特征，再对输入的每个 App 进行评分。评分就是用我们的“深宽模型”计算，再按照计算的 CTR 从高到低排序。<br>为了让每次请求响应时间在 10ms 量级，每次并不是串行地对每个候选 App 计算，而是多线程并行，将候选 App 分成若干并行批量计算。</p>
+<h4 id="3-模型应用"><a href="#3-模型应用" class="headerlink" title="3 模型应用"></a><strong>3 模型应用</strong></h4><p>模型验证后，就发布到模型服务器。模型服务，每次网络请求输入的是来自召回模块的 App 候选列表以及用户特征，再对输入的每个 App 进行评分。评分就是用我们的“深宽模型”计算，再按照计算的 CTR 从高到低排序。为了让每次请求响应时间在 10ms 量级，每次并不是串行地对每个候选 App 计算，而是多线程并行，将候选 App 分成若干并行批量计算。</p>
 <hr>
 
       
@@ -651,6 +652,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/05/推荐系统三十六式--读书笔记（14-16 模型融合）/">推荐系统三十六式--学习笔记（14-16 模型融合）</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小火箭 的个人博客">小火箭</a></p>
+  #<p><span>发布时间:</span>2018年11月05日 - 00:11</p>
+  #<p><span>最后更新:</span>2019年09月16日 - 23:09</p>
+  <p><span>原始链接:</span><a href="/2018/11/05/推荐系统三十六式--读书笔记（14-16 模型融合）/" title="推荐系统三十六式--学习笔记（14-16 模型融合）">http://yoursite.com/2018/11/05/推荐系统三十六式--读书笔记（14-16 模型融合）/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/11/05/推荐系统三十六式--读书笔记（14-16 模型融合）/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
     </div>
 
@@ -835,7 +865,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -938,7 +968,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共138k字</span>
+  <span class="post-count">博客全站共138.7k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

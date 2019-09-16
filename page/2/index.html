@@ -111,7 +111,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":330,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -455,7 +455,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  11
+                  12
                 </span>
               
             </div>
@@ -477,7 +477,7 @@
 
       
         
-          <p><a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/36955.pdf" target="_blank" rel="noopener">原文地址：The Learning Behind Gmail Priority Inbox</a></p>
+          <p><a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/36955.pdf" target="_blank" rel="noopener">原始论文：The Learning Behind Gmail Priority Inbox</a></p>
 <h2 id="Gmail优先收件箱背后的学习"><a href="#Gmail优先收件箱背后的学习" class="headerlink" title="Gmail优先收件箱背后的学习"></a>Gmail优先收件箱背后的学习</h2><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>Gmail的优先收件箱功能是按用户会对邮件进行操作新行为的概率来对邮件进行排名的。因为“重要性”非常个性化的，我们尝试通过学习每个用户统计模型来预测它，并尽可能的频繁地更新模型。本研究报告描述了在线学习的挑战通过数百万个模型，以及采用的解决方案。</p>
 <h2 id="1-Gmail的优先收件箱"><a href="#1-Gmail的优先收件箱" class="headerlink" title="1 Gmail的优先收件箱"></a>1 Gmail的优先收件箱</h2><p>许多Gmail用户每天都会收到数十或数百封邮件。优先收件箱试图缓解这种信息过载，主要通过学习每个用户的重要性统计模型和基于用户对该邮件采取行动的可能性对邮件进行排名来做到。这不是一个新问题[3,4]，但为了要规模性的做到这一点，需要每天对数百万个模型进行实时排名和近线在线更新会使问题复杂化。这种挑战包括在明确的用户标签的情况下来推断没有邮件的重要性;找到处理非静止和含有噪声的训练数据;构建减少培训数据要求的模型;存储和处理每个用户太字节的特征数据;最后，以分布式和容错的方式进行预测。</p>
           <!--noindex-->
@@ -687,11 +687,9 @@
 
       
         
-          <p><a href="https://arxiv.org/pdf/1607.01759v2.pdf" target="_blank" rel="noopener">原文地址：Bag of Tricks for Efficient Text Classification</a></p>
+          <p><a href="https://arxiv.org/pdf/1607.01759v2.pdf" target="_blank" rel="noopener">原始论文：Bag of Tricks for Efficient Text Classification</a></p>
 <h2 id="有效的文本分类技巧"><a href="#有效的文本分类技巧" class="headerlink" title="有效的文本分类技巧"></a>有效的文本分类技巧</h2><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文提出了一种简单而有效的文本分类和表示学习方法。 我们的实验表明，我们的快速文本分类器fastText在准确性方面通常与深度学习分类器保持一致，并且在训练和评估中速度快很多。 我们可以在不到10分钟的时间内使用标准的多核CPU对超过10亿个单词进行快速文本训练，并在不到一分钟的时间内对312K类中的50万个句子进行分类。</p>
 <h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h2><p>建立良好的文本分类表示是许多应用程序的重要任务，如Web搜索，信息检索，排序和文档分类。 最近，基于神经网络的模型在计算句子表示方面越来越受欢迎。 虽然这些模型在实践中取得了非常好的表现，但是在训练和测试时间，它们往往相对较慢，限制了它们在非常大的数据集上的使用。</p>
-<p>与此同时，简单的线性模型也显示出令人印象深刻的性能，同时计算效率非常高。 他们通常学习单词级别的表示，后来组合起来形成句子表示。 在这项工作中，我们提出了这些模型的扩展，以直接学习句子表示。 我们通过引入其他统计数据（如使用n-gram包）来显示，我们减少了线性和深度模型之间精度的差距，同时速度提高了许多个数量级。</p>
-<p>我们的工作与标准线性文本分类器密切相关。 与Wang和Manning类似，我们的动机是探索由用于学习无监督词表示的模型启发的简单基线。 与Le和Mikolov不同的是，我们的方法在测试时不需要复杂的推理，使得其学习表示很容易在不同问题上重复使用。 我们在两个不同的任务中评估模型的质量，即标签预测和情感分析。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/03/17/Bag of Tricks for Efficient Text Classification--学习笔记/#more" rel="contents">
@@ -2182,8 +2180,9 @@
       
         
           <p><a href="https://time.geekbang.org/column/intro/74" target="_blank" rel="noopener">参考原作：推荐系统三十六式-刑无刀</a></p>
-<h2 id="17-【MAB问题】简单却有效的Bandit算法"><a href="#17-【MAB问题】简单却有效的Bandit算法" class="headerlink" title="17.【MAB问题】简单却有效的Bandit算法"></a>17.【MAB问题】简单却有效的Bandit算法</h2><h3 id="推荐就是选择"><a href="#推荐就是选择" class="headerlink" title="推荐就是选择"></a><strong>推荐就是选择</strong></h3><p>选择的困难在于不知道选择的后果，而且一旦错了就没有机会再来一次。在推荐系统中就对应了少了一次成功展示的机会。选择时不再聚焦到具体每个选项，而是去选择类别，这样压力是不是就小了很多？比如说，把推荐选择具体物品，上升到选择策略。如果后台算法中有三种策略：按照内容相似推荐，按照相似好友推荐，按照热门推荐。每次选择一种策略，确定了策略后，再选择策略中的物品，这样两个步骤。<br><strong>于是有了 Bandit 算法。</strong></p>
-<h3 id="MAB-问题"><a href="#MAB-问题" class="headerlink" title="MAB 问题"></a><strong>MAB 问题</strong></h3><p>Bandit 算法来源于人民群众喜闻乐见的赌博学，它要解决的问题是这样的。<br>一个赌徒，要去摇老虎机，走进赌场一看，一排老虎机，外表一模一样，但是每个老虎机吐钱的概率可不一样，他不知道每个老虎机吐钱的概率分布是什么，那么想最大化收益该怎么整？</p>
+<h2 id="17-【MAB问题】简单却有效的Bandit算法"><a href="#17-【MAB问题】简单却有效的Bandit算法" class="headerlink" title="17.【MAB问题】简单却有效的Bandit算法"></a>17.【MAB问题】简单却有效的Bandit算法</h2><h3 id="推荐就是选择"><a href="#推荐就是选择" class="headerlink" title="推荐就是选择"></a><strong>推荐就是选择</strong></h3><p>选择的困难在于不知道选择的后果，而且一旦错了就没有机会再来一次。在推荐系统中就对应了少了一次成功展示的机会。选择时不再聚焦到具体每个选项，而是去选择类别，这样压力是不是就小了很多？比如说，把推荐选择具体物品，上升到选择策略。如果后台算法中有三种策略：按照内容相似推荐，按照相似好友推荐，按照热门推荐。每次选择一种策略，确定了策略后，再选择策略中的物品，这样两个步骤。<strong>于是有了 Bandit 算法。</strong></p>
+<h3 id="MAB-问题"><a href="#MAB-问题" class="headerlink" title="MAB 问题"></a><strong>MAB 问题</strong></h3><p>Bandit 算法来源于人民群众喜闻乐见的赌博学，它要解决的问题是这样的。</p>
+<p>一个赌徒，要去摇老虎机，走进赌场一看，一排老虎机，外表一模一样，但是每个老虎机吐钱的概率可不一样，他不知道每个老虎机吐钱的概率分布是什么，那么想最大化收益该怎么整？</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/11/06/推荐系统三十六式--读书笔记（17-19 MAB问题）/#more" rel="contents">
@@ -2520,7 +2519,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2607,7 +2606,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共138k字</span>
+  <span class="post-count">博客全站共138.7k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

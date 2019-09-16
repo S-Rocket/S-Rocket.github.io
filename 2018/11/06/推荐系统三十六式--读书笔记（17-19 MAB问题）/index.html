@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://i.postimg.cc/wBtHwyCz/COFIBA.png">
 <meta property="og:image" content="https://i.postimg.cc/FKxj8zJC/COFIBA.jpg">
 <meta property="og:image" content="https://i.postimg.cc/g00V9dqY/MBA.jpg">
-<meta property="og:updated_time" content="2019-09-11T15:10:25.391Z">
+<meta property="og:updated_time" content="2019-09-16T15:00:41.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统三十六式--学习笔记（17-19 MAB问题）">
 <meta name="twitter:description" content="参考原作：推荐系统三十六式-刑无刀 17.【MAB问题】简单却有效的Bandit算法推荐就是选择选择的困难在于不知道选择的后果，而且一旦错了就没有机会再来一次。在推荐系统中就对应了少了一次成功展示的机会。选择时不再聚焦到具体每个选项，而是去选择类别，这样压力是不是就小了很多？比如说，把推荐选择具体物品，上升到选择策略。如果后台算法中有三种策略：按照内容相似推荐，按照相似好友推荐，按照热门推荐。每次">
@@ -120,7 +120,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":330,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -488,8 +488,9 @@
 
       
         <p><a href="https://time.geekbang.org/column/intro/74" target="_blank" rel="noopener">参考原作：推荐系统三十六式-刑无刀</a></p>
-<h2 id="17-【MAB问题】简单却有效的Bandit算法"><a href="#17-【MAB问题】简单却有效的Bandit算法" class="headerlink" title="17.【MAB问题】简单却有效的Bandit算法"></a>17.【MAB问题】简单却有效的Bandit算法</h2><h3 id="推荐就是选择"><a href="#推荐就是选择" class="headerlink" title="推荐就是选择"></a><strong>推荐就是选择</strong></h3><p>选择的困难在于不知道选择的后果，而且一旦错了就没有机会再来一次。在推荐系统中就对应了少了一次成功展示的机会。选择时不再聚焦到具体每个选项，而是去选择类别，这样压力是不是就小了很多？比如说，把推荐选择具体物品，上升到选择策略。如果后台算法中有三种策略：按照内容相似推荐，按照相似好友推荐，按照热门推荐。每次选择一种策略，确定了策略后，再选择策略中的物品，这样两个步骤。<br><strong>于是有了 Bandit 算法。</strong></p>
-<h3 id="MAB-问题"><a href="#MAB-问题" class="headerlink" title="MAB 问题"></a><strong>MAB 问题</strong></h3><p>Bandit 算法来源于人民群众喜闻乐见的赌博学，它要解决的问题是这样的。<br>一个赌徒，要去摇老虎机，走进赌场一看，一排老虎机，外表一模一样，但是每个老虎机吐钱的概率可不一样，他不知道每个老虎机吐钱的概率分布是什么，那么想最大化收益该怎么整？</p>
+<h2 id="17-【MAB问题】简单却有效的Bandit算法"><a href="#17-【MAB问题】简单却有效的Bandit算法" class="headerlink" title="17.【MAB问题】简单却有效的Bandit算法"></a>17.【MAB问题】简单却有效的Bandit算法</h2><h3 id="推荐就是选择"><a href="#推荐就是选择" class="headerlink" title="推荐就是选择"></a><strong>推荐就是选择</strong></h3><p>选择的困难在于不知道选择的后果，而且一旦错了就没有机会再来一次。在推荐系统中就对应了少了一次成功展示的机会。选择时不再聚焦到具体每个选项，而是去选择类别，这样压力是不是就小了很多？比如说，把推荐选择具体物品，上升到选择策略。如果后台算法中有三种策略：按照内容相似推荐，按照相似好友推荐，按照热门推荐。每次选择一种策略，确定了策略后，再选择策略中的物品，这样两个步骤。<strong>于是有了 Bandit 算法。</strong></p>
+<h3 id="MAB-问题"><a href="#MAB-问题" class="headerlink" title="MAB 问题"></a><strong>MAB 问题</strong></h3><p>Bandit 算法来源于人民群众喜闻乐见的赌博学，它要解决的问题是这样的。</p>
+<p>一个赌徒，要去摇老虎机，走进赌场一看，一排老虎机，外表一模一样，但是每个老虎机吐钱的概率可不一样，他不知道每个老虎机吐钱的概率分布是什么，那么想最大化收益该怎么整？</p>
 <a id="more"></a>
 <blockquote>
 <p>这就是多臂赌博机问题 (Multi-armed bandit problem, K-armed bandit problem, MAB)，简称 MAB 问题。有很多相似问题都属于 <strong>MAB 问题</strong>。</p>
@@ -506,7 +507,10 @@
 R_T &= \sum_{i=1}^T(w_{opt}-w_{B(i)})\\
 &= Tw^*-\sum_{i=1}^Tw_{B(i)}
 \end{align}</script><p><strong>公式有两部分构成：一个是遗憾，一个是累积。求和符号内部就表示每次选择的遗憾多少。</strong></p>
-<p>$W_{opt}$ 就表示，每次都运气好，选择了最好的选择，该得到多少收益，WBi 就表示每一次实际选择得到的收益，两者之差就是“遗憾”的量化，在 T 次选择后，就有了累积遗憾。<br>在这个公式中：为了简化 MAB 问题，每个臂的收益不是 0，就是 1，也就是伯努利收益。这个公式可以用来对比不同 Bandit 算法的效果：对同样的多臂问题，用不同的 Bandit 算法模拟试验相同次数，比比看哪个 Bandit 算法的累积遗憾增长得慢，那就是效果较好的算法。<br>Bandit 算法的套路就是：小心翼翼地试，越确定某个选择好，就多选择它，越确定某个选择差，就越来越少选择它。<br>如果某个选择实验次数较少，导致不确定好坏，那么就多给一些被选择机会，直到确定了它是金子还是石头。简单说就是，把选择的机会给“确定好的”和“还不确定的”。</p>
+<p>$W_{opt}$ 就表示，每次都运气好，选择了最好的选择，该得到多少收益，WBi 就表示每一次实际选择得到的收益，两者之差就是“遗憾”的量化，在 T 次选择后，就有了累积遗憾。</p>
+<p>在这个公式中：为了简化 MAB 问题，每个臂的收益不是 0，就是 1，也就是伯努利收益。这个公式可以用来对比不同 Bandit 算法的效果：对同样的多臂问题，用不同的 Bandit 算法模拟试验相同次数，比比看哪个 Bandit 算法的累积遗憾增长得慢，那就是效果较好的算法。</p>
+<p>Bandit 算法的套路就是：小心翼翼地试，越确定某个选择好，就多选择它，越确定某个选择差，就越来越少选择它。</p>
+<p>如果某个选择实验次数较少，导致不确定好坏，那么就多给一些被选择机会，直到确定了它是金子还是石头。简单说就是，把选择的机会给“确定好的”和“还不确定的”。</p>
 <blockquote>
 <p>Bandit 算法中有几个关键元素：臂，回报，环境。</p>
 <blockquote>
@@ -607,7 +611,8 @@ R_T &= \sum_{i=1}^T(w_{opt}-w_{B(i)})\\
 <li>如果候选的置信区间很窄，相当于被选次数很多，比较确定其好坏了，那么均值大的倾向于被多次选择，这个是算法保守稳妥的部分；</li>
 <li>UCB 是一种乐观冒险的算法，它每次选择前根据置信区间上界排序，反之如果是悲观保守的做法，可以选择置信区间下界排序。</li>
 </ol>
-<h3 id="LinUCB"><a href="#LinUCB" class="headerlink" title="LinUCB"></a><strong>LinUCB</strong></h3><p>“Yahoo!”的科学家们在 2010 年基于 UCB 提出了 LinUCB 算法，它和传统的 UCB 算法相比，最大的改进就是加入了特征信息，每次估算每个候选的置信区间，不再仅仅是根据实验，而是根据特征信息来估算，这一点就非常的“机器学习”了。<br>LinUCB 算法做了一个假设：一个物品被选择后推送给一个用户，其收益和特征之间呈线性关系。其简单版本就是让每一个候选臂之间完全互相无关，参数不共享。高级版本就是候选臂之间共享一部分参数。</p>
+<h3 id="LinUCB"><a href="#LinUCB" class="headerlink" title="LinUCB"></a><strong>LinUCB</strong></h3><p>“Yahoo!”的科学家们在 2010 年基于 UCB 提出了 LinUCB 算法，它和传统的 UCB 算法相比，最大的改进就是加入了特征信息，每次估算每个候选的置信区间，不再仅仅是根据实验，而是根据特征信息来估算，这一点就非常的“机器学习”了。</p>
+<p>LinUCB 算法做了一个假设：一个物品被选择后推送给一个用户，其收益和特征之间呈线性关系。其简单版本就是让每一个候选臂之间完全互相无关，参数不共享。高级版本就是候选臂之间共享一部分参数。</p>
 <h4 id="简单版本"><a href="#简单版本" class="headerlink" title="简单版本"></a><strong>简单版本</strong></h4><p>假设此时有一个特征—性别，四个产品需要推荐给用户。</p>
 <div class="table-container">
 <table>
@@ -812,6 +817,35 @@ R_T &= \sum_{i=1}^T(w_{opt}-w_{B(i)})\\
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/06/推荐系统三十六式--读书笔记（17-19 MAB问题）/">推荐系统三十六式--学习笔记（17-19 MAB问题）</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小火箭 的个人博客">小火箭</a></p>
+  #<p><span>发布时间:</span>2018年11月06日 - 00:11</p>
+  #<p><span>最后更新:</span>2019年09月16日 - 23:09</p>
+  <p><span>原始链接:</span><a href="/2018/11/06/推荐系统三十六式--读书笔记（17-19 MAB问题）/" title="推荐系统三十六式--学习笔记（17-19 MAB问题）">http://yoursite.com/2018/11/06/推荐系统三十六式--读书笔记（17-19 MAB问题）/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/11/06/推荐系统三十六式--读书笔记（17-19 MAB问题）/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
     </div>
 
@@ -996,7 +1030,7 @@ R_T &= \sum_{i=1}^T(w_{opt}-w_{B(i)})\\
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1099,7 +1133,7 @@ R_T &= \sum_{i=1}^T(w_{opt}-w_{B(i)})\\
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共138k字</span>
+  <span class="post-count">博客全站共138.7k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

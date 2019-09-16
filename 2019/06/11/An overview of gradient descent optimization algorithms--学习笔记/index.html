@@ -92,23 +92,23 @@
 
 
 
-<meta name="description" content="原文地址：An overview of gradient descent optimization algorithms 梯度下降优化算法综述摘要虽然梯度下降优化算法越来越受欢迎，但通常作为黑盒优化器使用，因此很难对其优点和缺点的进行实际的解释。本文旨在让读者对不同的算法有直观的认识，以帮助读者使用这些算法。在本综述中，我们介绍梯度下降的不同变形形式，总结这些算法面临的挑战，介绍最常用的优化算法，">
+<meta name="description" content="原始论文：An overview of gradient descent optimization algorithms 梯度下降优化算法综述摘要虽然梯度下降优化算法越来越受欢迎，但通常作为黑盒优化器使用，因此很难对其优点和缺点的进行实际的解释。本文旨在让读者对不同的算法有直观的认识，以帮助读者使用这些算法。在本综述中，我们介绍梯度下降的不同变形形式，总结这些算法面临的挑战，介绍最常用的优化算法，">
 <meta name="keywords" content="机器学习,算法,Gradient Descent,Optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="An overview of gradient descent optimization algorithms">
 <meta property="og:url" content="http://yoursite.com/2019/06/11/An overview of gradient descent optimization algorithms--学习笔记/index.html">
 <meta property="og:site_name" content="小火箭的博客">
-<meta property="og:description" content="原文地址：An overview of gradient descent optimization algorithms 梯度下降优化算法综述摘要虽然梯度下降优化算法越来越受欢迎，但通常作为黑盒优化器使用，因此很难对其优点和缺点的进行实际的解释。本文旨在让读者对不同的算法有直观的认识，以帮助读者使用这些算法。在本综述中，我们介绍梯度下降的不同变形形式，总结这些算法面临的挑战，介绍最常用的优化算法，">
+<meta property="og:description" content="原始论文：An overview of gradient descent optimization algorithms 梯度下降优化算法综述摘要虽然梯度下降优化算法越来越受欢迎，但通常作为黑盒优化器使用，因此很难对其优点和缺点的进行实际的解释。本文旨在让读者对不同的算法有直观的认识，以帮助读者使用这些算法。在本综述中，我们介绍梯度下降的不同变形形式，总结这些算法面临的挑战，介绍最常用的优化算法，">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.postimg.cc/0y9Fzn1Z/optimizer-01.jpg">
 <meta property="og:image" content="https://i.postimg.cc/FKBBnQdn/optimizer-02.jpg">
 <meta property="og:image" content="https://i.postimg.cc/8C5YHC56/optimizer-03.jpg">
 <meta property="og:image" content="https://i.postimg.cc/dtYSf63v/optimizers-04.gif">
 <meta property="og:image" content="https://i.postimg.cc/rsSZm0hv/optimizers-05.gif">
-<meta property="og:updated_time" content="2019-09-11T15:09:59.644Z">
+<meta property="og:updated_time" content="2019-09-16T15:00:39.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="An overview of gradient descent optimization algorithms">
-<meta name="twitter:description" content="原文地址：An overview of gradient descent optimization algorithms 梯度下降优化算法综述摘要虽然梯度下降优化算法越来越受欢迎，但通常作为黑盒优化器使用，因此很难对其优点和缺点的进行实际的解释。本文旨在让读者对不同的算法有直观的认识，以帮助读者使用这些算法。在本综述中，我们介绍梯度下降的不同变形形式，总结这些算法面临的挑战，介绍最常用的优化算法，">
+<meta name="twitter:description" content="原始论文：An overview of gradient descent optimization algorithms 梯度下降优化算法综述摘要虽然梯度下降优化算法越来越受欢迎，但通常作为黑盒优化器使用，因此很难对其优点和缺点的进行实际的解释。本文旨在让读者对不同的算法有直观的认识，以帮助读者使用这些算法。在本综述中，我们介绍梯度下降的不同变形形式，总结这些算法面临的挑战，介绍最常用的优化算法，">
 <meta name="twitter:image" content="https://i.postimg.cc/0y9Fzn1Z/optimizer-01.jpg">
 
 
@@ -119,7 +119,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":330,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -486,17 +486,17 @@
       
 
       
-        <p><a href="http://ruder.io/optimizing-gradient-descent/" target="_blank" rel="noopener">原文地址：An overview of gradient descent optimization algorithms</a></p>
+        <p><a href="http://ruder.io/optimizing-gradient-descent/" target="_blank" rel="noopener">原始论文：An overview of gradient descent optimization algorithms</a></p>
 <h2 id="梯度下降优化算法综述"><a href="#梯度下降优化算法综述" class="headerlink" title="梯度下降优化算法综述"></a>梯度下降优化算法综述</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h3><p>虽然梯度下降优化算法越来越受欢迎，但通常作为黑盒优化器使用，因此很难对其优点和缺点的进行实际的解释。本文旨在让读者对不同的算法有直观的认识，以帮助读者使用这些算法。在本综述中，我们介绍梯度下降的不同变形形式，总结这些算法面临的挑战，介绍最常用的优化算法，回顾并行和分布式架构，以及调研用于优化梯度下降的其他的策略。</p>
 <h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a><strong>1 引言</strong></h3><p>梯度下降法是最著名的优化算法之一，也是迄今优化神经网络时最常用的方法。同时，在每一个最新的深度学习库中都包含了各种优化的梯度下降法的实现（例如：参见lasagne，caffe和keras的文档）。然而，这些算法通常是作为黑盒优化器使用，因此，很难对其优点和缺点的进行实际的解释。</p>
 <a id="more"></a>
 <p>本文旨在让读者对不同的优化梯度下降的算法有直观的认识，以帮助读者使用这些算法。在第2部分，我们首先介绍梯度下降的不同变形形式。在第3部分，我们将简要总结在训练的过程中所面临的挑战。随后，在第4部分，我们将介绍最常用的优化算法，包括这些算法在解决以上挑战时的动机以及如何得到更新规则的推导形式。在第5部分，我们将简单讨论在并行和分布式环境中优化梯度下降的算法和框架。最后，在第6部分，我们将思考对优化梯度下降有用的一些其他策略。</p>
-<p>梯度下降法是最小化目标函数$J(\theta)$的一种方法，其中，$θ \in \mathbb R^d$为模型参数，梯度下降法利用目标函数关于参数的梯度$\triangledown_{\theta}J(\theta)$的反方向更新参数。学习率$\eta$决定达到最小值或者局部最小值过程中所采用的步长的大小。即，我们沿着目标函数的斜面下降的方向，直到到达谷底。如果你对梯度下降法不熟悉，你可以从<a href="http://cs231n.github.io/optimization-1/找到介绍神经网络优化的材料。" target="_blank" rel="noopener">http://cs231n.github.io/optimization-1/找到介绍神经网络优化的材料。</a></p>
+<p>梯度下降法是最小化目标函数$J(\theta)$的一种方法，其中，$θ \in \mathbb R^d$为模型参数，梯度下降法利用目标函数关于参数的梯度$\triangledown_{\theta}J(\theta)$的反方向更新参数。学习率$\eta$决定达到最小值或者局部最小值过程中所采用的步长的大小。即，我们沿着目标函数的斜面下降的方向，直到到达谷底。如果你对梯度下降法不熟悉，你可以从<a href="http://cs231n.github.io/optimization-1/" target="_blank" rel="noopener">此处资料</a>找到介绍神经网络优化的材料。</p>
 <h3 id="2-梯度下降法的变形形式"><a href="#2-梯度下降法的变形形式" class="headerlink" title="2 梯度下降法的变形形式"></a><strong>2 梯度下降法的变形形式</strong></h3><p>梯度下降法有3中变形形式，它们之间的区别为我们在计算目标函数的梯度时使用到多少数据。根据数据量的不同，我们在参数更新的精度和更新过程中所需要的时间两个方面做出权衡。</p>
 <h4 id="2-1-批梯度下降法"><a href="#2-1-批梯度下降法" class="headerlink" title="2.1 批梯度下降法"></a><strong>2.1 批梯度下降法</strong></h4><p>Vanilla梯度下降法，又称为批梯度下降法（batch gradient descent），在整个训练数据集上计算损失函数关于参数$\theta$的梯度：</p>
 <script type="math/tex; mode=display">\theta = \theta - \eta \cdot \triangledown_{\theta}J(\theta)</script><p>因为在执行每次更新时，我们需要在整个数据集上计算所有的梯度，所以批梯度下降法的速度会很慢，同时，批梯度下降法无法处理超出内存容量限制的数据集。批梯度下降法同样也不能在线更新模型，即在运行的过程中，不能增加新的样本。</p>
 <p>批梯度下降法的代码如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(nb_epochs):</span><br><span class="line">    params_grad = evaluate_gradient(loss_function, data, params)</span><br><span class="line">    params = params - learning_rate * params_grad</span><br></pre></td></tr></table></figure></p>
-<p>对于给定的迭代次数，首先，我们利用全部数据集计算损失函数关于参数向量params的梯度向量params_grad。注意，最新的深度学习库中提供了自动求导的功能，可以有效地计算关于参数梯度。如果你自己求梯度，那么，梯度检查是一个不错的主意（关于如何正确检查梯度的一些技巧可以参见<a href="http://cs231n.github.io/neural-networks-3/）。" target="_blank" rel="noopener">http://cs231n.github.io/neural-networks-3/）。</a></p>
+<p>对于给定的迭代次数，首先，我们利用全部数据集计算损失函数关于参数向量params的梯度向量params_grad。注意，最新的深度学习库中提供了自动求导的功能，可以有效地计算关于参数梯度。如果你自己求梯度，那么，梯度检查是一个不错的主意（关于如何正确检查梯度的一些技巧可以参见<a href="http://cs231n.github.io/neural-networks-3/" target="_blank" rel="noopener">此处资料</a>）。</p>
 <p>然后，我们利用梯度的方向和学习率更新参数，学习率决定我们将以多大的步长更新参数。对于凸误差函数，批梯度下降法能够保证收敛到全局最小值，对于非凸函数，则收敛到一个局部最小值。</p>
 <h4 id="2-2-随机梯度下降法"><a href="#2-2-随机梯度下降法" class="headerlink" title="2.2 随机梯度下降法"></a><strong>2.2 随机梯度下降法</strong></h4><p>相反，随机梯度下降法（stochastic gradient descent, SGD）根据每一条训练样本$x^{(i)}$和标签$y^{(i)}$更新参数：</p>
 <script type="math/tex; mode=display">\theta = \theta - \eta \cdot \triangledown_{\theta}J(\theta;x^{(i)};y^{(i)})</script><p>对于大数据集，因为批梯度下降法在每一个参数更新之前，会对相似的样本计算梯度，所以在计算过程中会有冗余。而SGD在每一次更新中只执行一次，从而消除了冗余。因而，通常SGD的运行速度更快，同时，可以用于在线学习。SGD以高方差频繁地更新，导致目标函数出现如图1所示的剧烈波动。</p>
@@ -531,7 +531,7 @@
 <script type="math/tex; mode=display">v_t = \gamma v_{t-1} + \eta \triangledown_{\theta}J(\theta - \gamma v_{t-1}) \\
 \theta = \theta - v_t</script><p>同时，我们设置动量项$\gamma$大约为0.9。动量法首先计算当前的梯度值（图3中的小的蓝色向量），然后在更新的累积梯度（大的蓝色向量）方向上前进一大步，Nesterov加速梯度下降法NAG首先在先前累积梯度（棕色的向量）方向上前进一大步，计算梯度值，然后做一个修正（绿色的向量）。这个具有预见性的更新防止我们前进得太快，同时增强了算法的响应能力，这一点在很多的任务中对于RNN的性能提升有着重要的意义[2]。</p>
 <p><img src="https://i.postimg.cc/8C5YHC56/optimizer-03.jpg" alt="optimizer-03.jpg"></p>
-<p>对于NAG的直观理解的另一种解释可以参见<a href="http://cs231n.github.io/neural-networks-3/，同时Ilya" target="_blank" rel="noopener">http://cs231n.github.io/neural-networks-3/，同时Ilya</a> Sutskever在其博士论文[18]中给出更详细的综述。</p>
+<p>对于NAG的直观理解的另一种解释可以参见<a href="http://cs231n.github.io/neural-networks-3/" target="_blank" rel="noopener">此处资料</a>，同时Ilya Sutskever在其博士论文[18]中给出更详细的综述。</p>
 <p>既然我们能够使得我们的更新适应误差函数的斜率以相应地加速SGD，我们同样也想要使得我们的更新能够适应每一个单独参数，以根据每个参数的重要性决定大的或者小的更新。</p>
 <h4 id="4-3-Adagrad"><a href="#4-3-Adagrad" class="headerlink" title="4.3 Adagrad"></a><strong>4.3 Adagrad</strong></h4><p>Adagrad[7]是这样的一种基于梯度的优化算法：让学习率适应参数，对于出现次数较少的特征，我们对其采用更大的学习率，对于出现次数较多的特征，我们对其采用较小的学习率。因此，Adagrad非常适合处理稀疏数据。Dean等人[6]发现Adagrad能够极大提高了SGD的鲁棒性并将其应用于Google的大规模神经网络的训练，其中包含了YouTube视频中的猫的识别。此外，Pennington等人[15]利用Adagrad训练Glove词向量，因为低频词比高频词需要更大的步长。</p>
 <p>前面，我们每次更新所有的参数$\theta$时，每一个参数$\theta_i$都使用的是相同的学习率$\eta$。由于Adagrad在t时刻对每一个参数$\theta_i$使用了不同的学习率，我们首先介绍Adagrad对每一个参数的更新，然后我们对其向量化。为了简洁，令$g_{t,i}$为在t时刻目标函数关于参数$\theta_i$的梯度：</p>
@@ -589,7 +589,7 @@ v_t = \beta_2 v_{t-1} + (1-\beta_2) g^2_t</script><p>$m_t$和$v_t$分别是对�
 <script type="math/tex; mode=display">g_{t,i} = g_{t,i} + N(0,\sigma^2_t)</script><p>高斯分布的方差需要根据如下的策略退火：</p>
 <script type="math/tex; mode=display">\sigma_t^2 = \frac{\eta}{(1+t)^\gamma}</script><p>他们指出增加了噪音，使得网络对不好的初始化更加鲁棒，同时对深层的和复杂的网络的训练特别有益。他们猜测增加的噪音使得模型更优机会逃离当前的局部最优点，以发现新的局部最优点，这在更深层的模型中更加常见。</p>
 <h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7 总结"></a><strong>7 总结</strong></h3><p>在这篇博客文章中，我们初步研究了梯度下降的三个变形形式，其中，小批量梯度下降是最受欢迎的。 然后我们研究了最常用于优化SGD的算法：动量法，Nesterov加速梯度，Adagrad，Adadelta，RMSprop，Adam以及不同的优化异步SGD的算法。 最后，我们已经考虑其他一些改善SGD的策略，如洗牌和课程学习，批量归一化和early stopping。</p>
-<p><a href="https://blog.csdn.net/google19890102/article/details/69942970" target="_blank" rel="noopener">参考博文：梯度下降优化算法综述</a></p>
+<p><a href="https://blog.csdn.net/google19890102/article/details/69942970" target="_blank" rel="noopener">参考博文：梯度下降优化算法综述-zhiyong_will</a></p>
 <hr>
 
       
@@ -611,6 +611,35 @@ v_t = \beta_2 v_{t-1} + (1-\beta_2) g^2_t</script><p>$m_t$和$v_t$分别是对�
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2019/06/11/An overview of gradient descent optimization algorithms--学习笔记/">An overview of gradient descent optimization algorithms</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小火箭 的个人博客">小火箭</a></p>
+  #<p><span>发布时间:</span>2019年06月11日 - 00:06</p>
+  #<p><span>最后更新:</span>2019年09月16日 - 23:09</p>
+  <p><span>原始链接:</span><a href="/2019/06/11/An overview of gradient descent optimization algorithms--学习笔记/" title="An overview of gradient descent optimization algorithms">http://yoursite.com/2019/06/11/An overview of gradient descent optimization algorithms--学习笔记/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2019/06/11/An overview of gradient descent optimization algorithms--学习笔记/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
     </div>
 
@@ -797,7 +826,7 @@ v_t = \beta_2 v_{t-1} + (1-\beta_2) g^2_t</script><p>$m_t$和$v_t$分别是对�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -900,7 +929,7 @@ v_t = \beta_2 v_{t-1} + (1-\beta_2) g^2_t</script><p>$m_t$和$v_t$分别是对�
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共138k字</span>
+  <span class="post-count">博客全站共138.7k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

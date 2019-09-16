@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://i.postimg.cc/hPm5PZ76/google.jpg">
 <meta property="og:image" content="https://i.postimg.cc/bvw5k0B0/Cassandra.jpg">
 <meta property="og:image" content="https://i.postimg.cc/WpG7pF9s/image.jpg">
-<meta property="og:updated_time" content="2019-09-11T15:10:14.179Z">
+<meta property="og:updated_time" content="2019-09-16T15:00:43.011Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统三十六式--学习笔记（28-31 关键模块）">
 <meta name="twitter:description" content="参考原作：推荐系统三十六式-刑无刀 28.【关键模块】巧妇难为无米之炊：数据采集关键要素日志和数据数据驱动这个概念也是最近几年才开始流行起来的，在古典互联网时代，设计和开发产品完全侧重于功能易用和设计精巧上，并且整体驱动力受限于产品负责人的个人眼光，这属于是一种感性的把握，也因此对积累数据这件事就不是很重视。 关于数据采集，按照用途分类又有三种：  报表统计 数据分析 机器学习">
@@ -126,7 +126,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":330,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -705,7 +705,32 @@
 <p>甚至如果进一步确定是一个比较小的相似度，或者可以直接干掉这个物品对，不被更新，也不参与计算。那么问题就来了，怎么确定什么时候可以不再更新这个物品对的相似度了呢？这时候要用到一个不等式：Hoeffding 不等式。</p>
 <p>Hoeffding 不等式适用于有界的随机变量。相似度明显是有界的，最大值是 1，最小值是 0。所以可以用这个不等式，Hoeffding 不等式是这样一个统计法则：<strong>随机变量的真实期望值不会超过$\hat x + \epsilon$ 的概率是概率$1-\delta$</strong>，其中 的值是这样算的：</p>
 <script type="math/tex; mode=display">\epsilon = \sqrt{\frac{ln(\frac{1}{\delta})}{2n}}</script><p>公式中： 是历次更新得到的相似度平均值，n 是更新过的次数。这样一来，你选定$\delta$和$\epsilon$之后就知道更新多少次之后就可以放心大胆地使用了。</p>
-<p>举例：这里设置$\delta = 0.05$<br>| 与真实相似度误差 | 最少更新次数 |<br>| :—-: | :—-: |<br>| 0.1 | 150 |<br>| 0.05 | 600 |<br>| 0.01 | 14979 |<br>也就是在前面讲到的更新相似度的 Bolt 中，如果发现一个物品对的更新次数已经达到最少更新次数，则可以不再更新，并且，如果此时相似度小于设定阈值，就可以斩钉截铁地说：这两个物品不相似，以后不用再参与推荐计算了。</p>
+<p>举例：这里设置$\delta = 0.05$</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">与真实相似度误差</th>
+<th style="text-align:center">最少更新次数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0.1</td>
+<td style="text-align:center">150</td>
+</tr>
+<tr>
+<td style="text-align:center">0.05</td>
+<td style="text-align:center">600</td>
+</tr>
+<tr>
+<td style="text-align:center">0.01</td>
+<td style="text-align:center">14979</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>也就是在前面讲到的更新相似度的 Bolt 中，如果发现一个物品对的更新次数已经达到最少更新次数，则可以不再更新，并且，如果此时相似度小于设定阈值，就可以斩钉截铁地说：这两个物品不相似，以后不用再参与推荐计算了。</p>
 <p>这就是一项基于统计的剪枝方法，除此之外还有<strong>加窗、采样、合并三种常规办法。</strong></p>
 <ul>
 <li>首先，关于加窗。用户的兴趣会衰减，请你不要怀疑这一点，因为这是这篇文章的基本假设和出发点。用户兴趣衰减，那么一个直接的推论就是，比较久远的用户历史行为数据所起的作用应该小一些。所以，另一个剪枝技术就是：滑窗。设定一个时间窗口，时间窗口内的历史行为数据参与实时计算，窗口外的不再参与实时计算。<blockquote>
@@ -855,7 +880,45 @@
 <p>另外，Redis 被人诟病的就是不太高可用，对此已经有一些集群方案，有官方的和非官方的，可以试着加强下 Redis 的高可用。</p>
 <h4 id="3-非数据库"><a href="#3-非数据库" class="headerlink" title="3. 非数据库"></a><strong>3. 非数据库</strong></h4><p>除了数据库外，在推荐系统中还会用到一些非主流但常用的存储方式。第一个就是虚拟内存映射，称为 MMAP，这可以看成是一个简陋版的数据库，其原理就是把磁盘上的文件映射到内存中，以解决数据太大不能读入内存，但又想随机读取的矛盾需求。比如你训练的词嵌入向量，或者隐因子模型，当特别大时，可以二进制存在文件中，然后采用虚拟内存映射方式读取。</p>
 <p>另外一个就是 PMML 文件，专门用于保存数据挖掘和部分机器学习模型参数及决策函数的。当模型参数还不足以称之为海量时，PMML 是一个很好的部署方法，可以让线上服务在做预测时并不依赖离线时的编程语言，以 PMML 协议保存离线训练结果就好。</p>
-<h3 id="API"><a href="#API" class="headerlink" title="API"></a><strong>API</strong></h3><p>除了存储，推荐系统作为一个服务，应该以良好的接口和上有服务之间交互，因此要设计良好的 API。<br><strong>API 有两大类，一类数据录入，另一类是推荐服务</strong>。数据录入 API，可以用于数据采集的埋点，或者其他数据录入。<br>| 接口 | 用途 | 基本输入参数 | 备注 |<br>| :—-: | :—-: | :—-: | :—-: |<br>| /Users | 录入用户信息 | userid,attribute,value | 可以接受任意多的属性和值 |<br>| /Item | 录入物品信息 | itemid,attribute,value | 和用户接口类似 |<br>| /Relation | 录入一个关系数据 | from,to,weight | 参考关系数据的存储模型 |<br>| /Event | 录入事件 | userid,itemid,eventname,timestamp | 参考时间数据的存储模型 |</p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a><strong>API</strong></h3><p>除了存储，推荐系统作为一个服务，应该以良好的接口和上有服务之间交互，因此要设计良好的 API。<br><strong>API 有两大类，一类数据录入，另一类是推荐服务</strong>。数据录入 API，可以用于数据采集的埋点，或者其他数据录入。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">接口</th>
+<th style="text-align:center">用途</th>
+<th style="text-align:center">基本输入参数</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">/Users</td>
+<td style="text-align:center">录入用户信息</td>
+<td style="text-align:center">userid,attribute,value</td>
+<td style="text-align:center">可以接受任意多的属性和值</td>
+</tr>
+<tr>
+<td style="text-align:center">/Item</td>
+<td style="text-align:center">录入物品信息</td>
+<td style="text-align:center">itemid,attribute,value</td>
+<td style="text-align:center">和用户接口类似</td>
+</tr>
+<tr>
+<td style="text-align:center">/Relation</td>
+<td style="text-align:center">录入一个关系数据</td>
+<td style="text-align:center">from,to,weight</td>
+<td style="text-align:center">参考关系数据的存储模型</td>
+</tr>
+<tr>
+<td style="text-align:center">/Event</td>
+<td style="text-align:center">录入事件</td>
+<td style="text-align:center">userid,itemid,eventname,timestamp</td>
+<td style="text-align:center">参考时间数据的存储模型</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>推荐服务的 API 按照推荐场景来设计，则是一种比较常见的方式。</p>
 <h4 id="1-猜你喜欢接口："><a href="#1-猜你喜欢接口：" class="headerlink" title="1. 猜你喜欢接口："></a><strong>1. 猜你喜欢接口：</strong></h4><p>/Recommend 输入：</p>
 <ul>
@@ -919,6 +982,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/10/推荐系统三十六式--读书笔记（28-31 关键模块）/">推荐系统三十六式--学习笔记（28-31 关键模块）</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小火箭 的个人博客">小火箭</a></p>
+  #<p><span>发布时间:</span>2018年11月10日 - 00:11</p>
+  #<p><span>最后更新:</span>2019年09月16日 - 23:09</p>
+  <p><span>原始链接:</span><a href="/2018/11/10/推荐系统三十六式--读书笔记（28-31 关键模块）/" title="推荐系统三十六式--学习笔记（28-31 关键模块）">http://yoursite.com/2018/11/10/推荐系统三十六式--读书笔记（28-31 关键模块）/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/11/10/推荐系统三十六式--读书笔记（28-31 关键模块）/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
     </div>
 
@@ -1103,7 +1195,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1206,7 +1298,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共138k字</span>
+  <span class="post-count">博客全站共138.7k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

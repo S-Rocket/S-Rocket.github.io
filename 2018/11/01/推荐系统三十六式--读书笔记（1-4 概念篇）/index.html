@@ -101,7 +101,7 @@
 <meta property="og:description" content="参考原作：推荐系统三十六式-刑无刀 1.【开篇】用知识去对抗技术不平等推荐系统从搜索引擎借鉴了不少技术和思想，比如内容有就来自由Amazon发扬光大的，基于用户（User-based)和基于物品（Item-based）的协同过滤将推荐系统技术从内容延伸到协同关系，超越了内容本身。 后来 Netflix 搞了一个瓜分百万美元的土豪比赛，以矩阵分解为代表的评分预测算法如雨后春笋般出现。至此，机器学习和">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.postimg.cc/g0n9L5dj/image.jpg">
-<meta property="og:updated_time" content="2019-09-11T15:09:06.522Z">
+<meta property="og:updated_time" content="2019-09-16T15:00:45.825Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统三十六式--学习笔记（1-4 概念篇）">
 <meta name="twitter:description" content="参考原作：推荐系统三十六式-刑无刀 1.【开篇】用知识去对抗技术不平等推荐系统从搜索引擎借鉴了不少技术和思想，比如内容有就来自由Amazon发扬光大的，基于用户（User-based)和基于物品（Item-based）的协同过滤将推荐系统技术从内容延伸到协同关系，超越了内容本身。 后来 Netflix 搞了一个瓜分百万美元的土豪比赛，以矩阵分解为代表的评分预测算法如雨后春笋般出现。至此，机器学习和">
@@ -115,7 +115,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":330,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -533,7 +533,7 @@
 </blockquote>
 <p><strong>长尾理论</strong>可以帮助我们理解，如何把用户和物品各种可能的连接汇总，包括用户属性、物品属性等，应该要有长尾效应才可能让推荐系统发挥效果。这里我介绍一个简单指标，用于判断是不是需要推荐系统：</p>
 <script type="math/tex; mode=display">\frac{\Delta connection}{\Delta user \times \Delta item}</script><blockquote>
-<p>分子是增加的连接数，分母是增加的活跃用户数和增加的有效物品数：<br>如果增加的连接数主要靠增加的活跃用户数和增加的物品数贡献，则该值会较小，不适合加入推荐系统； 如果增加的连接数和新增活跃用户和物品关系不大，那说明连接数已经有自发生长的趋势了，适合加入推荐系统加速这一过程。<br>不过，具体并没有判断标准，因产品而异。</p>
+<p>分子是增加的连接数，分母是增加的活跃用户数和增加的有效物品数：<br>如果增加的连接数主要靠增加的活跃用户数和增加的物品数贡献，则该值会较小，不适合加入推荐系统； 如果增加的连接数和新增活跃用户和物品关系不大，那说明连接数已经有自发生长的趋势了，适合加入推荐系统加速这一过程。<strong>不过，具体并没有判断标准，因产品而异。</strong></p>
 </blockquote>
 <hr>
 <h2 id="3-【概念篇】个性化推荐系统那些绕不开的经典问题"><a href="#3-【概念篇】个性化推荐系统那些绕不开的经典问题" class="headerlink" title="3.【概念篇】个性化推荐系统那些绕不开的经典问题"></a>3.【概念篇】个性化推荐系统那些绕不开的经典问题</h2><p>推荐系统的预测问题模式，从达成的连接目标角度区分，有两大类： </p>
@@ -543,7 +543,7 @@
 <li>行为预测。</li>
 </ol>
 </blockquote>
-<h4 id="评分预测"><a href="#评分预测" class="headerlink" title="评分预测"></a><strong>评分预测</strong></h4><p>评分预测相关算法模型研究的兴盛，最大的助攻是 Netflix 举办的推荐算法大赛。<br>Netflix 比赛的评判标准就是 RMSE ，即均方根误差：</p>
+<h4 id="评分预测"><a href="#评分预测" class="headerlink" title="评分预测"></a><strong>评分预测</strong></h4><p>评分预测相关算法模型研究的兴盛，最大的助攻是 Netflix 举办的推荐算法大赛。Netflix 比赛的评判标准就是 RMSE ，即均方根误差：</p>
 <script type="math/tex; mode=display">RMSE=\sqrt{\frac{\sum_{t=1}^n (\hat y_t - y_t)^2}{n}}</script><p>这个公式中的t表示每一个样本，n表示总共的样本数，$\hat y_t$就是模型预测出的分数，是我们交的作业，$y_t$就是用户自己打的分数，是标准答案，然后一个样本一个样本地对答案，模型预测分数和用户自己打分相减，这就是我们预测的误差。</p>
 <p>评分预测问题常见于各种点评类产品（如：书影音的点评），但评分类推荐存在以下问题：</p>
 <blockquote>
@@ -606,8 +606,11 @@
 </blockquote>
 <p>从上到下的权重大致是 4-3-2-1。其中UI 和 UE ，即人机交互设计和用户体验设计。好的UI 和 UE 才能带来数据的快速积累。UI、UE、数据是一个产品的基石，不论其有没有推荐系统存在都是基石。领域知识，与之对应的是常识和通识，此时业务逻辑显得更为重要。而一种对算法的常见误会就是：短期高估，长期低估。当前面三个要素都达到后，算法的意义就是使得产品的得到一个质的升华。</p>
 <p><strong>目标思维和不确定性思维</strong><br>传统的软件是一个信息流通管道，从信息生产端到信息消费端的通道，比如一款内容App，写内容的可以正常记录，读内容的可以流畅加载，无论多大的并发量都扛得住，这就是一个正常的产品了。但推荐系统这种产品，如果是一个产品的话，它和作为信息流通管道的本质不一样，它是一个信息过滤工具，要解决的问题不是信息流通本身，而是如何让流通更有效率。</p>
-<p>核心词可以表述为：逻辑、因果、分层。通常来说，训练机器学习模型是一个不断小化（或者大化）目标函数的过程。<br>我们把一个推荐系统也看做一个函数，这个函数的输入有很多：UI、UE、数据、领域知识、算法等等，输出则是我们关注的指标：留存率、新闻的阅读时间、电商的 GMV、视频的 VV 等等。<br>目标思维背后是“量化一切”的价值取向。</p>
-<p><strong>确定性思维：它是完全依靠逻辑和因果链条引发而成的，只要初始条件给定，那么结果就是一定的</strong><br><strong>不确定性思维：不用因果逻辑严丝合缝地提前推演，而是用概率的眼光去看结果</strong></p>
+<p>核心词可以表述为：逻辑、因果、分层。通常来说，训练机器学习模型是一个不断小化（或者大化）目标函数的过程。我们把一个推荐系统也看做一个函数，这个函数的输入有很多：UI、UE、数据、领域知识、算法等等，输出则是我们关注的指标：留存率、新闻的阅读时间、电商的 GMV、视频的 VV 等等。目标思维背后是“量化一切”的价值取向。</p>
+<ul>
+<li><strong>确定性思维：它是完全依靠逻辑和因果链条引发而成的，只要初始条件给定，那么结果就是一定的</strong></li>
+<li><strong>不确定性思维：不用因果逻辑严丝合缝地提前推演，而是用概率的眼光去看结果</strong></li>
+</ul>
 <p>例如:“为什么出现这个”和“出现这个的可能性有多大”</p>
 <p>需要不确定性思维的原因：</p>
 <blockquote>
@@ -640,6 +643,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/01/推荐系统三十六式--读书笔记（1-4 概念篇）/">推荐系统三十六式--学习笔记（1-4 概念篇）</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小火箭 的个人博客">小火箭</a></p>
+  #<p><span>发布时间:</span>2018年11月01日 - 00:11</p>
+  #<p><span>最后更新:</span>2019年09月16日 - 23:09</p>
+  <p><span>原始链接:</span><a href="/2018/11/01/推荐系统三十六式--读书笔记（1-4 概念篇）/" title="推荐系统三十六式--学习笔记（1-4 概念篇）">http://yoursite.com/2018/11/01/推荐系统三十六式--读书笔记（1-4 概念篇）/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/11/01/推荐系统三十六式--读书笔记（1-4 概念篇）/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
     </div>
 
@@ -820,7 +852,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -923,7 +955,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共138k字</span>
+  <span class="post-count">博客全站共138.7k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

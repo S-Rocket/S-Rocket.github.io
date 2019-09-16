@@ -102,7 +102,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.postimg.cc/YqH8dYgC/image.jpg">
 <meta property="og:image" content="https://i.postimg.cc/1tFkc6qx/image.jpg">
-<meta property="og:updated_time" content="2019-09-11T15:09:00.327Z">
+<meta property="og:updated_time" content="2019-09-16T15:00:43.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统三十六式--学习笔记（5-7 内容推荐）">
 <meta name="twitter:description" content="参考原作：推荐系统三十六式-刑无刀 5.【内容推荐】画鬼容易画人难：用户画像的“能”和“不能”什么是用户画像英文可以分为Personas 和 User Profile。  Personas 属于交互设计领域的概念。 UserProfile原本用于营销领域。（推荐系统中的）  推荐系统一般是对用户和物品之间的匹配评分，也就是预测用户评分或者偏好。推荐系统在对匹配评分前，则首先就要将用户和物品都向量化">
@@ -116,7 +116,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":330,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -580,7 +580,8 @@
 </ol>
 </blockquote>
 <p>实体识别还有比较实用化的非模型做法：词典法。提前准备好各种实体的词典，使用 trie-tree 数据结构存储，拿着分好的词去词典里找，找到了某个词就认为是提前定义好的实体了。以实体识别为代表的序列标注问题上，工业级别的工具上 spaCy 比 NLTK 在效率上优秀一些。</p>
-<h4 id="5-聚类"><a href="#5-聚类" class="headerlink" title="5).聚类"></a><strong>5).聚类</strong></h4><p>传统聚类方法在文本中的应用，今天逐渐被主题模型取代，同样是无监督模型，以 LDA 为代表的主题模型能够更准确地抓住主题，并且能够得到软聚类的效果，也就是说可以让一条文本属于多个类簇。<br>LDA 模型需要设定主题个数，如果你有时间，那么这个 K 可以通过一些实验来对比挑选，方法是：每次计算 K 个主题两两之间的平均相似度，选择一个较低的 K 值；如果你赶时间，在推荐系统领域，只要计算资源够用，主题数可以尽量多一些。</p>
+<h4 id="5-聚类"><a href="#5-聚类" class="headerlink" title="5).聚类"></a><strong>5).聚类</strong></h4><p>传统聚类方法在文本中的应用，今天逐渐被主题模型取代，同样是无监督模型，以 LDA 为代表的主题模型能够更准确地抓住主题，并且能够得到软聚类的效果，也就是说可以让一条文本属于多个类簇。</p>
+<p>LDA 模型需要设定主题个数，如果你有时间，那么这个 K 可以通过一些实验来对比挑选，方法是：每次计算 K 个主题两两之间的平均相似度，选择一个较低的 K 值；如果你赶时间，在推荐系统领域，只要计算资源够用，主题数可以尽量多一些。</p>
 <blockquote>
 <p>另外，需要注意的是，得到文本在各个主题上的分布，可以保留概率最大的前几个主题作为文本的主题。LDA 工程上较难的是并行化，如果文本数量没到海量程度，提高单机配置也是可以的，<strong>开源的 LDA 训练工具有 Gensim，PLDA 等</strong>可供选择。</p>
 </blockquote>
@@ -592,7 +593,8 @@
 <li>用于聚类，会得到比使用词向量聚类更好的语义聚类效果。</li>
 </ol>
 <p><strong>Word2Vec</strong> 是用浅层神经网络学习得到每个词的向量表达，Word2Vec 最大的贡献在于一些工程技巧上的优化，使得百万词的规模在单机上可以几分钟轻松跑出来，得到这些词向量后可以聚类或者进一步合成句子向量再使用。</p>
-<h3 id="标签选择"><a href="#标签选择" class="headerlink" title="标签选择"></a><strong>标签选择</strong></h3><p>前面的介绍得到了诸如标签（关键词、分类等）、主题、词嵌入向量。接下来就是第二步：如何把物品的结构化信息给用户。<br>一种简单粗暴的办法是直接把用户产生过行为的物品标签累积在一起，但是这里要说的是另一种思路。我们把用户对物品的行为，消费或者没有消费看成是一个分类问题。用户用实际行动帮我们标注了若干数据，那么挑选出他实际感兴趣的特性就变成了特征选择问题。</p>
+<h3 id="标签选择"><a href="#标签选择" class="headerlink" title="标签选择"></a><strong>标签选择</strong></h3><p>前面的介绍得到了诸如标签（关键词、分类等）、主题、词嵌入向量。接下来就是第二步：如何把物品的结构化信息给用户。</p>
+<p>一种简单粗暴的办法是直接把用户产生过行为的物品标签累积在一起，但是这里要说的是另一种思路。我们把用户对物品的行为，消费或者没有消费看成是一个分类问题。用户用实际行动帮我们标注了若干数据，那么挑选出他实际感兴趣的特性就变成了特征选择问题。</p>
 <p>最常用的是两个方法：<strong>卡方检验（CHI）和信息增益（IG）</strong>。基本思想是： </p>
 <blockquote>
 <ol>
@@ -658,7 +660,7 @@
 <blockquote>
 <p>信息：$I=-log_2p(x_i)$<br>信息熵：$H=-\sum_{i=1}^np(x_i)log_2p(x_i)$<br>信息增益：分类前的信息熵-分类后的信息熵</p>
 </blockquote>
-<p>信息增益应用最广就是数据挖掘中的决策树分类算法，经典的决策树分类算法挑选分裂节点时就是计算各个属性的信息增益，始终挑选信息增益最大的节点作为分裂节点。<strong>卡方检验和信息增益不同之处在于：前者是针对每一个行为单独筛选一套标签出来，后者是全局统一筛选。</strong><br>这些方法都是在离线阶段批量完成的，把用户的画像生成配置成离线任务，每天更新一遍，次日就可以使用新的用户画像。</p>
+<p>信息增益应用最广就是数据挖掘中的决策树分类算法，经典的决策树分类算法挑选分裂节点时就是计算各个属性的信息增益，始终挑选信息增益最大的节点作为分裂节点。<strong>卡方检验和信息增益不同之处在于：前者是针对每一个行为单独筛选一套标签出来，后者是全局统一筛选。</strong>这些方法都是在离线阶段批量完成的，把用户的画像生成配置成离线任务，每天更新一遍，次日就可以使用新的用户画像。</p>
 <hr>
 <h2 id="7-【内容推荐】超越标签的内容推荐系统"><a href="#7-【内容推荐】超越标签的内容推荐系统" class="headerlink" title="7.【内容推荐】超越标签的内容推荐系统"></a>7.【内容推荐】超越标签的内容推荐系统</h2><p>所谓的基于内容推荐，通俗讲，就是一个包装成推荐系统的信息检索系统。为什么基于内容的推荐系统这么重要呢？因为内容数据非常易得，哪怕是在一个产品刚刚上线，用心找的话总能找到一些可以使用的内容，不需要有用户行为数据就能够做出推荐系统的第一版。</p>
 <blockquote>
@@ -728,6 +730,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/02/推荐系统三十六式--读书笔记（5-7 内容推荐）/">推荐系统三十六式--学习笔记（5-7 内容推荐）</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小火箭 的个人博客">小火箭</a></p>
+  #<p><span>发布时间:</span>2018年11月02日 - 00:11</p>
+  #<p><span>最后更新:</span>2019年09月16日 - 23:09</p>
+  <p><span>原始链接:</span><a href="/2018/11/02/推荐系统三十六式--读书笔记（5-7 内容推荐）/" title="推荐系统三十六式--学习笔记（5-7 内容推荐）">http://yoursite.com/2018/11/02/推荐系统三十六式--读书笔记（5-7 内容推荐）/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/11/02/推荐系统三十六式--读书笔记（5-7 内容推荐）/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
     </div>
 
@@ -912,7 +943,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1015,7 +1046,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共138k字</span>
+  <span class="post-count">博客全站共138.7k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

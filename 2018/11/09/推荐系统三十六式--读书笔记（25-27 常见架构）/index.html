@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://i.postimg.cc/59BtHz3H/Netflix.jpg">
 <meta property="og:image" content="https://i.postimg.cc/8CxtfYbS/image.jpg">
 <meta property="og:image" content="https://i.postimg.cc/XJ8B6Gqz/image.jpg">
-<meta property="og:updated_time" content="2019-09-11T15:10:17.047Z">
+<meta property="og:updated_time" content="2019-09-16T15:00:43.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统三十六式--学习笔记（25-27 常见架构）">
 <meta name="twitter:description" content="参考原作：推荐系统三十六式-刑无刀 25.【常见架构】典型的信息流架构是什么样的在工程实践的部分中，我首先介绍的内容是当今最热门的信息流架构。信息流是推荐系统应用中的当红炸子鸡，它表现形式有很多：社交网络的动态信息流、新闻阅读的图文信息流、短视频信息流等等。 究竟。整体框架信息流，通常也叫作 feed，这个英文词也很有意思，就是“喂”给用户的意思。传统的信息流产品知识简单按照时间排序，而被推荐系统">
@@ -123,7 +123,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":330,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -688,7 +688,7 @@
 <p>从前面的架构图中也可以看出，这一层的数据来源是实时的行为事件队列，但是计算的结果并不是沿着输入数据的方向原路返回，而是进入了在线数据库中，得到用户真正发起请求时，再提供服务。</p>
 <p>一个典型的近线计算任务是这样的：从事件队列中获取最新的一个或少许几个用户反馈行为，首先将这些用户已经反馈过的物品从离线推荐结果中剔除，进一步，用这几个反馈行为作为样本，以小批量梯度下降的优化方法去更新融合模型的参数。</p>
 <p>这两个计算任务都不会也不需要立即对用户做出响应，也不必须在下一次用户请求时就产生效果，就是说当用户实时请求时，不需要去等待近线任务的最新结果，因为两者是异步的。</p>
-<p>近线计算任务一个核心的组件就是流计算，因为它要处理的实时数据流。常用的流计算框架有<br><strong>Storm，Spark Streaming，FLink 等</strong>，Netflix 采用的内部流计算框架 Manhattan，这和<br>Storm 类似。略有区别的是 Spark Streaming，实际上并不是实时流计算，而是小批量计算。</p>
+<p>近线计算任务一个核心的组件就是流计算，因为它要处理的实时数据流。常用的流计算框架有<strong>Storm，Spark Streaming，FLink 等</strong>，Netflix 采用的内部流计算框架 Manhattan，这和Storm 类似。略有区别的是 Spark Streaming，实际上并不是实时流计算，而是小批量计算。</p>
 <h3 id="简化架构"><a href="#简化架构" class="headerlink" title="简化架构"></a><strong>简化架构</strong></h3><p>Netflix 是为全球多个国家同时提供在线服务的，因此推荐系统的架构略微复杂。倘若你现在刚刚接手一个新产品，要从 0 开始搭建一个推荐系统，那么可以以 Netflix 的架构作为蓝本，做一定的简化：<br><a href="https://postimg.cc/jwHD1C1y" target="_blank" rel="noopener"><img src="https://i.postimg.cc/vBj5cVL2/Netflix.jpg" alt="Netflix简化.jpg"></a><br>关键简化有两点：</p>
 <ol>
 <li>完全舍弃掉近线层；</li>
@@ -698,7 +698,57 @@
 <p><a href="https://postimg.cc/c6JW2rPZ" target="_blank" rel="noopener"><img src="https://i.postimg.cc/59BtHz3H/Netflix.jpg" alt="Netflix.jpg"></a><br>以上就是对这个架构的宏观总结对比。如前所说，其实架构都是进化出来的，你千万不必在一开始就追求完美的架构，满足最低要求就好。</p>
 <hr>
 <h2 id="27-【常见架构】总览推荐架构和搜索、广告的关系"><a href="#27-【常见架构】总览推荐架构和搜索、广告的关系" class="headerlink" title="27.【常见架构】总览推荐架构和搜索、广告的关系"></a>27.【常见架构】总览推荐架构和搜索、广告的关系</h2><h3 id="三种信息获取方式"><a href="#三种信息获取方式" class="headerlink" title="三种信息获取方式"></a><strong>三种信息获取方式</strong></h3><p>当用户想要从浩如烟海的网页中，找到对自己有用的信息，首选当然是搜索引擎，这是属于“已知的未知”需求，剩下的“未知的已知”和“未知的未知”则需要推荐系统去满足，只是推荐系统常常会出现画蛇添足去满足“已知的已知”这样的伪需求。<br>另外介于两者之间，还有一种商业化解决信息触达问题，就是广告系统。在线广告从条幅广告，到搜索广告再到社交精准广告，也逐渐形成了一个理念就是：把广告当成一种有用的信息去找到最需要它的人。</p>
-<h3 id="三者对比"><a href="#三者对比" class="headerlink" title="三者对比"></a><strong>三者对比</strong></h3><p>搜索，推荐和广告本质上都在解决信息过载的问题，各自解决的手段、目标不相同，各自诞生在产品生命周期不同阶段，以至于系统实现也不尽相同。我们从几个维度对比一下：<br>| - | 搜索 | 推荐 | 广告 |<br>| :—-: | :—-: | :—-: | :—-: |<br>| 信息送达方式 | 拉 | 推和拉 | 推 |<br>| 关注点 | 内容消费方 | 内容生产方消费方 | 内容生产方 |<br>| 是否期待惊喜 | 否 | 是 | 否 |<br>| 是否需要集体智慧 | 可能 | 可能 | 需要 |<br>| 是否需要query | 需要 | 可能 | 可能 |<br>| 是否依赖上下文 | 可能 | 可能 | 可能 |</p>
+<h3 id="三者对比"><a href="#三者对比" class="headerlink" title="三者对比"></a><strong>三者对比</strong></h3><p>搜索，推荐和广告本质上都在解决信息过载的问题，各自解决的手段、目标不相同，各自诞生在产品生命周期不同阶段，以至于系统实现也不尽相同。我们从几个维度对比一下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">-</th>
+<th style="text-align:center">搜索</th>
+<th style="text-align:center">推荐</th>
+<th style="text-align:center">广告</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">信息送达方式</td>
+<td style="text-align:center">拉</td>
+<td style="text-align:center">推和拉</td>
+<td style="text-align:center">推</td>
+</tr>
+<tr>
+<td style="text-align:center">关注点</td>
+<td style="text-align:center">内容消费方</td>
+<td style="text-align:center">内容生产方消费方</td>
+<td style="text-align:center">内容生产方</td>
+</tr>
+<tr>
+<td style="text-align:center">是否期待惊喜</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">否</td>
+</tr>
+<tr>
+<td style="text-align:center">是否需要集体智慧</td>
+<td style="text-align:center">可能</td>
+<td style="text-align:center">可能</td>
+<td style="text-align:center">需要</td>
+</tr>
+<tr>
+<td style="text-align:center">是否需要query</td>
+<td style="text-align:center">需要</td>
+<td style="text-align:center">可能</td>
+<td style="text-align:center">可能</td>
+</tr>
+<tr>
+<td style="text-align:center">是否依赖上下文</td>
+<td style="text-align:center">可能</td>
+<td style="text-align:center">可能</td>
+<td style="text-align:center">可能</td>
+</tr>
+</tbody>
+</table>
+</div>
 <ul>
 <li>搜索更关注内容消费者，搜索要解决的是精确快速找到想要的结果，最重要的目标是降低延迟和提高相关性。搜索引擎是一个效率工具，希望用户找到信息越快越好，而不是希望用户沉迷在搜索引擎中。</li>
 <li>传统的推荐系统大都是起一个“锦上添花”的作用，一般很少会将其作为核心功能来承载产品。希望用户消费内容，消费越多越好。可以给用户制造惊喜。</li>
@@ -707,7 +757,9 @@
 </ul>
 <h3 id="架构抽象"><a href="#架构抽象" class="headerlink" title="架构抽象"></a><strong>架构抽象</strong></h3><p>我们抽象一下三者的需求共性：本质上都是在匹配，匹配用户的兴趣和需求（看成 context），但匹配的目标，条件和策略不尽相同。示意图如下：<br><a href="https://postimg.cc/R3QcjX8s" target="_blank" rel="noopener"><img src="https://i.postimg.cc/8CxtfYbS/image.jpg" alt="搜索&amp;推荐&amp;广告.jpg"></a></p>
 <p><strong>我们再进一步抽象下去，又可以分为三步：过滤候选、排序候选、个性化输出。</strong></p>
-<h4 id="1-过滤候选"><a href="#1-过滤候选" class="headerlink" title="1. 过滤候选"></a><strong>1. 过滤候选</strong></h4><p>从查询关键字中解析得到查询意图，以及结构化的搜索条件，再用结构化的查询条件从倒排索引中检索出排序候选。与之相似的是广告系统，搜索广告也是查询关键字去检索候选广告，而联盟广告则是拿着用户标签去需求方获取广告候选。<br>在推荐系统中，一再强调有挖掘、召回和排序三个阶段，其中的召回阶段就是过滤候选阶段，基于内容的就和搜索一样，用标签检索候选，协同过滤则检索出相似物品来，等等。<br>一种离线阶段的推荐算法对应一种召回策略，为了保证高效地召回，都要建立相应的索引，这样一来，是不是搜索、广告和推荐都离不开过滤候选这一步，而过滤候选就离不开建立索引。</p>
+<h4 id="1-过滤候选"><a href="#1-过滤候选" class="headerlink" title="1. 过滤候选"></a><strong>1. 过滤候选</strong></h4><p>从查询关键字中解析得到查询意图，以及结构化的搜索条件，再用结构化的查询条件从倒排索引中检索出排序候选。与之相似的是广告系统，搜索广告也是查询关键字去检索候选广告，而联盟广告则是拿着用户标签去需求方获取广告候选。</p>
+<p>在推荐系统中，一再强调有挖掘、召回和排序三个阶段，其中的召回阶段就是过滤候选阶段，基于内容的就和搜索一样，用标签检索候选，协同过滤则检索出相似物品来，等等。</p>
+<p>一种离线阶段的推荐算法对应一种召回策略，为了保证高效地召回，都要建立相应的索引，这样一来，是不是搜索、广告和推荐都离不开过滤候选这一步，而过滤候选就离不开建立索引。</p>
 <h4 id="2-排序候选"><a href="#2-排序候选" class="headerlink" title="2. 排序候选"></a><strong>2. 排序候选</strong></h4><p>候选排序这一步，对于三者来说，主要区别在于排序的目标和约束。搜索的排序目标是高相关性，无论 BM25 为代表的传统排序模型，还是以 Learn to Rank 为代表的机器学习排序皆是如此，把<strong>用户每次在搜索上花费的时间是不是更少（而不是更多）来衡量搜索的效果</strong>。</p>
 <p>通常推荐系统用 CTR 预估来融合召回策略得到的候选集，如果做得深入，还需要考虑探索利用问题。附加的约束则是千变万化。电商中，当天买过的当天就不能再推了，新闻推荐里，重复的新闻不能再推了。某些场景需要推荐搭配，某些场景需要推荐相似，TopN 推荐还需要考虑多样性，序列推荐要考虑前序和后续等等。</p>
 <p>广告系统的排序更多是从经济学角度去看，CPC 广告的排序方式是结合预估 CTR、出价、广告质量三者一起考虑。同时还要考虑很多别的因素，尤其是商业因素，平台方的要求，广告主的要求等等，是一个纯动态的博弈。</p>
@@ -741,6 +793,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/09/推荐系统三十六式--读书笔记（25-27 常见架构）/">推荐系统三十六式--学习笔记（25-27 常见架构）</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小火箭 的个人博客">小火箭</a></p>
+  #<p><span>发布时间:</span>2018年11月09日 - 00:11</p>
+  #<p><span>最后更新:</span>2019年09月16日 - 23:09</p>
+  <p><span>原始链接:</span><a href="/2018/11/09/推荐系统三十六式--读书笔记（25-27 常见架构）/" title="推荐系统三十六式--学习笔记（25-27 常见架构）">http://yoursite.com/2018/11/09/推荐系统三十六式--读书笔记（25-27 常见架构）/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/11/09/推荐系统三十六式--读书笔记（25-27 常见架构）/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
     </div>
 
@@ -925,7 +1006,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1028,7 +1109,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共138k字</span>
+  <span class="post-count">博客全站共138.7k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

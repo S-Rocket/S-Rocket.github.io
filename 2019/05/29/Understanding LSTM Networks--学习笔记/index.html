@@ -92,13 +92,13 @@
 
 
 
-<meta name="description" content="原文地址：Understanding LSTM Networks 循环神经网络人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。 传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间">
+<meta name="description" content="原始论文：Understanding LSTM Networks 循环神经网络人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。 传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间">
 <meta name="keywords" content="机器学习,神经网络,LSTM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Understanding LSTM Networks">
 <meta property="og:url" content="http://yoursite.com/2019/05/29/Understanding LSTM Networks--学习笔记/index.html">
 <meta property="og:site_name" content="小火箭的博客">
-<meta property="og:description" content="原文地址：Understanding LSTM Networks 循环神经网络人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。 传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间">
+<meta property="og:description" content="原始论文：Understanding LSTM Networks 循环神经网络人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。 传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.postimg.cc/Gm0s294H/LSTM-1.png">
 <meta property="og:image" content="https://i.postimg.cc/G2p4Ny5S/LSTM-2.png">
@@ -116,10 +116,10 @@
 <meta property="og:image" content="https://i.postimg.cc/250645Sd/LSTM-14.png">
 <meta property="og:image" content="https://i.postimg.cc/MpbXp5kF/LSTM-15.png">
 <meta property="og:image" content="https://i.postimg.cc/cHjLb5Yr/LSTM-16.png">
-<meta property="og:updated_time" content="2019-09-11T15:09:29.974Z">
+<meta property="og:updated_time" content="2019-09-16T15:00:44.585Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Understanding LSTM Networks">
-<meta name="twitter:description" content="原文地址：Understanding LSTM Networks 循环神经网络人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。 传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间">
+<meta name="twitter:description" content="原始论文：Understanding LSTM Networks 循环神经网络人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。 传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间">
 <meta name="twitter:image" content="https://i.postimg.cc/Gm0s294H/LSTM-1.png">
 
 
@@ -130,7 +130,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":330,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -497,7 +497,7 @@
       
 
       
-        <p><a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">原文地址：Understanding LSTM Networks</a></p>
+        <p><a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">原始论文：Understanding LSTM Networks</a></p>
 <h2 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h2><p>人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。</p>
 <p>传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间类型进行分类。传统的神经网络应该很难来处理这个问题——使用电影中先前的事件推断后续的事件。</p>
 <p>RNN 解决了这个问题。RNN 是包含循环的网络，允许信息的持久化。</p>
@@ -555,7 +555,7 @@
 <p>由于 LSTM 一般是通过一系列的方程表示的，使得 LSTM 有一点令人费解。然而本文中一步一步地解释让这种困惑消除了不少。</p>
 <p>LSTM 是我们在 RNN 中获得的重要成功。很自然地，我们也会考虑：哪里会有更加重大的突破呢？在研究人员间普遍的观点是：“Yes! 下一步已经有了——那就是注意力！” 这个想法是让 RNN 的每一步都从更加大的信息集中挑选信息。例如，如果你使用 RNN 来产生一个图片的描述，可能会选择图片的一个部分，根据这部分信息来产生输出的词。实际上，Xu, et al.(2015)已经这么做了——如果你希望深入探索注意力可能这就是一个有趣的起点！还有一些使用注意力的相当振奋人心的研究成果，看起来有更多的东西亟待探索……</p>
 <p>注意力也不是 RNN 研究领域中唯一的发展方向。例如，Kalchbrenner, et al. (2015) 提出的 Grid LSTM 看起来也是很有前途。使用生成模型的 RNN，诸如Gregor, et al. (2015) Chung, et al. (2015) 和 Bayer &amp; Osendorfer (2015) 提出的模型同样很有趣。在过去几年中，RNN 的研究已经相当的燃，而研究成果当然也会更加丰富！</p>
-<p><a href="https://www.jianshu.com/p/9dc9f41f0b29#" target="_blank" rel="noopener">参考博文：https://www.jianshu.com/p/9dc9f41f0b29#</a></p>
+<p><a href="https://www.jianshu.com/p/9dc9f41f0b29#" target="_blank" rel="noopener">参考博文：[译]理解 LSTM 网络-朱小虎</a></p>
 <hr>
 
       
@@ -577,6 +577,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2019/05/29/Understanding LSTM Networks--学习笔记/">Understanding LSTM Networks</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小火箭 的个人博客">小火箭</a></p>
+  #<p><span>发布时间:</span>2019年05月29日 - 00:05</p>
+  #<p><span>最后更新:</span>2019年09月16日 - 23:09</p>
+  <p><span>原始链接:</span><a href="/2019/05/29/Understanding LSTM Networks--学习笔记/" title="Understanding LSTM Networks">http://yoursite.com/2019/05/29/Understanding LSTM Networks--学习笔记/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2019/05/29/Understanding LSTM Networks--学习笔记/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
     </div>
 
@@ -761,7 +790,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -864,7 +893,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共138k字</span>
+  <span class="post-count">博客全站共138.7k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

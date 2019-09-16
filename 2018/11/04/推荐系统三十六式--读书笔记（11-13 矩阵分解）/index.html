@@ -102,7 +102,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.postimg.cc/RCfd0CZD/ROC.png">
 <meta property="og:image" content="https://i.postimg.cc/pLqb1JNz/image.jpg">
-<meta property="og:updated_time" content="2019-09-11T15:10:30.893Z">
+<meta property="og:updated_time" content="2019-09-16T15:00:41.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐系统三十六式--学习笔记（11-13 矩阵分解）">
 <meta name="twitter:description" content="参考原作：推荐系统三十六式-刑无刀 11.【矩阵分解】那些在Netflix Prize中大放异彩的推荐算法 评分预测问题只是很典型，其实并不大众,数据难收集，属于精英问题。行为预测，才是平民级推荐问题，处处可见。  缘起评分预测问题之所以“虽然小众却十分重要”，这一点得益于十多年前 Netflix Prize 的那一百万美元的悬赏效应。  公元 2006 年 10 月 2 号，对于很多人来说，这只">
@@ -116,7 +116,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","width":330,"display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -489,7 +489,7 @@
 </blockquote>
 <h3 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a><strong>缘起</strong></h3><p>评分预测问题之所以“虽然小众却十分重要”，这一点得益于十多年前 Netflix Prize 的那一百万美元的悬赏效应。</p>
 <blockquote>
-<p>公元 2006 年 10 月 2 号，对于很多人来说，这只是平凡了无新意的一天，但对于推荐系统从业者来说，这是不得了的一天，美国著名的光盘租赁商 Netflix 突然广发英雄帖，放下“豪”言，这个就是土豪的“豪”，凡是能在他们现有推荐系统基础上，把均方根误差降低 10% 的大侠，<br>可以瓜分 100 万美元。消息一出，群贤毕至。</p>
+<p>公元 2006 年 10 月 2 号，对于很多人来说，这只是平凡了无新意的一天，但对于推荐系统从业者来说，这是不得了的一天，美国著名的光盘租赁商 Netflix 突然广发英雄帖，放下“豪”言，这个就是土豪的“豪”，凡是能在他们现有推荐系统基础上，把均方根误差降低 10% 的大侠，可以瓜分 100 万美元。消息一出，群贤毕至。</p>
 </blockquote>
 <p><strong>最为著名的就是一系列矩阵分解模型，而最最著名的模型就是 SVD 以及其各种变体。</strong></p>
 <a id="more"></a>
@@ -499,8 +499,9 @@
 <li>矩阵元素稀疏，计算结果不稳定，增减一个向量维度，导致近邻结果差异很大的情况存在。</li>
 </ol>
 <p>矩阵分解，直观上说来简单，就是把原来的大矩阵，近似分解成两个小矩阵的乘积，在实际推荐计算时不再使用大矩阵，而是使用分解得到的两个小矩阵。</p>
-<script type="math/tex; mode=display">U_{m \times k}V_{n \times k}^T \approx A_{m \times n}</script><p><strong>评分矩阵 A 是 m 乘以 n 维，即一共有 m 个用户，n 个物品。k 比 m 和 n 都小很多。</strong><br>这就是SVD，但是SVD 和矩阵分解不能划等号。</p>
-<h4 id="基础的-SVD-算法"><a href="#基础的-SVD-算法" class="headerlink" title="基础的 SVD 算法"></a><strong>基础的 SVD 算法</strong></h4><p>SVD 全称奇异值分解，然而在推荐算法中实际上使用的并不是正统的奇异值分解，而是一个伪奇异值分解。<br><strong>首先介绍基础的 SVD 算法，然后是考虑偏置信息，接着是超越评分矩阵增加多种输入，最后是增加时间因素。</strong></p>
+<script type="math/tex; mode=display">U_{m \times k}V_{n \times k}^T \approx A_{m \times n}</script><p><strong>评分矩阵 A 是 m 乘以 n 维，即一共有 m 个用户，n 个物品。k 比 m 和 n 都小很多。</strong>这就是SVD，但是SVD 和矩阵分解不能划等号。</p>
+<h4 id="基础的-SVD-算法"><a href="#基础的-SVD-算法" class="headerlink" title="基础的 SVD 算法"></a><strong>基础的 SVD 算法</strong></h4><p>SVD 全称奇异值分解，然而在推荐算法中实际上使用的并不是正统的奇异值分解，而是一个伪奇异值分解。</p>
+<p><strong>首先介绍基础的 SVD 算法，然后是考虑偏置信息，接着是超越评分矩阵增加多种输入，最后是增加时间因素。</strong></p>
 <p>矩阵分解，就是把用户和物品都映射到一个 k 维空间中，不一定具有非常好的可解释性，每一个维度也没有名字，所以常常叫做隐因子。举个例子，用户 u 的向量是 $p_u$，物品 i 的向量是 $q_i$，那么，要计算物品 i 推荐给用户 u 的推荐分数，直接计算点积即可：</p>
 <script type="math/tex; mode=display">\hat r_{ui}=p_uq_i^T</script><p>难在如何得到每一个用户，每一个物品的 k 维向量。需要考虑两个核心要素：</p>
 <ul>
@@ -508,7 +509,8 @@
 <li>优化算法。</li>
 </ul>
 <p>SVD 的损失函数是这样定义的：</p>
-<script type="math/tex; mode=display">\min_{q^*,p^*}\sum_{(u,i)\in \mathcal K}(r_{ui}-p_uq_i^T)^2+\lambda (||q_i||^2+||p_u||^2)</script><p><strong>这个损失函数由两部分构成，加号前一部分控制着模型的偏差，加号后一部分控制着模型的方差。</strong><br>前一部分就是：用分解后的矩阵预测分数，要和实际的用户评分之间误差越小越好。</p>
+<script type="math/tex; mode=display">\min_{q^*,p^*}\sum_{(u,i)\in \mathcal K}(r_{ui}-p_uq_i^T)^2+\lambda (||q_i||^2+||p_u||^2)</script><p><strong>这个损失函数由两部分构成，加号前一部分控制着模型的偏差，加号后一部分控制着模型的方差。</strong></p>
+<p>前一部分就是：用分解后的矩阵预测分数，要和实际的用户评分之间误差越小越好。</p>
 <blockquote>
 <p>整个 SVD 的学习过程就是（梯度下降（GD），另一个是交替最小二乘（ALS），这里以梯度下降为例）：</p>
 <ol>
@@ -526,10 +528,12 @@
 <script type="math/tex; mode=display">e_{ui}^{2} = (r_{u,i} - \sum_{k=1}^{K}p_{uk}q_{ik})^{2} + \lambda \sum_{k=1}^{K}(p_{uk}^2 + q_{ik}^2)</script><p>加入正则化之后，对损失函数求梯度，得到：</p>
 <script type="math/tex; mode=display">\frac{\partial }{\partial p_{uk}}e_{ui}^2=-2\left ( r_{ui}-\sum_{k=1}^{K}p_{uk}q_{ik}  \right )q_{ik} + 2 \lambda p_{uk} =-2e_{ui}q_{ik}  + 2 \lambda p_{uk}</script><script type="math/tex; mode=display">\frac{\partial }{\partial q_{ik}}e_{ui}^2=-2\left ( r_{ui}-\sum_{k=1}^{K}p_{uk}q_{ik}  \right )p_{uk} + 2 \lambda q_{ik}  = -2e_{ui}p_{uk} + 2 \lambda q_{ik}</script><p>沿着负梯度的方向来更新每个参数：</p>
 <script type="math/tex; mode=display">p_{uk} := p_{uk} - \alpha \frac{\partial }{\partial p_{uk}}e_{ui}^2 = p_{uk} + 2\alpha (e_{ui}q_{ik} - \lambda p_{uk} )</script><script type="math/tex; mode=display">q_{ik} := q_{ik} - \alpha \frac{\partial }{\partial q_{ik}}e_{ui}^2 = q_{ik} + 2\alpha (e_{ui}p_{uk} - \lambda q_{ik})</script><h4 id="2-增加偏置信息"><a href="#2-增加偏置信息" class="headerlink" title="2 增加偏置信息"></a><strong>2 增加偏置信息</strong></h4><p>有一些用户会给出偏高的评分，比如标准宽松的用户；有一些物品也会收到偏高的评分，比如一些目标观众为铁粉的电影，甚至有可能整个平台的全局评分就偏高,评分 = 兴趣 + 偏见。所以，原装的 SVD 就有了第一个变种：<strong>把偏置信息抽出来的 SVD。</strong></p>
-<script type="math/tex; mode=display">\hat{r_{ui}} = \mu + b_{i} + b_{u} + p_{u}q_{i}^{T}</script><p>从左往右，全局平均分、物品的评分偏置、用户评分的偏置、用户和物品之间的兴趣偏好。<br>增加了偏置信息的 SVD 模型目标函数稍有改变：</p>
+<script type="math/tex; mode=display">\hat{r_{ui}} = \mu + b_{i} + b_{u} + p_{u}q_{i}^{T}</script><p>从左往右，全局平均分、物品的评分偏置、用户评分的偏置、用户和物品之间的兴趣偏好。增加了偏置信息的 SVD 模型目标函数稍有改变：</p>
 <script type="math/tex; mode=display">e_{ui}^{2} = (r_{u,i} - (\mu + b_{i} + b_{u} + \sum_{k=1}^{K}p_{uk}q_{ik}))^{2} + \lambda \left (\sum_{k=1}^{K}(p_{uk}^2 + q_{ik}^2) + b_{i}^{2} + b_{u}^{2}\right)</script><p><strong>和基本的 SVD 相比，要想学习两个参数：用户偏置和物品偏置。学习的算法还是一样的。</strong></p>
-<h4 id="3-增加历史行为"><a href="#3-增加历史行为" class="headerlink" title="3 增加历史行为"></a><strong>3 增加历史行为</strong></h4><p>有的用户评分比较少。事实上这很常见，相比沉默的大多数，主动点评电影或者美食的用户是少数。<br>显式反馈比隐式反馈少，那么能不能利用隐式反馈来弥补这一点呢？另外，再考虑多一点，对于用户的个人属性，比如性别等。<br><strong>在 SVD 中结合用户的隐式反馈行为和属性，这套模型叫做 SVD++。</strong></p>
-<p>隐式反馈加入的方法是：除了假设评分矩阵中的物品有一个隐因子向量外，用户有过行为的物品集合也都有一个隐因子向量，维度是一样的。把用户操作过的物品隐因子向量加起来，用来表达用户的兴趣偏好。<br>类似的，用户属性，全都转换成 0-1 型的特征后，对每一个特征也假设都存在一个同样维度的隐因子向量，一个用户的所有属性对应的隐因子向量相加，也代表了他的一些偏好。<br><strong>评分=显式兴趣 + 隐式兴趣 + 偏见</strong>，此时的评分估计为：</p>
+<h4 id="3-增加历史行为"><a href="#3-增加历史行为" class="headerlink" title="3 增加历史行为"></a><strong>3 增加历史行为</strong></h4><p>有的用户评分比较少。事实上这很常见，相比沉默的大多数，主动点评电影或者美食的用户是少数。显式反馈比隐式反馈少，那么能不能利用隐式反馈来弥补这一点呢？另外，再考虑多一点，对于用户的个人属性，比如性别等。<br><strong>在 SVD 中结合用户的隐式反馈行为和属性，这套模型叫做 SVD++。</strong></p>
+<p>隐式反馈加入的方法是：除了假设评分矩阵中的物品有一个隐因子向量外，用户有过行为的物品集合也都有一个隐因子向量，维度是一样的。把用户操作过的物品隐因子向量加起来，用来表达用户的兴趣偏好。</p>
+<p>类似的，用户属性，全都转换成 0-1 型的特征后，对每一个特征也假设都存在一个同样维度的隐因子向量，一个用户的所有属性对应的隐因子向量相加，也代表了他的一些偏好。</p>
+<p><strong>评分=显式兴趣 + 隐式兴趣 + 偏见</strong>，此时的评分估计为：</p>
 <script type="math/tex; mode=display">\hat{r_{ui}} = \mu + b_{i} + b_{u} + (p_{u} + |N(u)|^{-0.5} \sum_{i\in{N(u)}}{x_{i}}+\sum_{a\in A_u}y_{a})q_{i}^{T}</script><p>学习的参数多了两个向量：x 和 y。一个是隐式反馈的物品向量，另一个用户属性的向量。</p>
 <h4 id="4-考虑时间因素"><a href="#4-考虑时间因素" class="headerlink" title="4 考虑时间因素"></a><strong>4 考虑时间因素</strong></h4><p>需要考虑的是：人是善变的。</p>
 <blockquote>
@@ -562,7 +566,8 @@
 <li>在交替的其中一步，也就是假设已知其中一个矩阵求解另一个时，要优化的参数是很容易并<br>行化的；</li>
 <li>在不那么稀疏的数据集合上，交替最小二乘通常比随机梯度下降要更快地得到结果，事实上<br>这一点就是我马上要说的，也就是关于隐式反馈的内容。</li>
 </ol>
-<h3 id="隐式反馈"><a href="#隐式反馈" class="headerlink" title="隐式反馈"></a><strong>隐式反馈</strong></h3><p>矩阵分解算法，是为解决评分预测问题而生的,相比“预测用户会打多少分”，“预测用户会不会去浏览”更加有意义。收集到的数据只有明确的一类：用户干了某件事，而用户明确“不干”某件事的数据却没有明确表达。所以这就是 One-Class 的由来，<strong>One-Class 数据也是隐式反馈的通常特点。</strong><br>对隐式反馈的矩阵分解，需要将交替最小二乘做一些改进，改进后的算法叫做加权交替最小二乘：<strong>Weighted-ALS。</strong>也就是说，行为的次数是对行为的置信度反应，也就是所谓的加权。</p>
+<h3 id="隐式反馈"><a href="#隐式反馈" class="headerlink" title="隐式反馈"></a><strong>隐式反馈</strong></h3><p>矩阵分解算法，是为解决评分预测问题而生的,相比“预测用户会打多少分”，“预测用户会不会去浏览”更加有意义。收集到的数据只有明确的一类：用户干了某件事，而用户明确“不干”某件事的数据却没有明确表达。所以这就是 One-Class 的由来，<strong>One-Class 数据也是隐式反馈的通常特点。</strong></p>
+<p>对隐式反馈的矩阵分解，需要将交替最小二乘做一些改进，改进后的算法叫做加权交替最小二乘：<strong>Weighted-ALS。</strong>也就是说，行为的次数是对行为的置信度反应，也就是所谓的加权。</p>
 <blockquote>
 <p>加权交替最小二乘这样对待隐式反馈：</p>
 <ol>
@@ -571,7 +576,7 @@
 </ol>
 </blockquote>
 <p>现在的目标函数在原来的基础上变成这样：</p>
-<script type="math/tex; mode=display">\min_{q^*,p^*}\sum_{(u,i)\in \mathcal K}c_{ui}(r_{ui}-p_uq_i^T)^2+\lambda (||q_i||^2+||p_u||^2)</script><p>多出来的  $c_{ui}$  就是置信度，在计算误差时考虑反馈次数，次数越多，就越可信。置信度一般也<br>不是直接等于反馈次数，根据一些经验，置信度 $c_{ui}$ 这样计算：</p>
+<script type="math/tex; mode=display">\min_{q^*,p^*}\sum_{(u,i)\in \mathcal K}c_{ui}(r_{ui}-p_uq_i^T)^2+\lambda (||q_i||^2+||p_u||^2)</script><p>多出来的  $c_{ui}$  就是置信度，在计算误差时考虑反馈次数，次数越多，就越可信。置信度一般也不是直接等于反馈次数，根据一些经验，置信度 $c_{ui}$ 这样计算：</p>
 <script type="math/tex; mode=display">c_{ui}=1 + \alpha C</script><p><strong>阿尔法是一个超参数，需要调，默认值取 40 可以得到差不多的效果，C 就是次数了。</strong></p>
 <blockquote>
 <p>注：那些没有反馈的缺失值，就是在我们的设定下，取值为 0 的评分就非常多，有两个原因导致在实际使用时要注意这个问题：</p>
@@ -580,11 +585,12 @@
 <li>这会导致正负类别样本非常不平衡，严重倾斜到 0 评分这边。</li>
 </ol>
 </blockquote>
-<p>不能使所有的缺失值作为负类别，矩阵分解的初心就是要填充这些值，如果都假设他们为 0 了，那就忘记初心了。应对这个问题的做法就是<strong>负样本采样：挑一部分缺失值作为负类别样本即可。</strong><br>怎么挑？有两个方法：</p>
+<p>不能使所有的缺失值作为负类别，矩阵分解的初心就是要填充这些值，如果都假设他们为 0 了，那就忘记初心了。应对这个问题的做法就是<strong>负样本采样：挑一部分缺失值作为负类别样本即可。</strong>怎么挑？有两个方法：</p>
 <ol>
 <li>随机均匀采样和正类别一样多；</li>
-<li>按照物品的热门程度采样。<br><strong>第一种不是很靠谱，第二种在实践中经过了检验。</strong></li>
+<li>按照物品的热门程度采样。</li>
 </ol>
+<p><strong>第一种不是很靠谱，第二种在实践中经过了检验。</strong></p>
 <p>按照物品热门程度采样的思想就是：一个越热门的物品，用户越可能知道它的存在。那这种情况下，用户还没对它有反馈就表明：这很可能就是真正的负样本。</p>
 <h3 id="推荐计算"><a href="#推荐计算" class="headerlink" title="推荐计算"></a><strong>推荐计算</strong></h3><p>在得到了分解后的矩阵后，相当于每个用户得到了隐因子向量，这是一个稠密向量，用于代表他的兴趣。同时每个物品也得到了一个稠密向量，代表它的语义或主题。让用户和物品的隐因子向量两两相乘，计算点积就可以得到所有的推荐结果了。但是实际上复杂度还是很高，尤其对于用户数量和物品数量都巨大的应用</p>
 <p>两个办法得到真正的推荐结果：</p>
@@ -603,7 +609,39 @@
 <p>前面讲的矩阵分解都属于 point-wise 模型。这类模型的尴尬是：只能收集到正样本，没有负样本，于是认为缺失值就是负样本，再以预测误差为评判标准去使劲逼近这些样本。虽然进行了负样本采样来优化，但还是出现不好的负样本。</p>
 <p><strong>更直接的推荐模型应该是：能够较好地为用户排列出更好的物品相对顺序，而非更精确的评分。贝叶斯个性化排序，简称 BPR 模型。</strong></p>
 <h3 id="贝叶斯个性化排序"><a href="#贝叶斯个性化排序" class="headerlink" title="贝叶斯个性化排序"></a><strong>贝叶斯个性化排序</strong></h3><p>均方根误差，用于评价模型预测精准程度的。那么现在要关注的是相对排序，用什么指标比较好呢？答案是 AUC，AUC 全称是 Area Under Curve，意思是曲线下的面积，这里的曲线就是 ROC 曲线。</p>
-<h4 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a><strong>ROC曲线</strong></h4><p>二分类预测的混淆矩阵：<br>|   —  | Truth Positive   |  Truth Negative  | Sum |<br>|  :——-:   | :——-:  | :——:  | :——: |<br>| Estimate Positive     | TP |  FP     | $N_+$=TP+FP  |<br>| Estimate Negative    |   FN  | TN   |  $N_-$=FN+TN  |<br>| Sum        |    $N_+$=TP+FN    |  $N_-$=FP+TN |  N=TP+FP+FN+TN  |</p>
+<h4 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a><strong>ROC曲线</strong></h4><p>二分类预测的混淆矩阵：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">—</th>
+<th style="text-align:center">Truth Positive</th>
+<th style="text-align:center">Truth Negative</th>
+<th style="text-align:center">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Estimate Positive</td>
+<td style="text-align:center">TP</td>
+<td style="text-align:center">FP</td>
+<td style="text-align:center">$N_+$=TP+FP</td>
+</tr>
+<tr>
+<td style="text-align:center">Estimate Negative</td>
+<td style="text-align:center">FN</td>
+<td style="text-align:center">TN</td>
+<td style="text-align:center">$N_-$=FN+TN</td>
+</tr>
+<tr>
+<td style="text-align:center">Sum</td>
+<td style="text-align:center">$N_+$=TP+FN</td>
+<td style="text-align:center">$N_-$=FP+TN</td>
+<td style="text-align:center">N=TP+FP+FN+TN</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>真正例率（True Positive Rate , TPR）：</p>
 <script type="math/tex; mode=display">TPR=\frac{TP}{N_+} \approx p(\hat y=1|y=1)</script><p>假正例率(False Positive Rate  , FPR):</p>
 <script type="math/tex; mode=display">FPR=\frac{FP}{N_-} \approx p(\hat y=1|y=0)</script><p>TPR-FPR的相关图就是ROC曲线：<br><a href="https://postimg.cc/mhLCXsMY" target="_blank" rel="noopener"><img src="https://i.postimg.cc/RCfd0CZD/ROC.png" alt="ROC.png"></a></p>
@@ -667,6 +705,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/11/04/推荐系统三十六式--读书笔记（11-13 矩阵分解）/">推荐系统三十六式--学习笔记（11-13 矩阵分解）</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 小火箭 的个人博客">小火箭</a></p>
+  #<p><span>发布时间:</span>2018年11月04日 - 00:11</p>
+  #<p><span>最后更新:</span>2019年09月16日 - 23:09</p>
+  <p><span>原始链接:</span><a href="/2018/11/04/推荐系统三十六式--读书笔记（11-13 矩阵分解）/" title="推荐系统三十六式--学习笔记（11-13 矩阵分解）">http://yoursite.com/2018/11/04/推荐系统三十六式--读书笔记（11-13 矩阵分解）/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/11/04/推荐系统三十六式--读书笔记（11-13 矩阵分解）/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
     </div>
 
@@ -851,7 +918,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -954,7 +1021,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共138k字</span>
+  <span class="post-count">博客全站共138.7k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
