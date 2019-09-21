@@ -79,7 +79,7 @@
 
 
 
-  <meta name="keywords" content="机器学习,神经网络,LSTM,">
+  <meta name="keywords" content="机器学习,Classification,Bag of Tricks,">
 
 
 
@@ -92,35 +92,25 @@
 
 
 
-<meta name="description" content="原始论文：Understanding LSTM Networks 循环神经网络人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。 传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间">
-<meta name="keywords" content="机器学习,神经网络,LSTM">
+<meta name="description" content="原始论文：Bag of Tricks for Efficient Text Classification 有效的文本分类技巧摘要本文提出了一种简单而有效的文本分类和表示学习方法。 我们的实验表明，我们的快速文本分类器fastText在准确性方面通常与深度学习分类器保持一致，并且在训练和评估中速度快很多。 我们可以在不到10分钟的时间内使用标准的多核CPU对超过10亿个单词进行快速文本训练，并在不到">
+<meta name="keywords" content="机器学习,Classification,Bag of Tricks">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Understanding LSTM Networks">
-<meta property="og:url" content="https://www.xiemingzhao.com/2019/05/29/Understanding LSTM Networks--学习笔记/index.html">
+<meta property="og:title" content="Bag of Tricks for Efficient Text Classification">
+<meta property="og:url" content="https://www.xiemingzhao.com/2019/03/17/Bag of Tricks for Efficient Text Classification/index.html">
 <meta property="og:site_name" content="小火箭的博客">
-<meta property="og:description" content="原始论文：Understanding LSTM Networks 循环神经网络人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。 传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间">
+<meta property="og:description" content="原始论文：Bag of Tricks for Efficient Text Classification 有效的文本分类技巧摘要本文提出了一种简单而有效的文本分类和表示学习方法。 我们的实验表明，我们的快速文本分类器fastText在准确性方面通常与深度学习分类器保持一致，并且在训练和评估中速度快很多。 我们可以在不到10分钟的时间内使用标准的多核CPU对超过10亿个单词进行快速文本训练，并在不到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.postimg.cc/Gm0s294H/LSTM-1.png">
-<meta property="og:image" content="https://i.postimg.cc/G2p4Ny5S/LSTM-2.png">
-<meta property="og:image" content="https://i.postimg.cc/Njw5tVnX/LSTM-3.png">
-<meta property="og:image" content="https://i.postimg.cc/bvyrDnpN/LSTM-4.png">
-<meta property="og:image" content="https://i.postimg.cc/wTN7SHwH/LSTM-5.png">
-<meta property="og:image" content="https://i.postimg.cc/gJr04PxC/LSTM-6.png">
-<meta property="og:image" content="https://i.postimg.cc/YC1LmkF8/LSTM-7.png">
-<meta property="og:image" content="https://i.postimg.cc/ZqH9VcVd/LSTM-8.png">
-<meta property="og:image" content="https://i.postimg.cc/nLpj45Yx/LSTM-9.png">
-<meta property="og:image" content="https://i.postimg.cc/d1ShK0MQ/LSTM-10.png">
-<meta property="og:image" content="https://i.postimg.cc/2ybVjfmQ/LSTM-11.png">
-<meta property="og:image" content="https://i.postimg.cc/NF3L5PfW/LSTM-12.png">
-<meta property="og:image" content="https://i.postimg.cc/tRwsS7t2/LSTM-13.png">
-<meta property="og:image" content="https://i.postimg.cc/250645Sd/LSTM-14.png">
-<meta property="og:image" content="https://i.postimg.cc/MpbXp5kF/LSTM-15.png">
-<meta property="og:image" content="https://i.postimg.cc/cHjLb5Yr/LSTM-16.png">
-<meta property="og:updated_time" content="2019-09-16T15:00:44.585Z">
+<meta property="og:image" content="https://i.postimg.cc/QtxNVkXX/Model-architecture-of-fast-Text.jpg">
+<meta property="og:image" content="https://i.postimg.cc/RCYCVH2B/Table-1-Test-accuracy-on-sentiment-datasets.jpg">
+<meta property="og:image" content="https://i.postimg.cc/C59wv3b1/Table-2-Training-time-for-a-single-epoch-on-sentiment-analysis-d.jpg">
+<meta property="og:image" content="https://i.postimg.cc/FRWrSdR0/Table-3-Comparision-with-Tang-et-al-2015.jpg">
+<meta property="og:image" content="https://i.postimg.cc/90DWYmRK/Table-5-Prec-1-on-the-test-set-for-tag-prediction.jpg">
+<meta property="og:image" content="https://i.postimg.cc/xTbfkdSb/Table-4-Examples-from-the-validation-set-of-YFCC100-M-dataset.jpg">
+<meta property="og:updated_time" content="2019-09-16T15:00:40.045Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Understanding LSTM Networks">
-<meta name="twitter:description" content="原始论文：Understanding LSTM Networks 循环神经网络人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。 传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间">
-<meta name="twitter:image" content="https://i.postimg.cc/Gm0s294H/LSTM-1.png">
+<meta name="twitter:title" content="Bag of Tricks for Efficient Text Classification">
+<meta name="twitter:description" content="原始论文：Bag of Tricks for Efficient Text Classification 有效的文本分类技巧摘要本文提出了一种简单而有效的文本分类和表示学习方法。 我们的实验表明，我们的快速文本分类器fastText在准确性方面通常与深度学习分类器保持一致，并且在训练和评估中速度快很多。 我们可以在不到10分钟的时间内使用标准的多核CPU对超过10亿个单词进行快速文本训练，并在不到">
+<meta name="twitter:image" content="https://i.postimg.cc/QtxNVkXX/Model-architecture-of-fast-Text.jpg">
 
 
 
@@ -150,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="https://www.xiemingzhao.com/2019/05/29/Understanding LSTM Networks--学习笔记/">
+  <link rel="canonical" href="https://www.xiemingzhao.com/2019/03/17/Bag of Tricks for Efficient Text Classification/">
 
 
 
 
 
-  <title>Understanding LSTM Networks | 小火箭的博客</title>
+  <title>Bag of Tricks for Efficient Text Classification | 小火箭的博客</title>
   
 
 
@@ -349,7 +339,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xiemingzhao.com/2019/05/29/Understanding LSTM Networks--学习笔记/">
+    <link itemprop="mainEntityOfPage" href="https://www.xiemingzhao.com/2019/03/17/Bag of Tricks for Efficient Text Classification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小火箭">
@@ -366,7 +356,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Understanding LSTM Networks</h1>
+          <h1 class="post-title" itemprop="name headline">Bag of Tricks for Efficient Text Classification</h1>
         
 
         <div class="post-meta">
@@ -378,8 +368,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-29T00:00:00+08:00">
-                2019-05-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-17T00:00:00+08:00">
+                2019-03-17
               </time>
             
 
@@ -430,8 +420,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/05/29/Understanding LSTM Networks--学习笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/29/Understanding LSTM Networks--学习笔记/" itemprop="commentCount"></span>
+                <a href="/2019/03/17/Bag of Tricks for Efficient Text Classification/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/17/Bag of Tricks for Efficient Text Classification/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -460,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.3k
+                  3.2k
                 </span>
               
 
@@ -497,65 +487,51 @@
       
 
       
-        <p><a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">原始论文：Understanding LSTM Networks</a></p>
-<h2 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h2><p>人类并不是每时每刻都从一片空白的大脑开始他们的思考。在你阅读这篇文章时候，你都是基于自己已经拥有的对先前所见词的理解来推断当前词的真实含义。我们不会将所有的东西都全部丢弃，然后用空白的大脑进行思考。我们的思想拥有持久性。</p>
-<p>传统的神经网络并不能做到这点，看起来也像是一种巨大的弊端。例如，假设你希望对电影中的每个时间点的时间类型进行分类。传统的神经网络应该很难来处理这个问题——使用电影中先前的事件推断后续的事件。</p>
-<p>RNN 解决了这个问题。RNN 是包含循环的网络，允许信息的持久化。</p>
+        <p><a href="https://arxiv.org/pdf/1607.01759v2.pdf" target="_blank" rel="noopener">原始论文：Bag of Tricks for Efficient Text Classification</a></p>
+<h2 id="有效的文本分类技巧"><a href="#有效的文本分类技巧" class="headerlink" title="有效的文本分类技巧"></a>有效的文本分类技巧</h2><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文提出了一种简单而有效的文本分类和表示学习方法。 我们的实验表明，我们的快速文本分类器fastText在准确性方面通常与深度学习分类器保持一致，并且在训练和评估中速度快很多。 我们可以在不到10分钟的时间内使用标准的多核CPU对超过10亿个单词进行快速文本训练，并在不到一分钟的时间内对312K类中的50万个句子进行分类。</p>
+<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h2><p>建立良好的文本分类表示是许多应用程序的重要任务，如Web搜索，信息检索，排序和文档分类。 最近，基于神经网络的模型在计算句子表示方面越来越受欢迎。 虽然这些模型在实践中取得了非常好的表现，但是在训练和测试时间，它们往往相对较慢，限制了它们在非常大的数据集上的使用。</p>
 <a id="more"></a>
-<p><img src="https://i.postimg.cc/Gm0s294H/LSTM-1.png" alt="Recurrent Neural Networks have loops.jpg"></p>
-<p>在上面的示例图中，神经网络的模块，正在读取某个输入 ，并输出一个值。循环可以使得信息可以从当前步传递到下一步。</p>
-<p>这些循环使得 RNN 看起来非常神秘。然而，如果你仔细想想，这样也不比一个正常的神经网络难于理解。RNN 可以被看做是同一神经网络的多次复制，每个神经网络模块会把消息传递给下一个。所以，如果我们将这个循环展开：</p>
-<p><img src="https://i.postimg.cc/G2p4Ny5S/LSTM-2.png" alt="An unrolled recurrent neural network.jpg"></p>
-<p>链式的特征揭示了 RNN 本质上是与序列和列表相关的。他们是对于这类数据的最自然的神经网络架构。</p>
-<p>并且 RNN 也已经被人们应用了！在过去几年中，应用 RNN 在语音识别，语言建模，翻译，图片描述等问题上已经取得一定成功，并且这个列表还在增长。我建议大家参考 Andrej Karpathy 的博客文章——<a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener">The Unreasonable Effectiveness of Recurrent Neural Networks</a> 来看看更丰富有趣的 RNN 的成功应用。</p>
-<p>而这些成功应用的关键之处就是 LSTM 的使用，这是一种特别的 RNN，比标准的 RNN 在很多的任务上都表现得更好。几乎所有的令人振奋的关于RNN的结果都是通过 LSTM 达到的。这篇博文也会就 LSTM 进行展开。</p>
-<h2 id="长期依赖（Long-Term-Dependencies）问题"><a href="#长期依赖（Long-Term-Dependencies）问题" class="headerlink" title="长期依赖（Long-Term Dependencies）问题"></a>长期依赖（Long-Term Dependencies）问题</h2><p>RNN 的关键点之一就是他们可以用来连接先前的信息到当前的任务上，例如使用过去的视频段来推测对当前段的理解。如果 RNN 可以做到这个，他们就变得非常有用。但是真的可以么？答案是，还有很多依赖因素。</p>
-<p>有时候，我们仅仅需要知道先前的信息来执行当前的任务。例如，我们有一个语言模型用来基于先前的词来预测下一个词。如果我们试着预测 “the clouds are in the sky” 最后的词，我们并不需要任何其他的上下文 —— 因此下一个词很显然就应该是 sky。在这样的场景中，相关的信息和预测的词位置之间的间隔是非常小的，RNN 可以学会使用先前的信息。</p>
-<p><img src="https://i.postimg.cc/Njw5tVnX/LSTM-3.png" alt="不太长的相关信息和位置间隔"></p>
-<p>但是同样会有一些更加复杂的场景。假设我们试着去预测“I grew up in France… I speak fluent French”最后的词。当前的信息建议下一个词可能是一种语言的名字，但是如果我们需要弄清楚是什么语言，我们是需要先前提到的离当前位置很远的 France 的上下文的。这说明相关信息和当前预测位置之间的间隔就肯定变得相当的大。</p>
-<p>不幸的是，在这个间隔不断增大时，RNN 会丧失学习到连接如此远的信息的能力。</p>
-<p><img src="https://i.postimg.cc/bvyrDnpN/LSTM-4.png" alt="相当长的相关信息和位置间隔"></p>
-<p>在理论上，RNN 绝对可以处理这样的 长期依赖 问题。人们可以仔细挑选参数来解决这类问题中的最初级形式，但在实践中，RNN 肯定不能够成功学习到这些知识。<a href="http://www-dsi.ing.unifi.it/~paolo/ps/tnn-94-gradient.pdf" target="_blank" rel="noopener">Bengio, et al. (1994)</a>等人对该问题进行了深入的研究，他们发现一些使训练 RNN 变得非常困难的相当根本的原因。<br>然而，幸运的是，LSTM 并没有这个问题！</p>
-<h2 id="LSTM-网络"><a href="#LSTM-网络" class="headerlink" title="LSTM 网络"></a>LSTM 网络</h2><p>Long Short Term 网络—— 一般就叫做 LSTM ——是一种 RNN 特殊的类型，可以学习长期依赖信息。LSTM 由Hochreiter &amp; Schmidhuber (1997)提出，并在近期被Alex Graves进行了改良和推广。在很多问题，LSTM 都取得相当巨大的成功，并得到了广泛的使用。<br>LSTM 通过刻意的设计来避免长期依赖问题。记住长期的信息在实践中是 LSTM 的默认行为，而非需要付出很大代价才能获得的能力！<br>所有 RNN 都具有一种重复神经网络模块的链式的形式。在标准的 RNN 中，这个重复的模块只有一个非常简单的结构，例如一个 tanh 层。</p>
-<p><img src="https://i.postimg.cc/wTN7SHwH/LSTM-5.png" alt="The repeating module in a standard RNN contains a single layer"></p>
-<p>LSTM 同样是这样的结构，但是重复的模块拥有一个不同的结构。不同于 单一神经网络层，这里是有四个，以一种非常特殊的方式进行交互。</p>
-<p><img src="https://i.postimg.cc/gJr04PxC/LSTM-6.png" alt="The repeating module in an LSTM contains four interacting layers."></p>
-<p>不必担心这里的细节。我们会一步一步地剖析 LSTM 解析图。现在，我们先来熟悉一下图中使用的各种元素的图标。</p>
-<p><img src="https://i.postimg.cc/YC1LmkF8/LSTM-7.png" alt="LSTM 中的图标"></p>
-<p>在上面的图例中，每一条黑线传输着一整个向量，从一个节点的输出到其他节点的输入。粉色的圈代表按位 pointwise 的操作，诸如向量的和，而黄色的矩阵就是学习到的神经网络层。合在一起的线表示向量的连接，分开的线表示内容被复制，然后分发到不同的位置。</p>
-<h2 id="LSTM-的核心思想"><a href="#LSTM-的核心思想" class="headerlink" title="LSTM 的核心思想"></a>LSTM 的核心思想</h2><p>LSTM 的关键就是细胞状态，水平线在图上方贯穿运行。</p>
-<p>细胞状态类似于传送带。直接在整个链上运行，只有一些少量的线性交互。信息在上面流传保持不变会很容易。</p>
-<p><img src="https://i.postimg.cc/ZqH9VcVd/LSTM-8.png" alt="LSTM单元"></p>
-<p>LSTM 有通过精心设计的称作为“门”的结构来去除或者增加信息到细胞状态的能力。门是一种让信息选择式通过的方法。他们包含一个 sigmoid 神经网络层和一个按位的乘法操作。</p>
-<p><img src="https://i.postimg.cc/nLpj45Yx/LSTM-9.png" alt="LSTM操作节点"></p>
-<p>Sigmoid 层输出 0 到 1 之间的数值，描述每个部分有多少量可以通过。0 代表“不许任何量通过”，1 就指“允许任意量通过”！</p>
-<p>LSTM 拥有三个门，来保护和控制细胞状态。</p>
-<h2 id="逐步理解-LSTM"><a href="#逐步理解-LSTM" class="headerlink" title="逐步理解 LSTM"></a>逐步理解 LSTM</h2><p>在我们 LSTM 中的第一步是决定我们会从细胞状态中丢弃什么信息。这个决定通过一个称为忘记门层完成。该门会读取 $h_{t-1}$ 和 $x_t$，输出一个在 0 到 1 之间的数值给每个在细胞状态 $C_{t-1}$ 中的数字。1 表示“完全保留”，0 表示“完全舍弃”。<br>让我们回到语言模型的例子中来基于已经看到的预测下一个词。在这个问题中，细胞状态可能包含当前<strong>主语</strong>的性别，因此正确的<strong>代词</strong>可以被选择出来。当我们看到新的<strong>主语</strong>，我们希望忘记旧的<strong>主语</strong>。</p>
-<p><img src="https://i.postimg.cc/d1ShK0MQ/LSTM-10.png" alt="决定丢弃信息"></p>
-<p>下一步是确定什么样的新信息被存放在细胞状态中。这里包含两个部分。第一，sigmoid 层称 “输入门层” 决定什么值我们将要更新。然后，一个 tanh 层创建一个新的候选值向量，$\tilde{C_t}$，会被加入到状态中。下一步，我们会讲这两个信息来产生对状态的更新。</p>
-<p>在我们语言模型的例子中，我们希望增加新的主语的性别到细胞状态中，来替代旧的需要忘记的主语。</p>
-<p><img src="https://i.postimg.cc/2ybVjfmQ/LSTM-11.png" alt="确定更新的信息"></p>
-<p>现在是更新旧细胞状态的时间了，$C_{t-1}$ 更新为 $C_t$。前面的步骤已经决定了将会做什么，我们现在就是实际去完成。</p>
-<p>我们把旧状态与 $f_t$ 相乘，丢弃掉我们确定需要丢弃的信息。接着加上 $i_t * \tilde{C_t}$。这就是新的候选值，根据我们决定更新每个状态的程度进行变化。</p>
-<p>在语言模型的例子中，这就是我们实际根据前面确定的目标，丢弃旧代词的性别信息并添加新的信息的地方。</p>
-<p><img src="https://i.postimg.cc/NF3L5PfW/LSTM-12.png" alt="更新细胞状态"></p>
-<p>最终，我们需要确定输出什么值。这个输出将会基于我们的细胞状态，但是也是一个过滤后的版本。首先，我们运行一个 sigmoid 层来确定细胞状态的哪个部分将输出出去。接着，我们把细胞状态通过 tanh 进行处理（得到一个在 -1 到 1 之间的值）并将它和 sigmoid 门的输出相乘，最终我们仅仅会输出我们确定输出的那部分。</p>
-<p>在语言模型的例子中，因为他就看到了一个 <strong>代词</strong>，可能需要输出与一个<strong>动词</strong> 相关的信息。例如，可能输出是否代词是单数还是负数，这样如果是动词的话，我们也知道动词需要进行的词形变化。</p>
-<p><img src="https://i.postimg.cc/tRwsS7t2/LSTM-13.png" alt="输出信息"></p>
-<h2 id="LSTM-的变体"><a href="#LSTM-的变体" class="headerlink" title="LSTM 的变体"></a>LSTM 的变体</h2><p>我们到目前为止都还在介绍正常的 LSTM。但是不是所有的 LSTM 都长成一个样子的。实际上，几乎所有包含 LSTM 的论文都采用了微小的变体。差异非常小，但是也值得拿出来讲一下。</p>
-<p>其中一个流形的 LSTM 变体，就是由 <a href="ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf" target="_blank" rel="noopener">Gers &amp; Schmidhuber (2000)</a> 提出的，增加了 “peephole connection”。是说，我们让 门层 也会接受细胞状态的输入。</p>
-<p><img src="https://i.postimg.cc/250645Sd/LSTM-14.png" alt="peephole 连接"></p>
-<p>上面的图例中，我们增加了 peephole 到每个门上，但是许多论文会加入部分的 peephole 而非所有都加。</p>
-<p>另一个变体是通过使用 coupled 忘记和输入门。不同于之前是分开确定什么忘记和需要添加什么新的信息，这里是一同做出决定。我们仅仅会当我们将要输入在当前位置时忘记。我们仅仅输入新的值到那些我们已经忘记旧的信息的那些状态 。</p>
-<p><img src="https://i.postimg.cc/MpbXp5kF/LSTM-15.png" alt="coupled 忘记门和输入门"></p>
-<p>另一个改动较大的变体是 Gated Recurrent Unit (GRU)，这是由 <a href="http://arxiv.org/pdf/1406.1078v3.pdf" target="_blank" rel="noopener">Cho, et al. (2014)</a> 提出。它将忘记门和输入门合成了一个单一的 更新门。同样还混合了细胞状态和隐藏状态，和其他一些改动。最终的模型比标准的 LSTM 模型要简单，也是非常流行的变体。</p>
-<p><img src="https://i.postimg.cc/cHjLb5Yr/LSTM-16.png" alt="GRU"></p>
-<p>这里只是部分流行的 LSTM 变体。当然还有很多其他的，如<a href="http://arxiv.org/pdf/1508.03790v2.pdf" target="_blank" rel="noopener">Yao, et al. (2015)</a> 提出的 Depth Gated RNN。还有用一些完全不同的观点来解决长期依赖的问题，如<a href="http://arxiv.org/pdf/1402.3511v1.pdf" target="_blank" rel="noopener">Koutnik, et al. (2014)</a> 提出的 Clockwork RNN。<br>要问哪个变体是最好的？其中的差异性真的重要吗？<a href="http://arxiv.org/pdf/1503.04069.pdf" target="_blank" rel="noopener">Greff, et al. (2015)</a> 给出了流行变体的比较，<strong>结论是他们基本上是一样的</strong>。<a href="http://jmlr.org/proceedings/papers/v37/jozefowicz15.pdf" target="_blank" rel="noopener">Jozefowicz, et al. (2015)</a> 则在超过 1 万种 RNN 架构上进行了测试，发现一些架构在某些任务上也取得了比 LSTM 更好的结果。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>刚开始，我提到通过 RNN 得到重要的结果。本质上所有这些都可以使用 LSTM 完成。对于大多数任务确实展示了更好的性能！</p>
-<p>由于 LSTM 一般是通过一系列的方程表示的，使得 LSTM 有一点令人费解。然而本文中一步一步地解释让这种困惑消除了不少。</p>
-<p>LSTM 是我们在 RNN 中获得的重要成功。很自然地，我们也会考虑：哪里会有更加重大的突破呢？在研究人员间普遍的观点是：“Yes! 下一步已经有了——那就是注意力！” 这个想法是让 RNN 的每一步都从更加大的信息集中挑选信息。例如，如果你使用 RNN 来产生一个图片的描述，可能会选择图片的一个部分，根据这部分信息来产生输出的词。实际上，Xu, et al.(2015)已经这么做了——如果你希望深入探索注意力可能这就是一个有趣的起点！还有一些使用注意力的相当振奋人心的研究成果，看起来有更多的东西亟待探索……</p>
-<p>注意力也不是 RNN 研究领域中唯一的发展方向。例如，Kalchbrenner, et al. (2015) 提出的 Grid LSTM 看起来也是很有前途。使用生成模型的 RNN，诸如Gregor, et al. (2015) Chung, et al. (2015) 和 Bayer &amp; Osendorfer (2015) 提出的模型同样很有趣。在过去几年中，RNN 的研究已经相当的燃，而研究成果当然也会更加丰富！</p>
-<p><a href="https://www.jianshu.com/p/9dc9f41f0b29#" target="_blank" rel="noopener">参考博文：[译]理解 LSTM 网络-朱小虎</a></p>
+<p>与此同时，简单的线性模型也显示出令人印象深刻的性能，同时计算效率非常高。 他们通常学习单词级别的表示，后来组合起来形成句子表示。 在这项工作中，我们提出了这些模型的扩展，以直接学习句子表示。 我们通过引入其他统计数据（如使用n-gram包）来显示，我们减少了线性和深度模型之间精度的差距，同时速度提高了许多个数量级。</p>
+<p>我们的工作与标准线性文本分类器密切相关。 与Wang和Manning类似，我们的动机是探索由用于学习无监督词表示的模型启发的简单基线。 与Le和Mikolov不同的是，我们的方法在测试时不需要复杂的推理，使得其学习表示很容易在不同问题上重复使用。 我们在两个不同的任务中评估模型的质量，即标签预测和情感分析。</p>
+<h2 id="2-模型架构"><a href="#2-模型架构" class="headerlink" title="2 模型架构"></a>2 模型架构</h2><p>句子分类的简单而有效的基线是将句子表示为词袋（BoW）并训练线性分类器，例如逻辑回归或支持向量机。 但是，线性分类器不能在特征和类之间共享参数，可能会限制泛化。 这个问题的常见解决方案是将线性分类器分解成低秩矩阵或使用多层神经网络。在神经网络的情况下，信息通过隐藏层共享。</p>
+<p><img src="https://i.postimg.cc/QtxNVkXX/Model-architecture-of-fast-Text.jpg" alt="Model architecture of fastText.jpg"></p>
+<p>图1显示了一个带有1个隐藏层的简单模型。 第一个权重矩阵可以看作是一个句子单词的查找表。 词表示被平均为文本表示，然后反馈给线性分类器。 这种结构类似于Mikolov等人的cbow模型，其中中间的单词被标签取代。 该模型将一系列单词作为输入，并在预定义的类上生成概率分布。 我们使用softmax函数来计算这些概率。对于N篇文档，我们最小化下面的负的似然值：</p>
+<script type="math/tex; mode=display">-\frac{1}{N}\sum_{n=1}^{N}y_nlog(f(BAx_n))</script><p>训练这样的模型本质上与word2vec相似，也就是说，我们使用随机梯度下降和反向传播以及线性衰减的学习速率。 我们的模型在多个CPU上异步训练。</p>
+<h3 id="2-1-分层softmax"><a href="#2-1-分层softmax" class="headerlink" title="2.1 分层softmax"></a>2.1 分层softmax</h3><p>当目标数量很大时，计算线性分类器的计算量很大。 更准确地说，计算复杂度为O（Kd）O（Kd），其中K是目标的数量，d是隐藏层的维数。 为了改善我们的运行时间，我们使用基于霍夫曼编码树的分层softmax。 在训练期间，计算复杂度降至O（dlog2（K））O（dlog2（K））。 在这棵树上，目标是树叶。</p>
+<p>当搜索最可能的类别时，分层softmax在测试时间也是有利的。 每个节点都与从根节点到该节点的路径概率相关联。 如果节点与父节点n1，…，nl处于深度l + 1，则其概率为</p>
+<script type="math/tex; mode=display">P(n_{l+1}) = \prod_{i=1}^lP(n_i)</script><p>这意味着节点的概率总是低于其父节点的概率。 通过深度遍历探索树并跟踪叶子之间的最大概率允许我们丢弃与较小概率相关的任何分支。 在实践中，我们观察到在测试时O（dlog2（K））O（dlog2（K））的复杂度降低。 这种方法进一步扩展到以O（log（T））O（log（T））为代价，使用二进制堆计算T-top目标。</p>
+<h3 id="2-2-N-gram特征"><a href="#2-2-N-gram特征" class="headerlink" title="2.2 N-gram特征"></a>2.2 N-gram特征</h3><p>单词包对于词序是不变的，但考虑到这个顺序通常在计算上非常昂贵。 相反，我们使用一袋n-gram作为附加功能来捕获有关本地词序的部分信息。 这在实践中非常高效，同时实现了与明确使用订单的方法类似的结果。</p>
+<p>如果我们只使用bigrams，则使用与Mikolov和10M bin相同的哈希函数，否则我们使用哈希函数保持n-gram的快速和高效内存映射。</p>
+<h2 id="3-实验"><a href="#3-实验" class="headerlink" title="3 实验"></a>3 实验</h2><p>我们用两个不同的任务来评估fastText算法。首先，我们拿它跟现有的文本分类算法在情感分析的问题中进行比较。然后，我们再在大规模输出空间的标签预测数据及来评估算法的性能。我们的算法虽然基于Vowpal Wabbit资料集的工具化生效，但是可以发现我们特定的工具要至少快2-5倍。</p>
+<h3 id="3-1-情绪分析"><a href="#3-1-情绪分析" class="headerlink" title="3.1 情绪分析"></a>3.1 情绪分析</h3><p>数据集和基线 我们使用Zhang等人的相同的8个数据集和评估协议。我们报告Zhang等人的N-gram和TFI-DF基线以及Zhang和LeCun的字符级卷积模型（char-CNN）和 Conneau等人的非常深的卷积网络（VDCNN）。我们还与Tang等人的评估协议进行了比较。 我们报告他们的主要基线以及基于递归网络（Conv-GRNN和LSTM-GRNN）的两种方法。</p>
+<p><strong>结果</strong> 我们在表1中给出了结果。我们使用10个隐藏单元并运行5个纪元的fastText，并在{0.05,0.1,0.25,0.5}的验证集上选择了一个学习率。 在这项任务中，添加bigram信息将使性能提高1 - 4％。 总体而言，我们的准确度略好于char-CNN，稍差于VDCNN。 请注意，我们可以通过使用更多的n-gram来稍微提高精度，例如，搜狗的性能上升到97.1％。 最后，表1表明我们的方法与Tang等人提出的方法相比是有竞争力的。</p>
+<p><img src="https://i.postimg.cc/RCYCVH2B/Table-1-Test-accuracy-on-sentiment-datasets.jpg" alt="Test accuracy% on sentiment datasets.jpg"><br>表1：情绪数据集的测试准确度[％]。 所有数据集都使用相同的参数运行FastText。 它有10个隐藏的单位，我们评估它有没有bigrams。 对于VDCNN和char-CNN，我们显示没有数据增加的最佳报告数字。</p>
+<p><img src="https://i.postimg.cc/C59wv3b1/Table-2-Training-time-for-a-single-epoch-on-sentiment-analysis-d.jpg" alt="Table 2 Training time for a single epoch on sentiment analysis.jpg"><br>表3：与Tang等人的比较。在验证集上选择超参数。</p>
+<p>我们调整验证集上的超参数，并观察使用多达5个导联的n-grams 达到最佳性能。 与Tang等人不同，fastText不使用预先训练的词嵌入，这可以解释1％的差异。</p>
+<p>训练时间 char-CNN和VDCNN都使用NVIDIA Tesla K40 GPU进行培训，而我们的模型则使用20个线程在CPU上进行培训。 表2显示使用卷积的方法比fastText慢几个数量级。 </p>
+<p><img src="https://i.postimg.cc/FRWrSdR0/Table-3-Comparision-with-Tang-et-al-2015.jpg" alt="Table 3 Comparision with Tang et al. (2015).jpg"><br>表2：与char-CNN和VDCNN相比，情绪分析数据集的训练时间。 我们报告整个培训时间，除了char-CNN，我们报告每个时间。</p>
+<p>请注意，对于char-CNN，我们报告每个时期的时间，同时报告其他方法的整体训练时间。 虽然使用更新的CUDA实现的卷积可以使char-CNN的速度提高10倍，但fastText只需不到一分钟的时间就可以训练这些数据集。 与基于CNN的方法相比，我们的加速比随着数据集的大小而增加，至少达到15,000倍的加速。</p>
+<h3 id="3-2-标签预测"><a href="#3-2-标签预测" class="headerlink" title="3.2 标签预测"></a>3.2 标签预测</h3><p><strong>数据集和基线</strong><br>为了测试我们方法的可伸缩性，对YFCC100M数据集进行了进一步评估，该数据集由几乎100M的带有字幕，标题和标签的图像组成。我们专注于根据标题和标题预测标签（我们不使用图像）。我们删除少于100次的字词和标签，并将数据分成训练，验证和测试集。该训练集包含91,188,648个样本。验证有930,497个样本和测试集543,424个样本。词汇大小为297,141，并且有312,116个标签。我们将发布一个脚本来重新创建这个数据集，以便我们的数据可以被复制。</p>
+<p>我们考虑预测最频繁标签的基于频率的基线。我们还将它与标签预测模型Tagspace进行了比较，标签预测模型与我们的标签预测模型相似，但基于Weston等人的Wsabie模型。虽然使用卷积描述了标签空间模型，但我们认为线性版本具有可比较的性能，更快。</p>
+<p><strong>结果和训练时间</strong>  </p>
+<p><img src="https://i.postimg.cc/90DWYmRK/Table-5-Prec-1-on-the-test-set-for-tag-prediction.jpg" alt="Table 5 Prec@1 on the test set for tag prediction.jpg"><br>表5：YFCC100M上用于标记预测的测试集上的Prec @ 1。 我们还会报告训练时间和测试时间。 测试时间是单线程的报告，而两种模式的训练使用20个线程。</p>
+<p>表5给出了fastText和基线的比较。我们运行5个周期的fastText，并将它与Tagspace的两种尺寸的隐藏层（即50和200）进行比较。两种模型都实现了与隐藏层相似的性能，但增加了巨大值使我们在精度上有了显着提升。 在测试时间，Tagspace需要计算所有类别的分数，这使得它相对较慢，而当类别数量很多（此处超过300K）时，我们的快速推理会显着提高速度。 总体而言，获得质量更好的模型的速度要快一个数量级。 测试阶段的加速更加重要（600倍加速）。表4显示了一些定性的例子。 </p>
+<p><img src="https://i.postimg.cc/xTbfkdSb/Table-4-Examples-from-the-validation-set-of-YFCC100-M-dataset.jpg" alt="Table 4 Examples from the validation set of YFCC100M dataset.jpg"></p>
+<p>表4：使用具有200个隐藏单元和两个bigrams的fastText获取的YFCC100M数据集验证集的示例。 我们展示了一些正确和不正确的标签预测。</p>
+<p>FastText学习将标题中的单词与他们的主题标签相关联，例如“christmas”与“＃christmas”。 它还捕捉单词之间的简单关系，如“snowfall”和“#snow”。 最后，使用bigrams还可以捕捉诸如“twin cities”和“#minneapolis”之类的关系。</p>
+<h2 id="4-讨论和结论"><a href="#4-讨论和结论" class="headerlink" title="4 讨论和结论"></a>4 讨论和结论</h2><p>在这项工作中，我们开发了fastText，它扩展了word2vec来处理句子和文档分类。 与来自word2vec的无监督训练的单词向量不同，我们的单词特征可以平均在一起形成好的句子表示。 在几项任务中，我们获得的性能与最近提出的深度学习方法相媲美，同时观察到了大幅度的加速。 尽管深层神经网络在理论上比浅层模型具有更高的表征能力，但是如何分析简单的文本分类问题（如情感分析）是否正确评估它们并不明确。 我们将发布我们的代码，以便研究团体可以轻松构建我们的工作。</p>
+<h2 id="一些收获"><a href="#一些收获" class="headerlink" title="一些收获"></a>一些收获</h2><p>FastText词向量与word2vec对比<br><strong>FastText= word2vec中 cbow + h-softmax的灵活使用</strong><br>灵活体现在两个方面： </p>
+<blockquote>
+<ol>
+<li>模型的输出层：word2vec的输出层，对应的是每一个term，计算某term的概率最大；而fasttext的输出层对应的是 分类的label。不过不管输出层对应的是什么内容，起对应的vector都不会被保留和使用； </li>
+<li>模型的输入层：word2vec的输出层，是 context window 内的term；而fasttext 对应的整个sentence的内容，包括term，也包括 n-gram的内容；</li>
+</ol>
+</blockquote>
+<p><strong>两者本质的不同，体现在h-softmax的使用：</strong></p>
+<blockquote>
+<p>Wordvec的目的是得到词向量，embedding层 到 input层的 共享权重矩阵 就是 词向量矩阵，输出层对应的 h-softmax 也会生成一系列的向量，但最终都被抛弃，不会使用。<br>fasttext则充分利用了h-softmax的分类功能，遍历分类树的所有叶节点，找到概率最大的label（一个或者N个）</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/u011239443/article/details/80076720" target="_blank" rel="noopener">参考博文：论文阅读：《Bag of Tricks for Efficient Text Classification-卓寿杰_SoulJoy</a></p>
 <hr>
 
       
@@ -583,10 +559,10 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/05/29/Understanding LSTM Networks--学习笔记/">Understanding LSTM Networks</a></p>
+  <p><span>本文标题:</span><a href="/2019/03/17/Bag of Tricks for Efficient Text Classification/">Bag of Tricks for Efficient Text Classification</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 小火箭 的个人博客">小火箭</a></p>
-  <p><span>原始链接:</span><a href="/2019/05/29/Understanding LSTM Networks--学习笔记/" title="Understanding LSTM Networks">https://www.xiemingzhao.com/2019/05/29/Understanding LSTM Networks--学习笔记/</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://www.xiemingzhao.com/2019/05/29/Understanding LSTM Networks--学习笔记/" aria-label="复制成功！"></i></span>
+  <p><span>原始链接:</span><a href="/2019/03/17/Bag of Tricks for Efficient Text Classification/" title="Bag of Tricks for Efficient Text Classification">https://www.xiemingzhao.com/2019/03/17/Bag of Tricks for Efficient Text Classification/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://www.xiemingzhao.com/2019/03/17/Bag of Tricks for Efficient Text Classification/" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -619,9 +595,9 @@
           
             <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
           
-            <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
+            <a href="/tags/Classification/" rel="tag"><i class="fa fa-tag"></i> Classification</a>
           
-            <a href="/tags/LSTM/" rel="tag"><i class="fa fa-tag"></i> LSTM</a>
+            <a href="/tags/Bag-of-Tricks/" rel="tag"><i class="fa fa-tag"></i> Bag of Tricks</a>
           
         </div>
       
@@ -634,8 +610,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/19/Slope One Predictors for Online Rating-Based Collaborative Filtering--学习笔记/" rel="next" title="Slope One Predictors for Online Rating-Based Collaborative Filtering">
-                <i class="fa fa-chevron-left"></i> Slope One Predictors for Online Rating-Based Collaborative Filtering
+              <a href="/2018/11/12/推荐系统三十六式--读书笔记（35-38 产品&团队&参考阅读）/" rel="next" title="推荐系统三十六式--读书笔记（35-38 产品&团队&参考阅读）">
+                <i class="fa fa-chevron-left"></i> 推荐系统三十六式--读书笔记（35-38 产品&团队&参考阅读）
               </a>
             
           </div>
@@ -644,8 +620,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/10/XGBoost- A Scalable Tree Boosting System--学习笔记/" rel="prev" title="XGBoost- A Scalable Tree Boosting System">
-                XGBoost- A Scalable Tree Boosting System <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/19/The Learning Behind Gmail Priority Inbox/" rel="prev" title="The Learning Behind Gmail Priority Inbox">
+                The Learning Behind Gmail Priority Inbox <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -846,7 +822,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#循环神经网络"><span class="nav-number">1.</span> <span class="nav-text">循环神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#长期依赖（Long-Term-Dependencies）问题"><span class="nav-number">2.</span> <span class="nav-text">长期依赖（Long-Term Dependencies）问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM-网络"><span class="nav-number">3.</span> <span class="nav-text">LSTM 网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM-的核心思想"><span class="nav-number">4.</span> <span class="nav-text">LSTM 的核心思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逐步理解-LSTM"><span class="nav-number">5.</span> <span class="nav-text">逐步理解 LSTM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM-的变体"><span class="nav-number">6.</span> <span class="nav-text">LSTM 的变体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">7.</span> <span class="nav-text">结论</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#有效的文本分类技巧"><span class="nav-number">1.</span> <span class="nav-text">有效的文本分类技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">2.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-介绍"><span class="nav-number">3.</span> <span class="nav-text">1 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-模型架构"><span class="nav-number">4.</span> <span class="nav-text">2 模型架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-分层softmax"><span class="nav-number">4.1.</span> <span class="nav-text">2.1 分层softmax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-N-gram特征"><span class="nav-number">4.2.</span> <span class="nav-text">2.2 N-gram特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-实验"><span class="nav-number">5.</span> <span class="nav-text">3 实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-情绪分析"><span class="nav-number">5.1.</span> <span class="nav-text">3.1 情绪分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-标签预测"><span class="nav-number">5.2.</span> <span class="nav-text">3.2 标签预测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-讨论和结论"><span class="nav-number">6.</span> <span class="nav-text">4 讨论和结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些收获"><span class="nav-number">7.</span> <span class="nav-text">一些收获</span></a></li></ol></div>
             
 
           </div>
