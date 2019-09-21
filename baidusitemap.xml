@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.xiemingzhao.com/2019/03/19/The%20Learning%20Behind%20Gmail%20Priority%20Inbox/</loc>
+    <lastmod>2019-09-21</lastmod>
+  </url>  <url>
+    <loc>https://www.xiemingzhao.com/2019/05/29/Understanding%20LSTM%20Networks/</loc>
+    <lastmod>2019-09-21</lastmod>
+  </url>  <url>
+    <loc>https://www.xiemingzhao.com/2019/06/12/Wide%20and%20Deep%20Learning%20for%20Recommender%20Systems/</loc>
+    <lastmod>2019-09-21</lastmod>
+  </url>  <url>
+    <loc>https://www.xiemingzhao.com/2019/06/10/XGBoost-%20A%20Scalable%20Tree%20Boosting%20System/</loc>
+    <lastmod>2019-09-21</lastmod>
+  </url>  <url>
+    <loc>https://www.xiemingzhao.com/2019/04/15/Amazon%20com%20Recommendations%20Item-to-item%20collaborative%20filtering/</loc>
+    <lastmod>2019-09-21</lastmod>
+  </url>  <url>
+    <loc>https://www.xiemingzhao.com/2019/06/11/An%20overview%20of%20gradient%20descent%20optimization%20algorithms/</loc>
+    <lastmod>2019-09-21</lastmod>
+  </url>  <url>
+    <loc>https://www.xiemingzhao.com/2019/03/17/Bag%20of%20Tricks%20for%20Efficient%20Text%20Classification/</loc>
+    <lastmod>2019-09-21</lastmod>
+  </url>  <url>
+    <loc>https://www.xiemingzhao.com/2019/07/29/Deep%20&%20Cross%20Network%20for%20Ad%20Click%20Predictions/</loc>
+    <lastmod>2019-09-21</lastmod>
+  </url>  <url>
+    <loc>https://www.xiemingzhao.com/2019/06/29/DeepFM-A%20Factorization-Machine%20based%20Neural%20Network%20for%20CTR%20Prediction/</loc>
+    <lastmod>2019-09-21</lastmod>
+  </url>  <url>
+    <loc>https://www.xiemingzhao.com/2019/04/15/Factorization%20Machines/</loc>
+    <lastmod>2019-09-21</lastmod>
+  </url>  <url>
+    <loc>https://www.xiemingzhao.com/2019/04/19/Slope%20One%20Predictors%20for%20Online%20Rating-Based%20Collaborative%20Filtering/</loc>
+    <lastmod>2019-09-21</lastmod>
+  </url>  <url>
     <loc>https://www.xiemingzhao.com/2019/06/27/LTR%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87/</loc>
     <lastmod>2019-09-16</lastmod>
   </url>  <url>
-    <loc>https://www.xiemingzhao.com/2019/06/29/DeepFM-A%20Factorization-Machine%20based%20Neural%20Network%20for%20CTR%20Prediction/</loc>
-    <lastmod>2019-09-16</lastmod>
-  </url>  <url>
-    <loc>https://www.xiemingzhao.com/2019/04/19/Slope%20One%20Predictors%20for%20Online%20Rating-Based%20Collaborative%20Filtering/</loc>
-    <lastmod>2019-09-16</lastmod>
-  </url>  <url>
     <loc>https://www.xiemingzhao.com/2018/11/01/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%89%E5%8D%81%E5%85%AD%E5%BC%8F--%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%881-4%20%E6%A6%82%E5%BF%B5%E7%AF%87%EF%BC%89/</loc>
-    <lastmod>2019-09-16</lastmod>
-  </url>  <url>
-    <loc>https://www.xiemingzhao.com/2019/06/10/XGBoost-%20A%20Scalable%20Tree%20Boosting%20System/</loc>
-    <lastmod>2019-09-16</lastmod>
-  </url>  <url>
-    <loc>https://www.xiemingzhao.com/2019/06/12/Wide%20and%20Deep%20Learning%20for%20Recommender%20Systems/</loc>
-    <lastmod>2019-09-16</lastmod>
-  </url>  <url>
-    <loc>https://www.xiemingzhao.com/2019/05/29/Understanding%20LSTM%20Networks/</loc>
-    <lastmod>2019-09-16</lastmod>
-  </url>  <url>
-    <loc>https://www.xiemingzhao.com/2019/03/19/The%20Learning%20Behind%20Gmail%20Priority%20Inbox/</loc>
     <lastmod>2019-09-16</lastmod>
   </url>  <url>
     <loc>https://www.xiemingzhao.com/2018/11/03/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%89%E5%8D%81%E5%85%AD%E5%BC%8F--%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%888-10%20%E8%BF%91%E9%82%BB%E6%8E%A8%E8%8D%90%EF%BC%89/</loc>
@@ -56,21 +71,6 @@
     <lastmod>2019-09-16</lastmod>
   </url>  <url>
     <loc>https://www.xiemingzhao.com/2018/11/05/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E4%B8%89%E5%8D%81%E5%85%AD%E5%BC%8F--%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%8814-16%20%E6%A8%A1%E5%9E%8B%E8%9E%8D%E5%90%88%EF%BC%89/</loc>
-    <lastmod>2019-09-16</lastmod>
-  </url>  <url>
-    <loc>https://www.xiemingzhao.com/2019/04/15/Factorization%20Machines/</loc>
-    <lastmod>2019-09-16</lastmod>
-  </url>  <url>
-    <loc>https://www.xiemingzhao.com/2019/07/29/Deep%20&%20Cross%20Network%20for%20Ad%20Click%20Predictions/</loc>
-    <lastmod>2019-09-16</lastmod>
-  </url>  <url>
-    <loc>https://www.xiemingzhao.com/2019/03/17/Bag%20of%20Tricks%20for%20Efficient%20Text%20Classification/</loc>
-    <lastmod>2019-09-16</lastmod>
-  </url>  <url>
-    <loc>https://www.xiemingzhao.com/2019/04/15/Amazon%20com%20Recommendations%20Item-to-item%20collaborative%20filtering/</loc>
-    <lastmod>2019-09-16</lastmod>
-  </url>  <url>
-    <loc>https://www.xiemingzhao.com/2019/06/11/An%20overview%20of%20gradient%20descent%20optimization%20algorithms/</loc>
     <lastmod>2019-09-16</lastmod>
   </url>
 </urlset>
