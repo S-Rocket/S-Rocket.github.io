@@ -120,7 +120,7 @@
 <meta property="og:image" content="https://i.postimg.cc/c1QP90Y5/xgb-11.jpg">
 <meta property="og:image" content="https://i.postimg.cc/8cB3jmNV/xgb-12.jpg">
 <meta property="og:image" content="https://i.postimg.cc/XvpTQ5cw/xgb-13.jpg">
-<meta property="og:updated_time" content="2019-09-21T06:27:40.095Z">
+<meta property="og:updated_time" content="2019-11-10T09:33:52.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XGBoost A Scalable Tree Boosting System (论文解析)">
 <meta name="twitter:description" content="原始论文：XGBoost: A Scalable Tree Boosting System 摘要Tree boosting 是一个高效的并且广泛应用的机器学习方法。在本文中，我们会介绍一个可扩展的端到端的 tree boosting 系统，它叫 XGBoost，它被数据科学家广泛地应用，并且在许多机器学习挑战取得了最好的结果。对于稀疏数据我们提出了稀疏性感知算法，以及加权分位数梗概用来近似树模型学">
@@ -515,7 +515,7 @@
 <script type="math/tex; mode=display">\mathcal L(\phi) = \sum_i l(\hat y_i, y_i) + \sum_k \Omega(f_k)</script><script type="math/tex; mode=display">where \Omega(f) = \gamma T + \frac{1}{2} \lambda ||w||^2</script><p>这里$L$是一个可微的凸损失函数，它表示预测$y_i$和目标$y$之间的差值。第二项$\Omega$是惩罚项，惩罚模型的复杂度（即回归树模型）。附加正则化项会有助于使最终学习到的权值更加平滑，避免过拟合。直观地说，带有正则化的目标函数倾向于选择简单的预测模型。类似的正则化技术已被用于正则化贪心森林算法（RGF）模型中。我们的目标函数和相应的学习算法比RGF更简单，更容易实现并行化。当正则化参数被设置为零时，目标函数退化为传统的梯度提升树。</p>
 <h3 id="2-2-梯度提升树"><a href="#2-2-梯度提升树" class="headerlink" title="2.2 梯度提升树"></a>2.2 梯度提升树</h3><p>公式（2）中的树集成模型中包含函数作为参数的情况，不能使用欧氏空间中的传统优化方法来优化。替代的方法是模型以累加的方式训练。形式上,$\hat y_i^{(t)}$是第$t$次迭代中第$i$个实例的预测，我们把$f_t$加到下面的最小化目标中。</p>
 <script type="math/tex; mode=display">\mathcal L^{(t)} = \sum_{t=1}^n l(y_i,\hat y_i^{(t-1)} + f_t(x_i)) + \Omega(f_t)</script><p>这意味着我们根据公式（2）贪婪地将$f_t$加到了目标函数中，这对我们模型提升最大（因为是沿梯度下降的）。一般情况下，二阶近似（泰勒二阶展开近似）可以用于快速优化目标函数。（因为有二阶信息，所以优化起来比一阶速度快。例如，牛顿法就比传统的梯度下降快）。</p>
-<script type="math/tex; mode=display">\mathcal L^{(t)} \simeq \sum_{t=1}^n [l(y_i,\hat y_i^{(t-1)}) + g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x_i)] + \Omega(f_t)</script><p>其中，$g_i = \partial_{\hat y^{(t-1)}} l(y_i,\hat y_i^{(t-1)})$和$h_i = \partial_{\hat y^{(t-1)}}^2 l(y_i,\hat y_i^{(t-1)})$，分别为损失函数一阶和二阶的梯度值。在第$t$步迭代中，我们可以去掉常数项以简化目标函数。（t步的时候t-1步的损失已经是定值）</p>
+<script type="math/tex; mode=display">\mathcal L^{(t)} \simeq \sum_{t=1}^n [l(y_i,\hat y^{(t-1)}) + g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x_i)] + \Omega(f_t)</script><p>其中，$g_i = \partial_{\hat y^{(t-1)}} l(y_i,\hat y^{(t-1)})$和$h_i = \partial_{\hat y^{(t-1)}}^2 l(y_i,\hat y^{(t-1)})$，分别为损失函数一阶和二阶的梯度值。在第$t$步迭代中，我们可以去掉常数项以简化目标函数。（t步的时候t-1步的损失已经是定值）</p>
 <script type="math/tex; mode=display">\tilde{\mathcal L}^{(t)} \simeq \sum_{t=1}^n [g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x_i)] + \Omega(f_t)</script><p>定义$I_j = {i|q(x_i)=j}$为叶子结点j里面的样本，我们可以通过扩展$\Omega$来重写公式（3）：</p>
 <script type="math/tex; mode=display">\tilde{\mathcal L}^{(t)} = \sum_{t=1}^n [g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x_i)] + \gamma T + \frac{1}{2} \lambda \sum_{j=1}^T w_j^2 \\
 =\sum_{j=1}^T[(\sum_{i \in I_j} g_i) w_j + \frac{1}{2}(\sum_{i \in I_j} h_i + \lambda) w_j^2] + \gamma T</script><p>对于一个固定的结构$q(x)$，我们可以计算叶子结点$j$的最优权重$w_j^*$：</p>
@@ -672,8 +672,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/eafa0d01.html" rel="prev" title="An overview of gradient descent optimization algorithms (论文解析)">
-                An overview of gradient descent optimization algorithms (论文解析) <i class="fa fa-chevron-right"></i>
+              <a href="/posts/Hexoblogurloptimize.html" rel="prev" title="Hexo博客文章链接优化">
+                Hexo博客文章链接优化 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -794,7 +794,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -816,7 +816,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -921,7 +921,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共163.6k字</span>
+  <span class="post-count">博客全站共174.6k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
