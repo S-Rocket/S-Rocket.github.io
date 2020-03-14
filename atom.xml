@@ -39,11 +39,11 @@
     
       <category term="机器学习" scheme="https://www.xiemingzhao.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
+      <category term="LightGBM" scheme="https://www.xiemingzhao.com/tags/LightGBM/"/>
+    
       <category term="XGBoost" scheme="https://www.xiemingzhao.com/tags/XGBoost/"/>
     
       <category term="GBDT" scheme="https://www.xiemingzhao.com/tags/GBDT/"/>
-    
-      <category term="LightGBM" scheme="https://www.xiemingzhao.com/tags/LightGBM/"/>
     
       <category term="RF" scheme="https://www.xiemingzhao.com/tags/RF/"/>
     
@@ -317,6 +317,34 @@
   </entry>
   
   <entry>
+    <title>Hexo博客文章链接优化</title>
+    <link href="https://www.xiemingzhao.com/posts/Hexoblogurloptimize.html"/>
+    <id>https://www.xiemingzhao.com/posts/Hexoblogurloptimize.html</id>
+    <published>2019-06-10T16:00:00.000Z</published>
+    <updated>2020-03-14T12:40:45.729Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="文章的URL"><a href="#文章的URL" class="headerlink" title="文章的URL"></a>文章的URL</h2><p>文章默认的URL配置是包含年月日以及文章标题的，而且每次文章文章有修改就会引起一些链接的变化，繁琐且不易于检索传播。而URL地址对于SEO来说（Search Engine Optimization：搜索引擎优化）是相当重要的，如何缩短并固定每篇文章的连接，同时又可以在链接后面加上<code>html</code>使其显得更为正式。这就是本篇文章需要讲解的。</p><p>效果可参考<a href="www.xiemingzhao.com">我的博客</a>，部署环境是<code>Hexo+Next</code>。</p><h2 id="插件安装与配置"><a href="#插件安装与配置" class="headerlink" title="插件安装与配置"></a>插件安装与配置</h2><p>基于<code>Hexo</code>搭建的博客，可以通过插件<code>hexo-abbrlink</code>来实现自定义文章的连接。首先我们使用如下代码进行优化：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure><a id="more"></a><p>接着打开站点配置文件<code>_config.yml</code>，按照如下部分进行相关配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: https://www.xiemingzhao.com</span><br><span class="line">root: /</span><br><span class="line">#permalink: :year/:month/:day/:title/</span><br><span class="line">#permalink_defaults:</span><br><span class="line">permalink: posts/:abbrlink.html</span><br><span class="line">abbrlink:</span><br><span class="line">  alg: crc32  # 算法：crc16(default) and crc32</span><br><span class="line">  rep: hex    # 进制：dec(default) and hex</span><br></pre></td></tr></table></figure></p><p>如上所示，是我本人的配置，其中<code>url</code>配置的是我博客所关联的域名，具体域名的捆绑可参考我的另一篇博客，<a href="https://www.xiemingzhao.com/posts/Hexoblogdomain.html">Hexo博客绑定域名</a>。另，<code>permalink</code>的配置，我多加了一个固定链接<code>posts</code>，纯属个人喜好，你也可以去掉直接配置成<code>:abbrlink.html</code>。</p><h2 id="文章配置与效果"><a href="#文章配置与效果" class="headerlink" title="文章配置与效果"></a>文章配置与效果</h2><p>我们完成了如上的配置后，如果不对博客文章做任何处理的话，在部署的时候，将会根据算法随机生成每篇博客的数字链接。当然，如果你觉得使用随机的数字连接不具有识别性，想要自定义每篇博客的链接的话也是可以的，只需要在你的博客<code>.md</code>文章的头部配置如下字段即可：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abbrlink: your_blog_url</span><br></pre></td></tr></table></figure><p>例如，我的这篇博客就是配置成<code>abbrlink: Hexoblogurloptimize</code>，最终我的博客的连接就是<a href="https://www.xiemingzhao.com/posts/Hexoblogurloptimize.html">https://www.xiemingzhao.com/posts/Hexoblogurloptimize.html</a>。</p><p>通过这一顿操作，你就可以随心所欲控制你的博客的链接了。每次修改博客文章的时候，只要不修改<code>abbrlink</code>配置项，那么这篇博客的链接就永远不会发生变化。这样不仅有利于博客链接的记忆与传播，更有利于整个博客的SEO优化，提升检索度和排名。</p><h2 id="一些官方配置信息"><a href="#一些官方配置信息" class="headerlink" title="一些官方配置信息"></a>一些官方配置信息</h2><p>官方文章中你还可以使用如下变量的配置，当然除了这些还可以使用<code>Front-matter</code>中的所有属性。</p><div class="table-container"><table><thead><tr><th style="text-align:left">变量</th><th style="text-align:left">描述</th></tr></thead><tbody><tr><td style="text-align:left"><code>:year</code></td><td style="text-align:left">文章的发表年份（4 位数）</td></tr><tr><td style="text-align:left"><code>:month</code></td><td style="text-align:left">文章的发表月份（2 位数）</td></tr><tr><td style="text-align:left"><code>:i_month</code></td><td style="text-align:left">文章的发表月份（去掉开头的零）</td></tr><tr><td style="text-align:left"><code>:day</code></td><td style="text-align:left">文章的发表日期 (2 位数)</td></tr><tr><td style="text-align:left"><code>:i_day</code></td><td style="text-align:left">文章的发表日期（去掉开头的零）</td></tr><tr><td style="text-align:left"><code>:title</code></td><td style="text-align:left">文件名称</td></tr><tr><td style="text-align:left"><code>:id</code></td><td style="text-align:left">文章 ID</td></tr><tr><td style="text-align:left"><code>:category</code></td><td style="text-align:left">分类。如果文章没有分类，则是 <code>default_category</code> 配置信息。</td></tr></tbody></table></div><p>假设你在永久链接中使用一些变量，利于<code>lang</code>，你可以在<code>permalink_defaults</code>中进行个变量的默认值配置，例如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">permalink_defaults:</span><br><span class="line">  lang: en</span><br></pre></td></tr></table></figure><p>如此，你不指定该变量的时候，就会使用默认值，增加了灵活性。</p><p><strong>参考文章</strong><br><a href="https://zuiyu1818.cn/posts/NexT_seourl.html" target="_blank" rel="noopener">Hexo | 博客文章链接优化</a><br><a href="https://hexo.io/zh-cn/docs/permalinks.html" target="_blank" rel="noopener">永久链接（Permalinks）</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;文章的URL&quot;&gt;&lt;a href=&quot;#文章的URL&quot; class=&quot;headerlink&quot; title=&quot;文章的URL&quot;&gt;&lt;/a&gt;文章的URL&lt;/h2&gt;&lt;p&gt;文章默认的URL配置是包含年月日以及文章标题的，而且每次文章文章有修改就会引起一些链接的变化，繁琐且不易于检索传播。而URL地址对于SEO来说（Search Engine Optimization：搜索引擎优化）是相当重要的，如何缩短并固定每篇文章的连接，同时又可以在链接后面加上&lt;code&gt;html&lt;/code&gt;使其显得更为正式。这就是本篇文章需要讲解的。&lt;/p&gt;
+&lt;p&gt;效果可参考&lt;a href=&quot;www.xiemingzhao.com&quot;&gt;我的博客&lt;/a&gt;，部署环境是&lt;code&gt;Hexo+Next&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;插件安装与配置&quot;&gt;&lt;a href=&quot;#插件安装与配置&quot; class=&quot;headerlink&quot; title=&quot;插件安装与配置&quot;&gt;&lt;/a&gt;插件安装与配置&lt;/h2&gt;&lt;p&gt;基于&lt;code&gt;Hexo&lt;/code&gt;搭建的博客，可以通过插件&lt;code&gt;hexo-abbrlink&lt;/code&gt;来实现自定义文章的连接。首先我们使用如下代码进行优化：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm install hexo-abbrlink --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="博客搭建" scheme="https://www.xiemingzhao.com/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="Hexo" scheme="https://www.xiemingzhao.com/tags/Hexo/"/>
+    
+      <category term="链接优化" scheme="https://www.xiemingzhao.com/tags/%E9%93%BE%E6%8E%A5%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>An overview of gradient descent optimization algorithms (论文解析)</title>
     <link href="https://www.xiemingzhao.com/posts/eafa0d01.html"/>
     <id>https://www.xiemingzhao.com/posts/eafa0d01.html</id>
@@ -346,34 +374,6 @@
       <category term="Gradient Descent" scheme="https://www.xiemingzhao.com/tags/Gradient-Descent/"/>
     
       <category term="Optimization" scheme="https://www.xiemingzhao.com/tags/Optimization/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo博客文章链接优化</title>
-    <link href="https://www.xiemingzhao.com/posts/Hexoblogurloptimize.html"/>
-    <id>https://www.xiemingzhao.com/posts/Hexoblogurloptimize.html</id>
-    <published>2019-06-10T16:00:00.000Z</published>
-    <updated>2020-03-14T12:40:45.729Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="文章的URL"><a href="#文章的URL" class="headerlink" title="文章的URL"></a>文章的URL</h2><p>文章默认的URL配置是包含年月日以及文章标题的，而且每次文章文章有修改就会引起一些链接的变化，繁琐且不易于检索传播。而URL地址对于SEO来说（Search Engine Optimization：搜索引擎优化）是相当重要的，如何缩短并固定每篇文章的连接，同时又可以在链接后面加上<code>html</code>使其显得更为正式。这就是本篇文章需要讲解的。</p><p>效果可参考<a href="www.xiemingzhao.com">我的博客</a>，部署环境是<code>Hexo+Next</code>。</p><h2 id="插件安装与配置"><a href="#插件安装与配置" class="headerlink" title="插件安装与配置"></a>插件安装与配置</h2><p>基于<code>Hexo</code>搭建的博客，可以通过插件<code>hexo-abbrlink</code>来实现自定义文章的连接。首先我们使用如下代码进行优化：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure><a id="more"></a><p>接着打开站点配置文件<code>_config.yml</code>，按照如下部分进行相关配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: https://www.xiemingzhao.com</span><br><span class="line">root: /</span><br><span class="line">#permalink: :year/:month/:day/:title/</span><br><span class="line">#permalink_defaults:</span><br><span class="line">permalink: posts/:abbrlink.html</span><br><span class="line">abbrlink:</span><br><span class="line">  alg: crc32  # 算法：crc16(default) and crc32</span><br><span class="line">  rep: hex    # 进制：dec(default) and hex</span><br></pre></td></tr></table></figure></p><p>如上所示，是我本人的配置，其中<code>url</code>配置的是我博客所关联的域名，具体域名的捆绑可参考我的另一篇博客，<a href="https://www.xiemingzhao.com/posts/Hexoblogdomain.html">Hexo博客绑定域名</a>。另，<code>permalink</code>的配置，我多加了一个固定链接<code>posts</code>，纯属个人喜好，你也可以去掉直接配置成<code>:abbrlink.html</code>。</p><h2 id="文章配置与效果"><a href="#文章配置与效果" class="headerlink" title="文章配置与效果"></a>文章配置与效果</h2><p>我们完成了如上的配置后，如果不对博客文章做任何处理的话，在部署的时候，将会根据算法随机生成每篇博客的数字链接。当然，如果你觉得使用随机的数字连接不具有识别性，想要自定义每篇博客的链接的话也是可以的，只需要在你的博客<code>.md</code>文章的头部配置如下字段即可：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abbrlink: your_blog_url</span><br></pre></td></tr></table></figure><p>例如，我的这篇博客就是配置成<code>abbrlink: Hexoblogurloptimize</code>，最终我的博客的连接就是<a href="https://www.xiemingzhao.com/posts/Hexoblogurloptimize.html">https://www.xiemingzhao.com/posts/Hexoblogurloptimize.html</a>。</p><p>通过这一顿操作，你就可以随心所欲控制你的博客的链接了。每次修改博客文章的时候，只要不修改<code>abbrlink</code>配置项，那么这篇博客的链接就永远不会发生变化。这样不仅有利于博客链接的记忆与传播，更有利于整个博客的SEO优化，提升检索度和排名。</p><h2 id="一些官方配置信息"><a href="#一些官方配置信息" class="headerlink" title="一些官方配置信息"></a>一些官方配置信息</h2><p>官方文章中你还可以使用如下变量的配置，当然除了这些还可以使用<code>Front-matter</code>中的所有属性。</p><div class="table-container"><table><thead><tr><th style="text-align:left">变量</th><th style="text-align:left">描述</th></tr></thead><tbody><tr><td style="text-align:left"><code>:year</code></td><td style="text-align:left">文章的发表年份（4 位数）</td></tr><tr><td style="text-align:left"><code>:month</code></td><td style="text-align:left">文章的发表月份（2 位数）</td></tr><tr><td style="text-align:left"><code>:i_month</code></td><td style="text-align:left">文章的发表月份（去掉开头的零）</td></tr><tr><td style="text-align:left"><code>:day</code></td><td style="text-align:left">文章的发表日期 (2 位数)</td></tr><tr><td style="text-align:left"><code>:i_day</code></td><td style="text-align:left">文章的发表日期（去掉开头的零）</td></tr><tr><td style="text-align:left"><code>:title</code></td><td style="text-align:left">文件名称</td></tr><tr><td style="text-align:left"><code>:id</code></td><td style="text-align:left">文章 ID</td></tr><tr><td style="text-align:left"><code>:category</code></td><td style="text-align:left">分类。如果文章没有分类，则是 <code>default_category</code> 配置信息。</td></tr></tbody></table></div><p>假设你在永久链接中使用一些变量，利于<code>lang</code>，你可以在<code>permalink_defaults</code>中进行个变量的默认值配置，例如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">permalink_defaults:</span><br><span class="line">  lang: en</span><br></pre></td></tr></table></figure><p>如此，你不指定该变量的时候，就会使用默认值，增加了灵活性。</p><p><strong>参考文章</strong><br><a href="https://zuiyu1818.cn/posts/NexT_seourl.html" target="_blank" rel="noopener">Hexo | 博客文章链接优化</a><br><a href="https://hexo.io/zh-cn/docs/permalinks.html" target="_blank" rel="noopener">永久链接（Permalinks）</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;文章的URL&quot;&gt;&lt;a href=&quot;#文章的URL&quot; class=&quot;headerlink&quot; title=&quot;文章的URL&quot;&gt;&lt;/a&gt;文章的URL&lt;/h2&gt;&lt;p&gt;文章默认的URL配置是包含年月日以及文章标题的，而且每次文章文章有修改就会引起一些链接的变化，繁琐且不易于检索传播。而URL地址对于SEO来说（Search Engine Optimization：搜索引擎优化）是相当重要的，如何缩短并固定每篇文章的连接，同时又可以在链接后面加上&lt;code&gt;html&lt;/code&gt;使其显得更为正式。这就是本篇文章需要讲解的。&lt;/p&gt;
-&lt;p&gt;效果可参考&lt;a href=&quot;www.xiemingzhao.com&quot;&gt;我的博客&lt;/a&gt;，部署环境是&lt;code&gt;Hexo+Next&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&quot;插件安装与配置&quot;&gt;&lt;a href=&quot;#插件安装与配置&quot; class=&quot;headerlink&quot; title=&quot;插件安装与配置&quot;&gt;&lt;/a&gt;插件安装与配置&lt;/h2&gt;&lt;p&gt;基于&lt;code&gt;Hexo&lt;/code&gt;搭建的博客，可以通过插件&lt;code&gt;hexo-abbrlink&lt;/code&gt;来实现自定义文章的连接。首先我们使用如下代码进行优化：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm install hexo-abbrlink --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="博客搭建" scheme="https://www.xiemingzhao.com/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-    
-      <category term="Hexo" scheme="https://www.xiemingzhao.com/tags/Hexo/"/>
-    
-      <category term="链接优化" scheme="https://www.xiemingzhao.com/tags/%E9%93%BE%E6%8E%A5%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
