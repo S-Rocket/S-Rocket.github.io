@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="小火箭的博客">
 <meta property="og:description" content="文章的URL文章默认的URL配置是包含年月日以及文章标题的，而且每次文章文章有修改就会引起一些链接的变化，繁琐且不易于检索传播。而URL地址对于SEO来说（Search Engine Optimization：搜索引擎优化）是相当重要的，如何缩短并固定每篇文章的连接，同时又可以在链接后面加上html使其显得更为正式。这就是本篇文章需要讲解的。 效果可参考我的博客，部署环境是Hexo+Next。 插">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-10T09:35:10.155Z">
+<meta property="og:updated_time" content="2020-03-14T12:40:45.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客文章链接优化">
 <meta name="twitter:description" content="文章的URL文章默认的URL配置是包含年月日以及文章标题的，而且每次文章文章有修改就会引起一些链接的变化，繁琐且不易于检索传播。而URL地址对于SEO来说（Search Engine Optimization：搜索引擎优化）是相当重要的，如何缩短并固定每篇文章的连接，同时又可以在链接后面加上html使其显得更为正式。这就是本篇文章需要讲解的。 效果可参考我的博客，部署环境是Hexo+Next。 插">
@@ -463,6 +463,7 @@
 <p>效果可参考<a href="www.xiemingzhao.com">我的博客</a>，部署环境是<code>Hexo+Next</code>。</p>
 <h2 id="插件安装与配置"><a href="#插件安装与配置" class="headerlink" title="插件安装与配置"></a>插件安装与配置</h2><p>基于<code>Hexo</code>搭建的博客，可以通过插件<code>hexo-abbrlink</code>来实现自定义文章的连接。首先我们使用如下代码进行优化：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>接着打开站点配置文件<code>_config.yml</code>，按照如下部分进行相关配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: https://www.xiemingzhao.com</span><br><span class="line">root: /</span><br><span class="line">#permalink: :year/:month/:day/:title/</span><br><span class="line">#permalink_defaults:</span><br><span class="line">permalink: posts/:abbrlink.html</span><br><span class="line">abbrlink:</span><br><span class="line">  alg: crc32  # 算法：crc16(default) and crc32</span><br><span class="line">  rep: hex    # 进制：dec(default) and hex</span><br></pre></td></tr></table></figure></p>
 <p>如上所示，是我本人的配置，其中<code>url</code>配置的是我博客所关联的域名，具体域名的捆绑可参考我的另一篇博客，<a href="https://www.xiemingzhao.com/posts/Hexoblogdomain.html">Hexo博客绑定域名</a>。另，<code>permalink</code>的配置，我多加了一个固定链接<code>posts</code>，纯属个人喜好，你也可以去掉直接配置成<code>:abbrlink.html</code>。</p>
 <h2 id="文章配置与效果"><a href="#文章配置与效果" class="headerlink" title="文章配置与效果"></a>文章配置与效果</h2><p>我们完成了如上的配置后，如果不对博客文章做任何处理的话，在部署的时候，将会根据算法随机生成每篇博客的数字链接。当然，如果你觉得使用随机的数字连接不具有识别性，想要自定义每篇博客的链接的话也是可以的，只需要在你的博客<code>.md</code>文章的头部配置如下字段即可：</p>
@@ -593,8 +594,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/15b10533.html" rel="next" title="XGBoost A Scalable Tree Boosting System (论文解析)">
-                <i class="fa fa-chevron-left"></i> XGBoost A Scalable Tree Boosting System (论文解析)
+              <a href="/posts/HexoNextindividual.html" rel="next" title="Hexo+Next博客主题个性化设置全集">
+                <i class="fa fa-chevron-left"></i> Hexo+Next博客主题个性化设置全集
               </a>
             
           </div>
@@ -725,7 +726,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -747,7 +748,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -825,7 +826,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -852,7 +853,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共174.6k字</span>
+  <span class="post-count">博客全站共189.1k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
