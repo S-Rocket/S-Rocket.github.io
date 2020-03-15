@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://i.postimg.cc/PfR46V40/ltr-4.png">
 <meta property="og:image" content="https://i.postimg.cc/sxq4v1x3/ltr-5.png">
 <meta property="og:image" content="https://i.postimg.cc/28VtBdX7/ltr-6.png">
-<meta property="og:updated_time" content="2020-03-15T09:31:34.448Z">
+<meta property="og:updated_time" content="2020-03-15T09:38:10.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LTR(Learning to Rank)概述">
 <meta name="twitter:description" content="1 Learning to Rank 简介Learning to Rank是采用机器学习算法，通过训练模型来解决排序问题，在Information Retrieval，Natural Language Processing，Data Mining等领域有着很多应用。 1.1 排序问题如图 Fig.1 所示，在信息检索中，给定一个query，搜索引擎会召回一系列相关的Documents（通过term">
@@ -549,8 +549,16 @@
 C_{ij} &= -\frac{1}{2}(1+S_{ij})log \frac{1}{1+e^{-\sigma(s_i-s_j)}} -\frac{1}{2}(1-S_{ij}) log \frac{e^{-\sigma (s_i-s_j)}}{1+e^{-\sigma (s_i-s_j)}} \\
 &=-\frac{1}{2}(1+S_{ij})log \frac{1}{1+e^{-\sigma(s_i-s_j)}}-\frac{1}{2}(1-S_{ij})[-\sigma(s_i-s_j)+log \frac{1}{1+e^{-\sigma(s_i-s_j)}}] \\
 &=\frac{1}{2}(1-S_{ij})\sigma(s_i-s_j)+log(1+e^{-\sigma(s_i-s_j)})
-\end{align*}</script><p>其中：<br>\begin{align<em>}<br>C=\left\{<br>\begin{array}{lr}<br>log(1+e^{-\sigma(s_i-s_j)}), &amp; S_{ij}=1  \\<br>log(1+e^{-\sigma(s_j-s_i)}), &amp; S_{ij}=-1 \\<br>\end{array}<br>\right.<br>\end{align</em>}</p>
-<p>下面展示了当$S_{ij}$分别取1，0，-1的时候cost function以$s_i-s_j$为变量的示意图：</p>
+\end{align*}</script><p>其中：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+C=\left\{
+\begin{array}{lr}
+log(1+e^{-\sigma(s_i-s_j)}), & S_{ij}=1  \\
+log(1+e^{-\sigma(s_j-s_i)}), & S_{ij}=-1 \\
+\end{array}
+\right.
+\end{align*}</script><p>下面展示了当$S_{ij}$分别取1，0，-1的时候cost function以$s_i-s_j$为变量的示意图：</p>
 <p><img src="https://i.postimg.cc/Z5rx5bSh/ltr-3.png" alt="cost function.jpg"></p>
 <p>可以看到当$S_{ij}$=1时，模型预测的$s_i$比$s_j$越大，其代价越小；$S_{ij}$=−1时，$s_i$比$s_j$j越小，代价越小；$S_{ij}$=0时，代价的最小值在$s_i$与$s_j$相等处取得。</p>
 <p>该损失函数有以下几个特点：</p>
