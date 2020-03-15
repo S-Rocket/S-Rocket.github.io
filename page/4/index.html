@@ -321,6 +321,216 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xiemingzhao.com/posts/c3af6916.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小火箭">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://i.postimg.cc/vBxZQfvz/img-0182.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小火箭的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/c3af6916.html" itemprop="url">推荐系统三十六式--学习笔记（20-21 深度学习）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T00:00:00+08:00">
+                2018-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/推荐系统三十六式/" itemprop="url" rel="index">
+                    <span itemprop="name">推荐系统三十六式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/c3af6916.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/c3af6916.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="https://time.geekbang.org/column/intro/74" target="_blank" rel="noopener">参考原作：推荐系统三十六式-刑无刀</a></p>
+<h2 id="20-【深度学习】深度学习在推荐系统中的应用有哪些"><a href="#20-【深度学习】深度学习在推荐系统中的应用有哪些" class="headerlink" title="20.【深度学习】深度学习在推荐系统中的应用有哪些"></a>20.【深度学习】深度学习在推荐系统中的应用有哪些</h2><h3 id="深度学习与推荐系统"><a href="#深度学习与推荐系统" class="headerlink" title="深度学习与推荐系统"></a><strong>深度学习与推荐系统</strong></h3><p>在矩阵分解中，原始的矩阵表示每个用户的向量是物品，表示每个物品的向量是用户，两者向量的维度都特别高不说，还特别稀疏，分解后用户向量和物品向量不但维度变得特别小，而且变稠密了。业界还把这个稠密的向量叫做<strong>隐因子，意图直观说明它的物理意义：用户背后的偏好因子，物品背后的主题因子。</strong></p>
+<p>实际上，你完全可以把矩阵分解看成是一种浅层神经网络，只有一层，它的示意图如下。<br><a href="https://postimg.cc/dDQMyM50" target="_blank" rel="noopener"><img src="https://i.postimg.cc/tRW98pPF/image.jpg" alt="矩阵分解隐因子.jpg"></a><br>这个示意图表示了一个用户 Ui，评分过的物品有 I2 和 I4，分解后的矩阵隐因子数量是 2，用户 Ui 的隐因子向量就是 [w1, w2]，物品 I2 的隐因子向量是 [w3, w5]，物品 I4 的隐因子向量是 [w4, w6]。可以把矩阵分解看成是一个拥有一个隐藏层的神经网络，得到的隐因子向量就是神经网络的连接权重参数。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/c3af6916.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.xiemingzhao.com/posts/2f78d4ef.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1646,7 +1856,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1757,7 +1967,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共189.1k字</span>
+  <span class="post-count">博客全站共193.1k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

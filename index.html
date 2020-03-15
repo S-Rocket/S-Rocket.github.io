@@ -1331,6 +1331,216 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xiemingzhao.com/posts/IntroductionofLTR.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小火箭">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://i.postimg.cc/vBxZQfvz/img-0182.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小火箭的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/IntroductionofLTR.html" itemprop="url">LTR(Learning to Rank)概述</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-29T00:00:00+08:00">
+                2019-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/算法总结/" itemprop="url" rel="index">
+                    <span itemprop="name">算法总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/IntroductionofLTR.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/IntroductionofLTR.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="1-Learning-to-Rank-简介"><a href="#1-Learning-to-Rank-简介" class="headerlink" title="1 Learning to Rank 简介"></a>1 Learning to Rank 简介</h2><p>Learning to Rank是采用机器学习算法，通过训练模型来解决排序问题，在Information Retrieval，Natural Language Processing，Data Mining等领域有着很多应用。</p>
+<h2 id="1-1-排序问题"><a href="#1-1-排序问题" class="headerlink" title="1.1 排序问题"></a>1.1 排序问题</h2><p>如图 Fig.1 所示，在信息检索中，给定一个query，搜索引擎会召回一系列相关的Documents（通过term匹配，keyword匹配，或者semantic匹配的方法），然后便需要对这些召回的Documents进行排序，最后将Top N的Documents输出,一版可以认为是召回后的精排。而排序问题就是使用一个模型 f(q,d)来对该query下的documents进行排序，这个模型可以是人工设定一些参数的模型，也可以是用机器学习算法自动训练出来的模型。现在第二种方法越来越流行，尤其在Web Search领域，因为在Web Search 中，有很多信息可以用来确定query-doc pair的相关性，而另一方面，由于大量的搜索日志的存在，可以将用户的点击行为日志作为training data，使得通过机器学习自动得到排序模型成为可能。</p>
+<p><strong>需要注意的是，排序问题最关注的是各个Documents之间的相对顺序关系，而不是各个Documents的预测分最准确。</strong></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/IntroductionofLTR.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.xiemingzhao.com/posts/4bbfbe93.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2167,216 +2377,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xiemingzhao.com/posts/e59f436c.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小火箭">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://i.postimg.cc/vBxZQfvz/img-0182.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小火箭的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/e59f436c.html" itemprop="url">Wide and Deep Learning for Recommender Systems (论文解析)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-12T00:00:00+08:00">
-                2019-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/论文解析/" itemprop="url" rel="index">
-                    <span itemprop="name">论文解析</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/e59f436c.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e59f436c.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  17
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="http://scholar.google.com.hk/scholar_url?url=https://dl.acm.org/ft_gateway.cfm%3Fid%3D2988454%26type%3Dpdf&amp;hl=zh-CN&amp;sa=X&amp;scisig=AAGBfm0TVpSA7DpxrGGn23_Zbb27fZpvyQ&amp;nossl=1&amp;oi=scholarr" target="_blank" rel="noopener">原始论文：Wide &amp; Deep Learning for Recommender Systems</a></p>
-<h2 id="推荐系统之Wide-amp-Deep机器学习算法"><a href="#推荐系统之Wide-amp-Deep机器学习算法" class="headerlink" title="推荐系统之Wide &amp; Deep机器学习算法"></a>推荐系统之Wide &amp; Deep机器学习算法</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h3><p>不包含非线性特征变换的一般线性模型被广泛地应用在具有稀疏输入的大规模回归和分类问题中。通过一个<em>宽的</em>交叉积特征变换来实现对特征交叉的记忆是很有效和可解释的，而泛化能力需要更多的特征工程工作。考虑少用特征工程，深度神经网络可以更好地起到品泛化的作用，它会从稀疏的特征中学习到那些低维度看不见的密集嵌入。然而，具有嵌入的深度神经网络很容易过度泛化，并在用户-物品交互稀疏和稠密的时候会推荐一些不太相关的项物品。在本文中，我们提出广泛和深度学习——联合训练宽线性模型和深层神经网络——如此来结合记忆模型和泛化模型的好处从而构成更好的推荐系统。我们在Google Play上制作并评估了该系统，它是一个活跃的商业移动应用商店，上面超过10亿活跃用户和超过一百万个应用程序。在线实验结果表明相对于仅用wide模型和deep模型而言，Wide＆Deep显着增加了app的获取。我们也在TensorFlow中开源了我们的实现。</p>
-<p><strong>关键词</strong>  Wide &amp; Deep学习，推荐系统</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/e59f436c.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2429,7 +2429,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2540,7 +2540,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共189.1k字</span>
+  <span class="post-count">博客全站共193.1k字</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
